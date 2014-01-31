@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
 		1CA6CD4C189A0A5300BC8045 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4B189A0A5300BC8045 /* Foundation.framework */; };
 		1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */; };
 		1CA6CD50189A0A5300BC8045 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4F189A0A5300BC8045 /* UIKit.framework */; };
@@ -20,8 +21,6 @@
 		1CA6CD6E189A0A5300BC8045 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD6D189A0A5300BC8045 /* XCTest.framework */; };
 		1CA6CD6F189A0A5300BC8045 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4B189A0A5300BC8045 /* Foundation.framework */; };
 		1CA6CD70189A0A5300BC8045 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4F189A0A5300BC8045 /* UIKit.framework */; };
-		1CA6CD78189A0A5300BC8045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CA6CD76189A0A5300BC8045 /* InfoPlist.strings */; };
-		1CA6CD7A189A0A5300BC8045 /* Ipoint3acresTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6CD79189A0A5300BC8045 /* Ipoint3acresTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		1CA6CD48189A0A5300BC8045 /* Ipoint3acres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ipoint3acres.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6CD4B189A0A5300BC8045 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,9 +52,7 @@
 		1CA6CD66189A0A5300BC8045 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1CA6CD6C189A0A5300BC8045 /* Ipoint3acresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ipoint3acresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6CD6D189A0A5300BC8045 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		1CA6CD75189A0A5300BC8045 /* Ipoint3acresTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ipoint3acresTests-Info.plist"; sourceTree = "<group>"; };
-		1CA6CD77189A0A5300BC8045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1CA6CD79189A0A5300BC8045 /* Ipoint3acresTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ipoint3acresTests.m; sourceTree = "<group>"; };
+		33BCE22A507F426AA9B696EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +63,7 @@
 				1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */,
 				1CA6CD50189A0A5300BC8045 /* UIKit.framework in Frameworks */,
 				1CA6CD4C189A0A5300BC8045 /* Foundation.framework in Frameworks */,
+				1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,9 +84,9 @@
 			isa = PBXGroup;
 			children = (
 				1CA6CD51189A0A5300BC8045 /* Ipoint3acres */,
-				1CA6CD73189A0A5300BC8045 /* Ipoint3acresTests */,
 				1CA6CD4A189A0A5300BC8045 /* Frameworks */,
 				1CA6CD49189A0A5300BC8045 /* Products */,
+				04035B949A344430AFC41000 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +106,7 @@
 				1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */,
 				1CA6CD4F189A0A5300BC8045 /* UIKit.framework */,
 				1CA6CD6D189A0A5300BC8045 /* XCTest.framework */,
+				33BCE22A507F426AA9B696EC /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,24 +137,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1CA6CD73189A0A5300BC8045 /* Ipoint3acresTests */ = {
-			isa = PBXGroup;
-			children = (
-				1CA6CD79189A0A5300BC8045 /* Ipoint3acresTests.m */,
-				1CA6CD74189A0A5300BC8045 /* Supporting Files */,
-			);
-			path = Ipoint3acresTests;
-			sourceTree = "<group>";
-		};
-		1CA6CD74189A0A5300BC8045 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1CA6CD75189A0A5300BC8045 /* Ipoint3acresTests-Info.plist */,
-				1CA6CD76189A0A5300BC8045 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,9 +144,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CA6CD7D189A0A5300BC8045 /* Build configuration list for PBXNativeTarget "Ipoint3acres" */;
 			buildPhases = (
+				D214291428934586BC2472C4 /* Check Pods Manifest.lock */,
 				1CA6CD44189A0A5300BC8045 /* Sources */,
 				1CA6CD45189A0A5300BC8045 /* Frameworks */,
 				1CA6CD46189A0A5300BC8045 /* Resources */,
+				E280E42CAFDE425EB0CD2A0D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,11 +226,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA6CD78189A0A5300BC8045 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D214291428934586BC2472C4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E280E42CAFDE425EB0CD2A0D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1CA6CD44189A0A5300BC8045 /* Sources */ = {
@@ -263,7 +279,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA6CD7A189A0A5300BC8045 /* Ipoint3acresTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +315,6 @@
 				1CA6CD61189A0A5300BC8045 /* Base */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		1CA6CD76189A0A5300BC8045 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CA6CD77189A0A5300BC8045 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -389,6 +396,7 @@
 		};
 		1CA6CD7E189A0A5300BC8045 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04035B949A344430AFC41000 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -402,6 +410,7 @@
 		};
 		1CA6CD7F189A0A5300BC8045 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04035B949A344430AFC41000 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -474,6 +483,7 @@
 				1CA6CD7F189A0A5300BC8045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CA6CD80189A0A5300BC8045 /* Build configuration list for PBXNativeTarget "Ipoint3acresTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +492,7 @@
 				1CA6CD82189A0A5300BC8045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
