@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>07AD04DB-AE7D-4A3E-BEC3-966E314B410E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Ipoint3acres</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6E946AD9-A1BE-47A0-AA79-2D4CB9EA19CE</key>
+		<string>https://github.com/yuanhsh/lpoint3acres.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Ipoint3acres.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6E946AD9-A1BE-47A0-AA79-2D4CB9EA19CE</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yuanhsh/lpoint3acres.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6E946AD9-A1BE-47A0-AA79-2D4CB9EA19CE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6E946AD9-A1BE-47A0-AA79-2D4CB9EA19CE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lpoint3acres</string>
+		</dict>
+	</array>
+</dict>
+</plist>

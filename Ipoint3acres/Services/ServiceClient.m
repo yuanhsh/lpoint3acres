@@ -25,7 +25,9 @@
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo {
     [self GET:@"/bbs/forum-27-1.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"HTML String: %@", operation.responseString);
+        HTMLParser *parser = [HTMLParser sharedInstance];
+        [parser parseArticlesForBoard:board withData:operation.responseData];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

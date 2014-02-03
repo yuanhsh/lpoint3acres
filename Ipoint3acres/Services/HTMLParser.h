@@ -1,18 +1,17 @@
 //
-//  PageURLMapper.h
+//  HTMLParser.h
 //  Ipoint3acres
 //
-//  Created by 苑　海勝 on 2014/02/03.
+//  Created by YUAN on 14-2-3.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "Models.h"
 
-@interface PageURLMapper : NSObject
+@interface HTMLParser : NSObject
 
 + (instancetype)sharedInstance;
 
-- (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo;
-
+- (NSArray *)parseArticlesForBoard:(Board *)board withData:(NSData *)data;
 @end

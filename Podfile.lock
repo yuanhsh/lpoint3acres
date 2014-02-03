@@ -34,6 +34,7 @@ PODS:
   - SDWebImage (3.5.2):
     - SDWebImage/Core
   - SDWebImage/Core (3.5.2)
+  - SVProgressHUD (1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - hpple (~> 0.2.0)
   - QuickDialog (~> 0.9.1)
   - SDWebImage (~> 3.5.2)
+  - SVProgressHUD (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
@@ -55,5 +57,6 @@ SPEC CHECKSUMS:
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
   QuickDialog: fa9f2641b1c2028667e115add0005530c77193a3
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
 
 COCOAPODS: 0.29.0

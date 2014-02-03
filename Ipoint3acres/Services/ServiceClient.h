@@ -8,7 +8,9 @@
 
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
-#import "Board.h"
+#import "HTMLParser.h"
+#import "PageURLMapper.h"
+#import "Models.h"
 
 #define kBaseAPIURL         @"http://www.1point3acres.com/"
 #define kActivateAPIPath    @"/contents/api/auth/activate"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Article" representedClassName="Article" syncable="YES">
+        <attribute name="articleID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="articleURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isStick" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastCommentDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastCommenter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,8 +32,8 @@
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="comments" inverseEntity="Article" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="340" positionY="-90" width="128" height="208"/>
-        <element name="Board" positionX="115" positionY="-99" width="128" height="120"/>
-        <element name="Comment" positionX="351" positionY="252" width="128" height="118"/>
+        <element name="Article" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Board" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

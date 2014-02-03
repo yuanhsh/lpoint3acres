@@ -2,7 +2,7 @@
 //  Comment.h
 //  Ipoint3acres
 //
-//  Created by 苑　海勝 on 2014/02/03.
+//  Created by YUAN on 14-2-4.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
