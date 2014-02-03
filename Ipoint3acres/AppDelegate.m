@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "DataManager.h"
+#import "Common.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
     return YES;
 }
 							
@@ -26,6 +29,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[DataManager sharedInstance] save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -41,6 +45,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[DataManager sharedInstance] save];
 }
 
 @end
