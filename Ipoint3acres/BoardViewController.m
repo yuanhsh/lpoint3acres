@@ -7,6 +7,7 @@
 //
 
 #import "BoardViewController.h"
+#import "ArticleTitleCell.h"
 
 @interface BoardViewController ()
 @property (nonatomic, strong) UIButton *button;
@@ -14,8 +15,7 @@
 
 @implementation BoardViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -23,28 +23,18 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    [[ServiceClient sharedClient] fetchArticlesForBoard:nil atPage:0];
-//    self.button = [UIButton buttonWithType:UIButtonTypeInfoLight];
-//    self.button.frame = CGRectMake(10, 100, 200, 30);
-//    self.button.titleLabel.text = @"Button";
-//    [self.button addTarget:self action:@selector(onTouch:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:self.button];
+    self.articles = [NSArray array];
+    self.service = [[ServiceClient alloc] init];
+    self.service.delegate = self;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.service fetchArticlesForBoard:self.board atPage:0];
+    NSLog(@"%@", DocumentsDirectory);
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)loadDataFromLocal {
@@ -57,26 +47,39 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return 120;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [self.articles count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"ArticleTitleCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+//    cell.article = self.articles[indexPath.item];
+    Article *article = [self.articles objectAtIndex:indexPath.row];
+    NSLog(@"%d %@", indexPath.row, article.authorName);
+    cell.textLabel.text = article.authorName;
     return cell;
+}
+
+#pragma mark - WebServiceDelegate Method
+
+- (void)didReceiveArticles: (NSArray *)articles forBoard: (Board *)board {
+    self.articles = articles;
+    [self.tableView reloadData];
 }
 
 /*

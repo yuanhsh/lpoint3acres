@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Article.h"
 
 @interface ArticleTitleCell : UITableViewCell
 
@@ -17,4 +18,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *lastCommenter;
 @property (strong, nonatomic) IBOutlet UILabel *lastCommentDate;
 @property (strong, nonatomic) IBOutlet UILabel *viewCount;
+@property (weak, nonatomic) Article *article;
 @end

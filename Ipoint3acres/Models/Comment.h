@@ -2,7 +2,7 @@
 //  Comment.h
 //  Ipoint3acres
 //
-//  Created by YUAN on 14-2-4.
+//  Created by 苑　海勝 on 2014/02/04.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
@@ -15,9 +15,9 @@
 
 @property (nonatomic, retain) NSString * articleURL;
 @property (nonatomic, retain) NSString * content;
-@property (nonatomic) NSTimeInterval createDate;
-@property (nonatomic, retain) NSString * userID;
-@property (nonatomic, retain) NSString * userName;
+@property (nonatomic, retain) NSString * createDate;
+@property (nonatomic) int32_t commenterID;
+@property (nonatomic, retain) NSString * commenterName;
 @property (nonatomic, retain) Article *article;
 
 @end

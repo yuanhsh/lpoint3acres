@@ -7,6 +7,7 @@
 //
 
 #import "ArticleTitleCell.h"
+#import "DTCoreText.h"
 
 @implementation ArticleTitleCell
 
@@ -24,6 +25,26 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setArticle:(Article *)article {
+    _article = article;
+    // update cell view
+    self.title.editable = NO;
+    NSData *data = [article.title dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSAttributedString *title = [[NSAttributedString alloc] initWithData:data
+																  options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+																			NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
+													   documentAttributes:nil error:nil];
+    self.title.attributedText = title;
+    self.authorName.titleLabel.text = article.authorName;
+    self.createDate.text = article.createDate;
+    self.lastCommenter.text = article.lastCommenter;
+    self.lastCommentDate.text = article.lastCommentDate;
+    int view = article.viewCount;
+    int comment = article.commentCount;
+    self.viewCount.text = [NSString stringWithFormat:@"查看:%d 评论:%d", view, comment];
 }
 
 @end

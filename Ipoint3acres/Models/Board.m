@@ -2,7 +2,7 @@
 //  Board.m
 //  Ipoint3acres
 //
-//  Created by YUAN on 14-2-4.
+//  Created by 苑　海勝 on 2014/02/04.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 
 @implementation Board
 
+@dynamic boardID;
 @dynamic hidden;
 @dynamic index;
 @dynamic name;

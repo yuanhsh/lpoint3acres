@@ -2,7 +2,7 @@
 //  Board.h
 //  Ipoint3acres
 //
-//  Created by YUAN on 14-2-4.
+//  Created by 苑　海勝 on 2014/02/04.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 
 @interface Board : NSManagedObject
 
+@property (nonatomic) int32_t boardID;
 @property (nonatomic) BOOL hidden;
 @property (nonatomic) int32_t index;
 @property (nonatomic, retain) NSString * name;

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "Common.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     return YES;
 }
 							

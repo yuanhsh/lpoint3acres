@@ -10,9 +10,10 @@
 #import "ServiceClient.h"
 #import "Board.h"
 
-@interface BoardViewController : UITableViewController
+@interface BoardViewController : UITableViewController <WebServiceDelegate>
 
 @property (nonatomic, strong) Board *board;
-
+@property (nonatomic, strong) ServiceClient *service;
+@property (nonatomic, strong) NSArray *articles;
 
 @end

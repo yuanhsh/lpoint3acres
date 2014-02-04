@@ -7,9 +7,8 @@
 //
 
 #import "AFNetworking.h"
-#import "AFNetworkActivityIndicatorManager.h"
 #import "HTMLParser.h"
-#import "PageURLMapper.h"
+#import "InfoURLMapper.h"
 #import "Models.h"
 
 #define kBaseAPIURL         @"http://www.1point3acres.com/"
@@ -17,9 +16,13 @@
 #define kLoginAPIPath       @"/contents/api/auth/login"
 #define kBookListAPIPath    @"/contents/api/cust/booklist"
 
+@protocol WebServiceDelegate;
+
 @interface ServiceClient : AFHTTPRequestOperationManager
 
-+ (ServiceClient *)sharedClient;
+//+ (ServiceClient *)sharedClient;
+
+@property (nonatomic, weak) id<WebServiceDelegate> delegate;
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo;
 
