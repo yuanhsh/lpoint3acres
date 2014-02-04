@@ -10,6 +10,10 @@
 #import "Models.h"
 #import "RegexKitLite.h"
 
+#define kBoardURL       @"/bbs/forum-%d-%d.html"
+#define kArticleURL     @"/bbs/thread-%d-1-1.html"
+#define kCommentURL     @"/bbs/thread-%d-%d-1.html"
+
 @interface InfoURLMapper : NSObject
 
 + (instancetype)sharedInstance;

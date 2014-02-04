@@ -21,7 +21,7 @@
 }
 
 - (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo {
-    NSString *url = [NSString stringWithFormat:board.url, pageNo];
+    NSString *url = [NSString stringWithFormat:kBoardURL, board.boardID, pageNo];
     return url;
 }
 

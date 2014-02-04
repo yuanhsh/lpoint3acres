@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "DataManager.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) NSMutableArray *boardControllers;
@@ -29,9 +30,8 @@
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
-    UIViewController *contentViewController = [[BoardViewController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObject:contentViewController];
-    [self.pageViewController setViewControllers:viewControllers
+    BoardViewController *boardViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
+    [self.pageViewController setViewControllers:@[boardViewController]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
@@ -47,6 +47,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)initBoardData {
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Board" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"contentsId" ascending:YES];
+//    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"firstName == 'George'"]];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    if (!fetchedObjects || fetchedObjects.count == 0) {
+        
+        Board *board = [NSEntityDescription insertNewObjectForEntityForName:@"Board" inManagedObjectContext:context];
+    }
 }
 
 #pragma mark -
@@ -68,13 +84,13 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
       viewControllerBeforeViewController:(UIViewController *)viewController {
-    BoardViewController *contentViewController = [[BoardViewController alloc] init];
+    BoardViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
     return contentViewController;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController {
-    BoardViewController *contentViewController = [[BoardViewController alloc] init];
+    BoardViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
     return contentViewController;
 }
 

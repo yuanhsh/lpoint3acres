@@ -30,13 +30,11 @@
 - (void)setArticle:(Article *)article {
     _article = article;
     // update cell view
-    self.title.editable = NO;
     NSData *data = [article.title dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSAttributedString *title = [[NSAttributedString alloc] initWithData:data
-																  options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-																			NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
-													   documentAttributes:nil error:nil];
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)};
+    NSAttributedString *title = [[NSAttributedString alloc] initWithData:data options:options
+                                                      documentAttributes:nil error:nil];
+//    [NSAttributedString alloc] initWithCoder:(NSCoder *)
     self.title.attributedText = title;
     self.authorName.titleLabel.text = article.authorName;
     self.createDate.text = article.createDate;

@@ -18,5 +18,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *lastCommenter;
 @property (strong, nonatomic) IBOutlet UILabel *lastCommentDate;
 @property (strong, nonatomic) IBOutlet UILabel *viewCount;
-@property (weak, nonatomic) Article *article;
+@property (strong, nonatomic) Article *article;
 @end

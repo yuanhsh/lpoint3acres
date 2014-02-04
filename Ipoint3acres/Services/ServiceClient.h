@@ -12,9 +12,6 @@
 #import "Models.h"
 
 #define kBaseAPIURL         @"http://www.1point3acres.com/"
-#define kActivateAPIPath    @"/contents/api/auth/activate"
-#define kLoginAPIPath       @"/contents/api/auth/login"
-#define kBookListAPIPath    @"/contents/api/cust/booklist"
 
 @protocol WebServiceDelegate;
 

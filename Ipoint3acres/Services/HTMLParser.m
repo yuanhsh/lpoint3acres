@@ -44,6 +44,8 @@
                                                  withString:@"<span style=\"display:none\">"];
         title = [title stringByReplacingOccurrencesOfString:@"em>"
                                                  withString:@"span>"];
+        title = [title stringByReplacingOccurrencesOfString:@"class=\"xi1\">New</a>"
+                                                 withString:@"class=\"xi1\"></a>"];
         article.title = title;
         
         
@@ -94,7 +96,7 @@
     
     if (!article) {
         // add a new row in database
-        NSManagedObjectContext *context = [DataManager sharedInstance].managedObjectContext;
+        NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
         article = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:context];
         article.articleID = [articleID intValue];
         [board addArticlesObject:article];

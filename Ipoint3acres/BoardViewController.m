@@ -52,10 +52,10 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 120;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -64,14 +64,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ArticleTitleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ArticleTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSLog(@"OH, NO, NULL CELL!!");
+        cell = [[ArticleTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
 //    cell.article = self.articles[indexPath.item];
     Article *article = [self.articles objectAtIndex:indexPath.row];
     NSLog(@"%d %@", indexPath.row, article.authorName);
-    cell.textLabel.text = article.authorName;
+    cell.article = article;
     return cell;
 }
 
