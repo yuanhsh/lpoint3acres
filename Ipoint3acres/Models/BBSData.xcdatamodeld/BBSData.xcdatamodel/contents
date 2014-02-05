@@ -13,6 +13,7 @@
         <attribute name="lastCommenter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastCommenterID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="articles" inverseEntity="Board" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Comment" inverseName="article" inverseEntity="Comment" syncable="YES"/>

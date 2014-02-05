@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Models.h"
+#import "DTCoreText.h"
+#import "NSAttributedString+HTML.h"
+
+extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 @interface HTMLParser : NSObject
+
+@property (nonatomic, strong, readonly) NSDictionary *attributedTitleOptions;
 
 + (instancetype)sharedInstance;
 

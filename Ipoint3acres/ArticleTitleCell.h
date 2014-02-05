@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "Article.h"
 
 @interface ArticleTitleCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *avatar;
-@property (strong, nonatomic) IBOutlet UITextView *title;
-@property (strong, nonatomic) IBOutlet UIButton *authorName;
-@property (strong, nonatomic) IBOutlet UILabel *createDate;
-@property (strong, nonatomic) IBOutlet UILabel *lastCommenter;
-@property (strong, nonatomic) IBOutlet UILabel *lastCommentDate;
-@property (strong, nonatomic) IBOutlet UILabel *viewCount;
-@property (strong, nonatomic) Article *article;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UIButton *authorName;
+@property (weak, nonatomic) IBOutlet UILabel *createDate;
+@property (weak, nonatomic) IBOutlet UILabel *lastCommenter;
+@property (weak, nonatomic) IBOutlet UILabel *lastCommentDate;
+@property (weak, nonatomic) IBOutlet UILabel *viewCount;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) Article *article;
+@property (assign, nonatomic) BOOL useRichText;
+
++ (CGFloat)heightForArticle:(Article *)article;
 @end

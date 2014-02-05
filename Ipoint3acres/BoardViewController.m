@@ -9,6 +9,8 @@
 #import "BoardViewController.h"
 #import "ArticleTitleCell.h"
 
+static NSString *CellIdentifier = @"ArticleTitleCell";
+
 @interface BoardViewController ()
 @property (nonatomic, strong) UIButton *button;
 @end
@@ -30,7 +32,7 @@
     self.service.delegate = self;
     
     [self.service fetchArticlesForBoard:self.board atPage:0];
-    NSLog(@"%@", DocumentsDirectory);
+    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,33 +50,22 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 120;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [ArticleTitleCell heightForArticle:self.articles[indexPath.row]];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return [self.articles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"ArticleTitleCell";
-    ArticleTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (!cell) {
-        NSLog(@"OH, NO, NULL CELL!!");
-        cell = [[ArticleTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-//    cell.article = self.articles[indexPath.item];
-    Article *article = [self.articles objectAtIndex:indexPath.row];
-    NSLog(@"%d %@", indexPath.row, article.authorName);
-    cell.article = article;
+    ArticleTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.article = self.articles[indexPath.row];
     return cell;
 }
 

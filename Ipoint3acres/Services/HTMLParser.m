@@ -10,8 +10,23 @@
 #import "HTMLParser.h"
 #import "TFHpple.h"
 #import "InfoURLMapper.h"
+#import "OPCoreText.h"
+
+const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
+    // the block is being called for an entire paragraph, so we check the individual elements
+    for (DTHTMLElement *oneChildElement in element.childNodes) {
+        // if an element is larger than twice the font size put it in it's own block
+        if (oneChildElement.displayStyle == DTHTMLElementDisplayStyleInline && oneChildElement.textAttachment.displaySize.height > 2.0 * oneChildElement.fontDescriptor.pointSize) {
+            oneChildElement.displayStyle = DTHTMLElementDisplayStyleBlock;
+            oneChildElement.paragraphStyle.minimumLineHeight = element.textAttachment.displaySize.height;
+            oneChildElement.paragraphStyle.maximumLineHeight = element.textAttachment.displaySize.height;
+        }
+    }
+};
 
 @implementation HTMLParser
+
+@synthesize attributedTitleOptions = _attributedTitleOptions;
 
 + (instancetype)sharedInstance {
     static HTMLParser *_sharedInstance = nil;
@@ -23,9 +38,22 @@
     return _sharedInstance;
 }
 
+- (NSDictionary *)attributedTitleOptions {
+    if (!_attributedTitleOptions) {
+        _attributedTitleOptions = @{NSTextSizeMultiplierDocumentOption: @1.0,
+                                    DTDefaultLinkDecoration: @0,
+                                    DTDefaultLinkColor: @"black",
+                                    DTDefaultFontSize: @14.0,
+                                    DTDefaultFontFamily: @"Helvetica Neue",
+                                    DTWillFlushBlockCallBack: attributedCallBackBlock,
+                                    DTUseiOS6Attributes: @YES};
+    }
+    return _attributedTitleOptions;
+}
+
 - (NSArray *)parseArticlesForBoard:(Board *)board withData:(NSData *)data {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-    NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%d']/tbody", 27];
+    NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%d']/tbody", 79];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
     InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
     NSMutableArray *articleArray = [NSMutableArray array];
@@ -46,8 +74,14 @@
                                                  withString:@"span>"];
         title = [title stringByReplacingOccurrencesOfString:@"class=\"xi1\">New</a>"
                                                  withString:@"class=\"xi1\"></a>"];
-        article.title = title;
         
+        NSData *titleData = [title dataUsingEncoding:NSUTF8StringEncoding];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithHTMLData:titleData options:self.attributedTitleOptions documentAttributes:nil];
+        
+        NSString *plainTitle = [attributedTitle.string stringByTrimmingCharactersInSet:
+                                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        article.title = plainTitle;
+        article.titleData = titleData;
         
         NSArray *tds = [tr childrenWithTagName:@"td"]; //there are 4 children: icn, by, num,by
         
@@ -75,8 +109,11 @@
         article.lastCommenter = commenterName;
         
         // 5, get last comment date
-        TFHppleElement *commenterDateInfo = [[[(TFHppleElement *)tds[3] firstChildWithTagName:@"em"] firstChildWithTagName:@"a"] firstChildWithTagName:@"span"];
-        NSString *commentDate = [commenterDateInfo objectForKey:@"title"];
+        TFHppleElement *commenterDateInfo = [[(TFHppleElement *)tds[3] firstChildWithTagName:@"em"] firstChildWithTagName:@"a"];
+        NSString *commentDate = [[commenterDateInfo firstChildWithTagName:@"span"] objectForKey:@"title"];
+        if (!commentDate || [commentDate isEqualToString:@""]) {
+            commentDate = [commenterDateInfo firstTextChild].content;
+        }
         article.lastCommentDate = commentDate;
         
         [articleArray addObject:article];

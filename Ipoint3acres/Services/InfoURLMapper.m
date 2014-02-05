@@ -35,4 +35,8 @@
     return 0;
 }
 
+- (NSString *)getAvatarURLforUser:(NSInteger)userID {
+    return [NSString stringWithFormat:kAvatarURL, userID];
+}
+
 @end

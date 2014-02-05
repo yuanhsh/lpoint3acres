@@ -8,7 +8,6 @@
 
 #import "ServiceClient.h"
 
-
 @implementation ServiceClient
 
 + (ServiceClient *)sharedClient {
@@ -42,7 +41,9 @@
 }
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo {
-    [self GET:@"/bbs/forum-27-1.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *boardURL = [[InfoURLMapper sharedInstance] urlForBoard:board atPage:1];
+    boardURL = @"/bbs/forum-79-1.html";// for test
+    [self GET:boardURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             HTMLParser *parser = [HTMLParser sharedInstance];
