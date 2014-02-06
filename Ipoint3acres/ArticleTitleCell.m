@@ -37,12 +37,15 @@
 - (void)setArticle:(Article *)article {
     _article = article;
     self.useRichText = kUserRichText;
+    self.authorName.textColor = RGBCOLOR(0, 122, 255);
 
-    [self.authorName setTitle:article.authorName forState:UIControlStateNormal];
+    self.authorName.text = article.authorName;
     self.createDate.text = article.createDate;
     self.lastCommenter.text = article.lastCommenter;
     self.lastCommentDate.text = article.lastCommentDate;
-    self.viewCount.text = [NSString stringWithFormat:@"阅:%d 评:%d", article.viewCount, article.commentCount];
+    int viewCount = [article.viewCount intValue];
+    int commentCount = [article.commentCount intValue];
+    self.viewCount.text = [NSString stringWithFormat:@"阅:%d 评:%d", viewCount, commentCount];
     
     NSString *avatarPath = [[InfoURLMapper sharedInstance] getAvatarURLforUser:article.authorID];
     [self.avatar setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
@@ -62,10 +65,21 @@
 }
 
 + (CGFloat)heightForArticle:(Article *)article {
+    static NSMutableDictionary *heightCache = nil;
+    if (!heightCache) {
+        heightCache = [NSMutableDictionary dictionaryWithCapacity:50];
+    }
+    if (heightCache[article.articleID]) {
+        NSNumber *result = heightCache[article.articleID];
+        return [result floatValue];
+    }
+    
     NSString *text = article.title;
     CGSize constraint = CGSizeMake(300.0f, FLT_MAX);
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:15.0f] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = 55.0f + size.height + 10.0f;
+    
+    [heightCache setValue:@(height) forKey:article.articleID];
     return height;
 }
 

@@ -19,5 +19,5 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 + (instancetype)sharedInstance;
 
-- (NSArray *)parseArticlesForBoard:(Board *)board withData:(NSData *)data;
+- (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)data;
 @end

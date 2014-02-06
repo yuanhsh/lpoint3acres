@@ -51,18 +51,22 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     return _attributedTitleOptions;
 }
 
-- (NSArray *)parseArticlesForBoard:(Board *)board withData:(NSData *)data {
+- (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)data {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-    NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%d']/tbody", 79];
+    NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%@']/tbody", board.boardID];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
     InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
-    NSMutableArray *articleArray = [NSMutableArray array];
+//    NSMutableArray *articleArray = [NSMutableArray array];
+    NSMutableOrderedSet *articleArray = [NSMutableOrderedSet orderedSet];
     
     // there should be 50 articles
     for (TFHppleElement *element in nodes) {
         NSArray *ids = [[element objectForKey:@"id"] componentsSeparatedByString:@"_"]; //ex. stickthread_80717
+        if (ids.count != 2) {
+            continue;
+        }
         Article *article = [self articleInBoard:board withID:ids[1]];
-        article.isStick = ([ids[0] rangeOfString:@"stick"].location != NSNotFound);
+        article.isStick = @([ids[0] rangeOfString:@"stick"].location != NSNotFound);
         
         TFHppleElement *tr = [element firstChildWithTagName:@"tr"];
         
@@ -98,8 +102,8 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         // 3, get view and comment count
         NSString *commentCount = [[[(TFHppleElement *)tds[2] firstChildWithTagName:@"a"] firstTextChild] content];
         NSString *viewCount = [[[(TFHppleElement *)tds[2] firstChildWithTagName:@"em"] firstTextChild] content];
-        article.commentCount = [commentCount intValue];
-        article.viewCount = [viewCount intValue];
+        article.commentCount = @([commentCount integerValue]);
+        article.viewCount = @([viewCount integerValue]);
         
         // 4, get last comment info
         TFHppleElement *commenterInfo = [[(TFHppleElement *)tds[3] firstChildWithTagName:@"cite"] firstChildWithTagName:@"a"];
@@ -125,7 +129,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 - (Article *)articleInBoard:(Board *)board withID:(NSString *)articleID {
     Article *article = nil;
     for (Article *item in board.articles) {
-        if (item.articleID == [articleID intValue]) {
+        if ([item.articleID isEqualToString:articleID]) {
             article = item;
             break;
         }
@@ -135,8 +139,10 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         // add a new row in database
         NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
         article = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:context];
-        article.articleID = [articleID intValue];
+        article.articleID = articleID;
         [board addArticlesObject:article];
+//        NSMutableOrderedSet *singleSet = [NSMutableOrderedSet orderedSetWithObject:article];
+//        [board addArticles:singleSet];
     }
     
     return article;

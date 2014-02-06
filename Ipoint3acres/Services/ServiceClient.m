@@ -42,19 +42,20 @@
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo {
     NSString *boardURL = [[InfoURLMapper sharedInstance] urlForBoard:board atPage:1];
-    boardURL = @"/bbs/forum-79-1.html";// for test
+
     [self GET:boardURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             HTMLParser *parser = [HTMLParser sharedInstance];
-            NSArray *articles = [parser parseArticlesForBoard:board withData:operation.responseData];
+            NSOrderedSet *articles = [parser parseArticlesForBoard:board withData:operation.responseData];
+            [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate didReceiveArticles:articles forBoard:board];
             });
         });
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"fetchArticlesForBoard %@ at page %d, Error: %@", board.name, pageNo, error);
     }];
 }
 @end

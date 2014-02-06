@@ -13,7 +13,7 @@
 @interface ArticleTitleCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
-@property (weak, nonatomic) IBOutlet UIButton *authorName;
+@property (weak, nonatomic) IBOutlet UILabel *authorName;
 @property (weak, nonatomic) IBOutlet UILabel *createDate;
 @property (weak, nonatomic) IBOutlet UILabel *lastCommenter;
 @property (weak, nonatomic) IBOutlet UILabel *lastCommentDate;

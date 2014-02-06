@@ -2,7 +2,7 @@
 //  Article.m
 //  Ipoint3acres
 //
-//  Created by 苑　海勝 on 2014/02/05.
+//  Created by 苑　海勝 on 2014/02/06.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
@@ -25,8 +25,8 @@
 @dynamic lastCommenter;
 @dynamic lastCommenterID;
 @dynamic title;
-@dynamic viewCount;
 @dynamic titleData;
+@dynamic viewCount;
 @dynamic board;
 @dynamic comments;
 

@@ -27,6 +27,6 @@
 
 @protocol WebServiceDelegate <NSObject>
 
-- (void)didReceiveArticles: (NSArray *)articles forBoard: (Board *)board;
+- (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board;
 
 @end

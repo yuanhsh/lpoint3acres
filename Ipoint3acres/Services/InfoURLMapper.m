@@ -25,17 +25,17 @@
     return url;
 }
 
-- (int32_t)getUserIDfromUserLink:(NSString *)link {
+- (NSString *)getUserIDfromUserLink:(NSString *)link {
     NSString *regEx = @"space-uid-[0-9]+";
     NSString *match = [link stringByMatching:regEx];
     if ([match isEqual:@""] == NO) {
         match = [match stringByReplacingOccurrencesOfString:@"space-uid-" withString:@""];
-        return [match intValue];
+        return match;
     }
-    return 0;
+    return @"0";
 }
 
-- (NSString *)getAvatarURLforUser:(NSInteger)userID {
+- (NSString *)getAvatarURLforUser:(NSString *)userID {
     return [NSString stringWithFormat:kAvatarURL, userID];
 }
 

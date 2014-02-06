@@ -49,14 +49,13 @@
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLQ-MY-lGA">
+                                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbD-5H-tKk">
                                             <rect key="frame" x="58" y="4" width="125" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="authorName">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
+                                            <color key="textColor" red="0.031372550874948502" green="0.058823533356189728" blue="0.043137256056070328" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="createDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cN-uU-rse">
                                             <rect key="frame" x="58" y="21" width="127" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -99,7 +98,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="authorName" destination="sLQ-MY-lGA" id="wdf-AH-PsA"/>
+                                    <outlet property="authorName" destination="GbD-5H-tKk" id="Kor-yn-Q5k"/>
                                     <outlet property="avatar" destination="OEu-5g-tbX" id="RzW-zu-PZH"/>
                                     <outlet property="createDate" destination="5cN-uU-rse" id="zXd-fT-IJd"/>
                                     <outlet property="lastCommentDate" destination="Hve-Rg-FKF" id="7HN-0A-Sxy"/>

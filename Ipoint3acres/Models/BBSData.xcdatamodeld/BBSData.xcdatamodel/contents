@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Article" representedClassName="Article" syncable="YES">
-        <attribute name="articleID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="articleID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="articleURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="authorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="authorID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,7 +11,7 @@
         <attribute name="isStick" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastCommentDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastCommenter" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastCommenterID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastCommenterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -19,7 +19,7 @@
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Comment" inverseName="article" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <entity name="Board" representedClassName="Board" syncable="YES">
-        <attribute name="boardID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="boardID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hidden" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,7 +28,7 @@
     </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="articleURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="commenterID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="commenterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commenterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="String" syncable="YES"/>

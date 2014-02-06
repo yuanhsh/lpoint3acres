@@ -27,24 +27,19 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.articles = [NSArray array];
+    self.articles = [NSOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
-    
-    [self.service fetchArticlesForBoard:self.board atPage:0];
-    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)loadDataFromLocal {
-    
-}
-
-- (void)loadDataFromServer {
-    
+- (void)loadData {
+    [self didReceiveArticles:self.board.articles forBoard:self.board];
+    [self.service fetchArticlesForBoard:self.board atPage:0];
 }
 
 #pragma mark - Table view data source
@@ -71,8 +66,8 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 #pragma mark - WebServiceDelegate Method
 
-- (void)didReceiveArticles: (NSArray *)articles forBoard: (Board *)board {
-    self.articles = articles;
+- (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board {
+    self.articles = board.articles;
     [self.tableView reloadData];
 }
 

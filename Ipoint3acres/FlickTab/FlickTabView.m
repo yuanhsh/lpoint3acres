@@ -139,6 +139,11 @@
             break;
         }
     }
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(scrollTabView:didSelectedTabAtIndex:)]) {
+		[self.delegate scrollTabView:self didSelectedTabAtIndex:[scrollView.subviews indexOfObject:button]];
+	}
+    
 	[scrollView.subviews makeObjectsPerformSelector:@selector(markUnselected)];
 //	[button markSelected];
     upArrow.hidden = NO;
@@ -151,11 +156,6 @@
                          upArrow.hidden = YES;
                          [button markSelected];
                      }];
-
-	
-	if(self.delegate && [self.delegate respondsToSelector:@selector(scrollTabView:didSelectedTabAtIndex:)]) {
-		[self.delegate scrollTabView:self didSelectedTabAtIndex:[scrollView.subviews indexOfObject:button]];
-	}
 }
 
 - (void)selectTabAtIndex:(NSInteger)index {

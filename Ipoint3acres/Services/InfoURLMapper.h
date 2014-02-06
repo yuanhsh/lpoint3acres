@@ -10,10 +10,10 @@
 #import "Models.h"
 #import "RegexKitLite.h"
 
-#define kBoardURL       @"/bbs/forum-%d-%d.html"
-#define kArticleURL     @"/bbs/thread-%d-1-1.html"
-#define kCommentURL     @"/bbs/thread-%d-%d-1.html"
-#define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%d&size=middle"
+#define kBoardURL       @"/bbs/forum-%@-%d.html"
+#define kArticleURL     @"/bbs/thread-%@-1-1.html"
+#define kCommentURL     @"/bbs/thread-%@-%d-1.html"
+#define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%@&size=middle"
 
 @interface InfoURLMapper : NSObject
 
@@ -21,8 +21,8 @@
 
 - (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo;
 
-- (int32_t)getUserIDfromUserLink:(NSString *)link;
+- (NSString *)getUserIDfromUserLink:(NSString *)link;
 
-- (NSString *)getAvatarURLforUser:(NSInteger)userID;
+- (NSString *)getAvatarURLforUser:(NSString *)userID;
 
 @end

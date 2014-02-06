@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "Common.h"
-#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation AppDelegate
 

@@ -10,7 +10,7 @@
 #import "DataManager.h"
 
 @interface HomeViewController ()
-@property (nonatomic, strong) NSMutableArray *boardControllers;
+@property (nonatomic, strong) NSArray *boardControllers;
 @end
 
 @implementation HomeViewController
@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.boardControllers = [NSMutableArray arrayWithArray:@[@"头条", @"科技", @"娱乐", @"财经", @"原创", @"社会", @"汽车"]];
+    self.boardControllers = [self getBoardControllers];
 	
     self.flickTabView = [[FlickTabView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, self.view.frame.size.width, TAB_HEIGHT)];
     self.flickTabView.delegate = self;
@@ -30,8 +30,8 @@
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
-    BoardViewController *boardViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
-    [self.pageViewController setViewControllers:@[boardViewController]
+    
+    [self.pageViewController setViewControllers:@[self.boardControllers[0]]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
@@ -41,6 +41,8 @@
     
     CGFloat offsetY = 64.0 + TAB_HEIGHT;
     self.pageViewController.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, self.view.bounds.size.height-offsetY);
+    
+    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,27 +51,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)initBoardData {
+- (NSArray *)getBoardControllers {
     NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Board" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"contentsId" ascending:YES];
-//    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
 //    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"firstName == 'George'"]];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    if (!fetchedObjects || fetchedObjects.count == 0) {
-        
-        Board *board = [NSEntityDescription insertNewObjectForEntityForName:@"Board" inManagedObjectContext:context];
+    NSArray *fetchedBoards = [context executeFetchRequest:fetchRequest error:nil];
+    if (!fetchedBoards || fetchedBoards.count == 0) {
+        NSLog(@"Board data is null, insert default boards");
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"DefaultBoards" ofType:@"plist"];
+        NSArray *defaultBoards = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        for (NSDictionary *item in defaultBoards) {
+            Board *board = [NSEntityDescription insertNewObjectForEntityForName:@"Board" inManagedObjectContext:context];
+            [board safeSetValuesForKeysWithDictionary:item];
+        }
+        [[DataManager sharedInstance] save];
+        fetchedBoards = [context executeFetchRequest:fetchRequest error:nil];
     }
+    
+    NSLog(@"board count is %d", fetchedBoards.count);
+    NSMutableArray *boardControllers = [NSMutableArray array];
+    for (Board *board in fetchedBoards) {
+        BoardViewController *boardController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
+        boardController.board = board;
+        [boardControllers addObject:boardController];
+    }
+    
+    return boardControllers;
 }
 
 #pragma mark -
 #pragma mark FlickTabView Delegate & Data Source
 
 - (void)scrollTabView:(FlickTabView*)scrollTabView didSelectedTabAtIndex:(NSInteger)index {
-	NSLog(@"tab index %d selected!", index);
+    UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
+    if (index < scrollTabView.selectedTabIndex) {
+        direction = UIPageViewControllerNavigationDirectionReverse;
+    }
+    
+	[self.pageViewController setViewControllers:@[self.boardControllers[index]]
+                                      direction:direction
+                                       animated:NO
+                                     completion:nil];
 }
 
 - (NSInteger)numberOfTabsInScrollTabView:(FlickTabView*)scrollTabView {
@@ -77,21 +105,28 @@
 }
 
 - (NSString*)scrollTabView:(FlickTabView*)scrollTabView titleForTabAtIndex:(NSInteger)index {
-	return [self.boardControllers objectAtIndex:index];
+    BoardViewController *controller = [self.boardControllers objectAtIndex:index];
+	return controller.board.name;
 }
 
 #pragma mark - UIPageViewControllerDataSource Methods
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
       viewControllerBeforeViewController:(UIViewController *)viewController {
-    BoardViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
-    return contentViewController;
+    NSInteger index = [self.boardControllers indexOfObject:viewController];
+    if (index <= 0) {
+        return nil;
+    }
+    return self.boardControllers[index-1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController {
-    BoardViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];
-    return contentViewController;
+    NSInteger index = [self.boardControllers indexOfObject:viewController];
+    if (index >= self.boardControllers.count - 1) {
+        return nil;
+    }
+    return self.boardControllers[index+1];
 }
 
 
