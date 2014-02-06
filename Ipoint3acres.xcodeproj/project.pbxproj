@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
-		1C24022C18A20BA4008B1A40 /* CoreText+Opetopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24022418A20BA4008B1A40 /* CoreText+Opetopic.m */; };
-		1C24022D18A20BA4008B1A40 /* NSAttributedString+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24022618A20BA4008B1A40 /* NSAttributedString+Encoding.m */; };
-		1C24022E18A20BA4008B1A40 /* NSDictionary+OPCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24022818A20BA4008B1A40 /* NSDictionary+OPCoreText.m */; };
-		1C24022F18A20BA4008B1A40 /* UIFont+OPCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24022B18A20BA4008B1A40 /* UIFont+OPCoreText.m */; };
 		1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA501D3189FA09C00C1810D /* InfoURLMapper.m */; };
 		1CA6CD4C189A0A5300BC8045 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4B189A0A5300BC8045 /* Foundation.framework */; };
 		1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */; };
@@ -30,6 +26,7 @@
 		1CAE479918A32723004F9EDC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479818A32723004F9EDC /* Comment.m */; };
 		1CAE479C18A32724004F9EDC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479B18A32724004F9EDC /* Article.m */; };
 		1CAE479F18A32724004F9EDC /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479E18A32724004F9EDC /* Board.m */; };
+		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
 		89E95127189E069C00CB822B /* FlickTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E9511F189E069C00CB822B /* FlickTabButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		89E95129189E069C00CB822B /* FlickTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E95124189E069C00CB822B /* FlickTabView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -55,15 +52,6 @@
 
 /* Begin PBXFileReference section */
 		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		1C24022318A20BA4008B1A40 /* CoreText+Opetopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreText+Opetopic.h"; sourceTree = "<group>"; };
-		1C24022418A20BA4008B1A40 /* CoreText+Opetopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreText+Opetopic.m"; sourceTree = "<group>"; };
-		1C24022518A20BA4008B1A40 /* NSAttributedString+Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Encoding.h"; sourceTree = "<group>"; };
-		1C24022618A20BA4008B1A40 /* NSAttributedString+Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Encoding.m"; sourceTree = "<group>"; };
-		1C24022718A20BA4008B1A40 /* NSDictionary+OPCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OPCoreText.h"; sourceTree = "<group>"; };
-		1C24022818A20BA4008B1A40 /* NSDictionary+OPCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+OPCoreText.m"; sourceTree = "<group>"; };
-		1C24022918A20BA4008B1A40 /* OPCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCoreText.h; sourceTree = "<group>"; };
-		1C24022A18A20BA4008B1A40 /* UIFont+OPCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OPCoreText.h"; sourceTree = "<group>"; };
-		1C24022B18A20BA4008B1A40 /* UIFont+OPCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OPCoreText.m"; sourceTree = "<group>"; };
 		1CA501D2189FA09C00C1810D /* InfoURLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoURLMapper.h; sourceTree = "<group>"; };
 		1CA501D3189FA09C00C1810D /* InfoURLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoURLMapper.m; sourceTree = "<group>"; };
 		1CA6CD48189A0A5300BC8045 /* Ipoint3acres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ipoint3acres.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +79,8 @@
 		1CAE479D18A32724004F9EDC /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		1CAE479E18A32724004F9EDC /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		33BCE22A507F426AA9B696EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		896A2C0918A3C376006BBB6A /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
+		896A2C0A18A3C376006BBB6A /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
 		89926D8A189FCD69007BB20D /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		89926D8D189FD55F007BB20D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		89926D8E189FD55F007BB20D /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
@@ -141,22 +131,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C24022218A20BA4008B1A40 /* OPCoreText */ = {
-			isa = PBXGroup;
-			children = (
-				1C24022318A20BA4008B1A40 /* CoreText+Opetopic.h */,
-				1C24022418A20BA4008B1A40 /* CoreText+Opetopic.m */,
-				1C24022518A20BA4008B1A40 /* NSAttributedString+Encoding.h */,
-				1C24022618A20BA4008B1A40 /* NSAttributedString+Encoding.m */,
-				1C24022718A20BA4008B1A40 /* NSDictionary+OPCoreText.h */,
-				1C24022818A20BA4008B1A40 /* NSDictionary+OPCoreText.m */,
-				1C24022918A20BA4008B1A40 /* OPCoreText.h */,
-				1C24022A18A20BA4008B1A40 /* UIFont+OPCoreText.h */,
-				1C24022B18A20BA4008B1A40 /* UIFont+OPCoreText.m */,
-			);
-			path = OPCoreText;
-			sourceTree = "<group>";
-		};
 		1CA6CD3F189A0A5300BC8045 = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +165,6 @@
 		1CA6CD51189A0A5300BC8045 /* Ipoint3acres */ = {
 			isa = PBXGroup;
 			children = (
-				1C24022218A20BA4008B1A40 /* OPCoreText */,
 				89E95156189E8D1200CB822B /* Services */,
 				89E95134189E746E00CB822B /* Models */,
 				89E9511D189E069C00CB822B /* FlickTab */,
@@ -204,6 +177,8 @@
 				1CA6CD64189A0A5300BC8045 /* HomeViewController.m */,
 				89E9512D189E56A900CB822B /* BoardViewController.h */,
 				89E9512E189E56A900CB822B /* BoardViewController.m */,
+				896A2C0918A3C376006BBB6A /* ArticleViewController.h */,
+				896A2C0A18A3C376006BBB6A /* ArticleViewController.m */,
 				89E95130189E637700CB822B /* ArticleTitleCell.h */,
 				89E95131189E637700CB822B /* ArticleTitleCell.m */,
 				1CA6CD66189A0A5300BC8045 /* Images.xcassets */,
@@ -408,24 +383,21 @@
 				89E95129189E069C00CB822B /* FlickTabView.m in Sources */,
 				1CAE479918A32723004F9EDC /* Comment.m in Sources */,
 				89E95145189E746E00CB822B /* NSManagedObject+JSON.m in Sources */,
+				896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */,
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
-				1C24022C18A20BA4008B1A40 /* CoreText+Opetopic.m in Sources */,
-				1C24022E18A20BA4008B1A40 /* NSDictionary+OPCoreText.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
 				1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */,
 				89E9512F189E56A900CB822B /* BoardViewController.m in Sources */,
 				1CAE479C18A32724004F9EDC /* Article.m in Sources */,
 				1CA6CD58189A0A5300BC8045 /* main.m in Sources */,
 				89E95146189E746E00CB822B /* NSString+Encode.m in Sources */,
-				1C24022D18A20BA4008B1A40 /* NSAttributedString+Encoding.m in Sources */,
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
 				89E95127189E069C00CB822B /* FlickTabButton.m in Sources */,
 				89E95144189E746E00CB822B /* NSData+Encode.m in Sources */,
 				89E95132189E637700CB822B /* ArticleTitleCell.m in Sources */,
 				89E9514F189E869800CB822B /* BBSData.xcdatamodeld in Sources */,
-				1C24022F18A20BA4008B1A40 /* UIFont+OPCoreText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

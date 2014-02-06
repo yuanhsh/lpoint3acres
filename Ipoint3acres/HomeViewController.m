@@ -74,7 +74,6 @@
         fetchedBoards = [context executeFetchRequest:fetchRequest error:nil];
     }
     
-    NSLog(@"board count is %d", fetchedBoards.count);
     NSMutableArray *boardControllers = [NSMutableArray array];
     for (Board *board in fetchedBoards) {
         BoardViewController *boardController = [self.storyboard instantiateViewControllerWithIdentifier:@"BoardViewController"];

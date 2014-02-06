@@ -21,6 +21,8 @@
 
 - (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo;
 
+- (NSString *)commentURLForArticle:(Article *)article atPage:(NSInteger)pageNo;
+
 - (NSString *)getUserIDfromUserLink:(NSString *)link;
 
 - (NSString *)getAvatarURLforUser:(NSString *)userID;

@@ -30,4 +30,10 @@
 @dynamic board;
 @dynamic comments;
 
+- (void)addCommentsObject:(Comment *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.comments];
+    [tempSet addObject:value];
+    self.comments = tempSet;
+}
+
 @end

@@ -41,7 +41,8 @@
 }
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo {
-    NSString *boardURL = [[InfoURLMapper sharedInstance] urlForBoard:board atPage:1];
+    NSInteger page = (pageNo <= 0) ? 1 : pageNo;
+    NSString *boardURL = [[InfoURLMapper sharedInstance] urlForBoard:board atPage:page];
 
     [self GET:boardURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
@@ -56,6 +57,26 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"fetchArticlesForBoard %@ at page %d, Error: %@", board.name, pageNo, error);
+    }];
+}
+
+- (void)fetchCommentsForArticle:(Article *)article atPage:(NSInteger)pageNo {
+    NSInteger page = (pageNo <= 0) ? 1 : pageNo;
+    NSString *commentURL = [[InfoURLMapper sharedInstance] commentURLForArticle:article atPage:page];
+    
+    [self GET:commentURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            [parser parseCommentsForArticle:article withData:operation.responseData];
+            [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.delegate didReceiveArticles:articles forBoard:board];
+            });
+        });
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"fetchCommentsForArticle %@ at page %d, Error: %@", article.articleID, pageNo, error);
     }];
 }
 @end

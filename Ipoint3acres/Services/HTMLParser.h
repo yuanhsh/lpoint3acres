@@ -20,4 +20,7 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 + (instancetype)sharedInstance;
 
 - (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)data;
+
+- (void)parseCommentsForArticle:(Article *)article withData:(NSData *)data;
+
 @end

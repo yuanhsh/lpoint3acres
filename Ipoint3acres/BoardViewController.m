@@ -39,7 +39,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 - (void)loadData {
     [self didReceiveArticles:self.board.articles forBoard:self.board];
-    [self.service fetchArticlesForBoard:self.board atPage:0];
+    [self.service fetchArticlesForBoard:self.board atPage:1];
 }
 
 #pragma mark - Table view data source

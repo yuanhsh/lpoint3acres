@@ -10,7 +10,6 @@
 #import "HTMLParser.h"
 #import "InfoURLMapper.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "OPCoreText.h"
 
 #define kUserRichText   NO
 

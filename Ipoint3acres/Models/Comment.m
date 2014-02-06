@@ -14,6 +14,7 @@
 
 @dynamic articleURL;
 @dynamic commenterID;
+@dynamic postID;
 @dynamic commenterName;
 @dynamic content;
 @dynamic createDate;

@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * articleURL;
 @property (nonatomic, retain) NSString * commenterID;
+@property (nonatomic, retain) NSString * postID;
 @property (nonatomic, retain) NSString * commenterName;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSString * createDate;

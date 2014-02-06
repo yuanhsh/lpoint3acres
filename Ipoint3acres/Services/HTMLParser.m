@@ -10,7 +10,6 @@
 #import "HTMLParser.h"
 #import "TFHpple.h"
 #import "InfoURLMapper.h"
-#import "OPCoreText.h"
 
 const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
     // the block is being called for an entire paragraph, so we check the individual elements
@@ -147,4 +146,34 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     
     return article;
 }
+
+- (void)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
+    NSArray *nodes = [parser searchWithXPathQuery:queryString];
+    InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
+    
+}
+
+- (Comment *)commentInArticle:(Article *)article withID:(NSString *)postID {
+    Comment *comment = nil;
+    for (Comment *item in article.comments) {
+        if ([item.postID isEqualToString:postID]) {
+            comment = item;
+            break;
+        }
+    }
+    
+    if (!article) {
+        // add a new row in database
+        NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+        comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:context];
+        comment.postID = postID;
+        [article addCommentsObject:comment];
+    }
+    
+    return comment;
+}
+
+
 @end

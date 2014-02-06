@@ -25,6 +25,11 @@
     return url;
 }
 
+- (NSString *)commentURLForArticle:(Article *)article atPage:(NSInteger)pageNo {
+    NSString *url = [NSString stringWithFormat:kCommentURL, article.articleID, pageNo];
+    return url;
+}
+
 - (NSString *)getUserIDfromUserLink:(NSString *)link {
     NSString *regEx = @"space-uid-[0-9]+";
     NSString *match = [link stringByMatching:regEx];
