@@ -56,7 +56,7 @@
         });
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"fetchArticlesForBoard %@ at page %d, Error: %@", board.name, pageNo, error);
+        NSLog(@"fetchArticlesForBoard %@ at page %ld, Error: %@", board.name, (long)pageNo, error);
     }];
 }
 
@@ -68,15 +68,15 @@
         [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             HTMLParser *parser = [HTMLParser sharedInstance];
-            [parser parseCommentsForArticle:article withData:operation.responseData];
+            NSOrderedSet *comments = [parser parseCommentsForArticle:article withData:operation.responseData];
             [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
             dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.delegate didReceiveArticles:articles forBoard:board];
+                [self.delegate didReceiveComments:comments forArticle:article];
             });
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"fetchCommentsForArticle %@ at page %d, Error: %@", article.articleID, pageNo, error);
+        NSLog(@"fetchCommentsForArticle %@ at page %ld, Error: %@", article.articleID, (long)pageNo, error);
     }];
 }
 @end

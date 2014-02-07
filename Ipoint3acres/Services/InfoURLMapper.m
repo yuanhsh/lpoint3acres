@@ -21,12 +21,12 @@
 }
 
 - (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo {
-    NSString *url = [NSString stringWithFormat:kBoardURL, board.boardID, pageNo];
+    NSString *url = [NSString stringWithFormat:kBoardURLByDate, board.boardID, (long)pageNo];
     return url;
 }
 
 - (NSString *)commentURLForArticle:(Article *)article atPage:(NSInteger)pageNo {
-    NSString *url = [NSString stringWithFormat:kCommentURL, article.articleID, pageNo];
+    NSString *url = [NSString stringWithFormat:kCommentURL, article.articleID, (long)pageNo];
     return url;
 }
 

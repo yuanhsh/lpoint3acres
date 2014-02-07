@@ -22,11 +22,12 @@
 @property (nonatomic, weak) id<WebServiceDelegate> delegate;
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo;
+- (void)fetchCommentsForArticle:(Article *)article atPage:(NSInteger)pageNo;
 
 @end
 
 @protocol WebServiceDelegate <NSObject>
-
+@optional
 - (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board;
-
+- (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article;
 @end

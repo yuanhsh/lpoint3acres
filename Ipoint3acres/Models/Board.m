@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by 苑　海勝 on 2014/02/06.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 Yuan. All rights reserved.
 //
 
 #import "Board.h"

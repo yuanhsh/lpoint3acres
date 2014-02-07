@@ -7,6 +7,7 @@
 //
 
 #import "BoardViewController.h"
+#import "ArticleViewController.h"
 #import "ArticleTitleCell.h"
 
 static NSString *CellIdentifier = @"ArticleTitleCell";
@@ -71,7 +72,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     [self.tableView reloadData];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -79,8 +80,11 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ArticleViewController *controller = [segue destinationViewController];
+    ArticleTitleCell *cell = (ArticleTitleCell *)sender;
+    controller.article = cell.article;
 }
 
- */
+ 
 
 @end

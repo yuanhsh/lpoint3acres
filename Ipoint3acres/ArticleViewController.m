@@ -26,18 +26,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
+                                     UITextAttributeTextColor: [UIColor whiteColor]};
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    self.navigationItem.title = self.article.title;
+    self.article.isViewed = @YES;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.comments = [NSOrderedSet orderedSet];
+    self.service = [[ServiceClient alloc] init];
+    self.service.delegate = self;
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadData {
+    [self didReceiveComments:self.article.comments forArticle:self.article];
+    [self.service fetchCommentsForArticle:self.article atPage:1];
 }
 
 #pragma mark - Table view data source
@@ -49,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,6 +69,13 @@
     // Configure the cell...
     
     return cell;
+}
+
+#pragma mark - WebServiceDelegate Method
+
+- (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
+    self.comments = article.comments;
+    [self.tableView reloadData];
 }
 
 /*

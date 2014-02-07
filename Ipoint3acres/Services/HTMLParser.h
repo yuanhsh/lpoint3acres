@@ -21,6 +21,6 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 - (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)data;
 
-- (void)parseCommentsForArticle:(Article *)article withData:(NSData *)data;
+- (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data;
 
 @end

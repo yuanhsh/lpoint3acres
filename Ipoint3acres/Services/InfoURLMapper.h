@@ -10,9 +10,11 @@
 #import "Models.h"
 #import "RegexKitLite.h"
 
-#define kBoardURL       @"/bbs/forum-%@-%d.html"
+#define kBoardURLByLastPost @"/bbs/forum-%@-%ld.html"
+#define kBoardURLByDate @"/bbs/forum.php?mod=forumdisplay&fid=%@&filter=author&orderby=dateline&page=%ld"
+
 #define kArticleURL     @"/bbs/thread-%@-1-1.html"
-#define kCommentURL     @"/bbs/thread-%@-%d-1.html"
+#define kCommentURL     @"/bbs/thread-%@-%ld-1.html"
 #define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%@&size=middle"
 
 @interface InfoURLMapper : NSObject

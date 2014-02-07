@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RefreshableViewController.h"
+#import "Models.h"
+#import "ServiceClient.h"
 
-@interface ArticleViewController : RefreshableViewController
+@interface ArticleViewController : RefreshableViewController <WebServiceDelegate>
+
+@property (nonatomic, strong) Article *article;
+@property (nonatomic, strong) ServiceClient *service;
+@property (nonatomic, strong) NSOrderedSet *comments;
 
 @end

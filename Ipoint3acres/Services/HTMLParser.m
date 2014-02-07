@@ -147,12 +147,44 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     return article;
 }
 
-- (void)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
+- (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
     InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
-    
+    NSInteger i = 0;
+    for (TFHppleElement *element in nodes) {
+        TFHppleElement *divPi = [element firstChildWithClassName:@"pi"];
+        TFHppleElement *divPct = [element firstChildWithClassName:@"pct"];
+        if (divPi && divPct && [divPi.tagName isEqualToString:@"div"] && [divPct.tagName isEqualToString:@"div"]) {
+            
+            TFHppleElement *postIDNode = [[divPi firstChildWithTagName:@"strong"] firstChildWithTagName:@"a"];
+            NSString *postIDStr = [postIDNode objectForKey:@"id"];
+            NSString *postID = [[postIDStr componentsSeparatedByString:@"postnum"] lastObject];
+            if ([[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
+                // first post in this article
+            }
+            
+            // get post content
+            NSString *content = [[divPct firstChildWithTagName:@"div"] firstChildWithTagName:@"div"].raw;
+            content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">"
+                                                     withString:@"<div style=\"display:none\">"];
+            NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
+            NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
+            content = attributedContent.string;
+            
+            
+            // get quote content
+            NSString *quoteContent = nil;
+            NSString *matchedQuote = [content stringByMatching:@"<blockquote>.*</blockquote>"];
+            if (matchedQuote && ![matchedQuote isEqualToString:@""]) {
+                NSData *quoteData = [content dataUsingEncoding:NSUTF8StringEncoding];
+                NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
+                quoteContent = attributedQuote.string;
+            }
+        }
+    }
+    return nil;
 }
 
 - (Comment *)commentInArticle:(Article *)article withID:(NSString *)postID {

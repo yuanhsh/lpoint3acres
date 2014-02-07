@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by 苑　海勝 on 2014/02/06.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 Yuan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSString * createDate;
 @property (nonatomic, retain) NSNumber * isStick;
+@property (nonatomic, retain) NSNumber * isViewed;
 @property (nonatomic, retain) NSString * lastCommentDate;
 @property (nonatomic, retain) NSString * lastCommenter;
 @property (nonatomic, retain) NSString * lastCommenterID;

@@ -100,13 +100,13 @@
 		return;
 	}
 	
-	int items;
+	NSInteger items;
 	
 	if((items = [self.dataSource numberOfTabsInScrollTabView:self]) == 0) {
 		return;
 	}
 	
-	int x;
+	NSInteger x;
 	
 	float origin_x = 0;
 	for(x=0;x<items;x++) {

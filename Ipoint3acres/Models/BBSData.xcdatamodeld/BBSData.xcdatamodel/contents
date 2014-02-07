@@ -9,6 +9,7 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isStick" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isViewed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastCommentDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastCommenter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastCommenterID" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,6 +34,9 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quoteContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quoteDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quoteUser" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="comments" inverseEntity="Article" syncable="YES"/>
     </entity>
     <elements>
