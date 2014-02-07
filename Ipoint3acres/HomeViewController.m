@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.boardControllers = [self getBoardControllers];
 	
-    self.flickTabView = [[FlickTabView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, self.view.frame.size.width, TAB_HEIGHT)];
+    self.flickTabView = [[FlickTabView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, TAB_HEIGHT)];
     self.flickTabView.delegate = self;
 	self.flickTabView.dataSource = self;
     
@@ -39,7 +39,7 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
-    CGFloat offsetY = 64.0 + TAB_HEIGHT;
+    CGFloat offsetY = 0.0f + TAB_HEIGHT;
     self.pageViewController.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, self.view.bounds.size.height-offsetY);
     
     NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);

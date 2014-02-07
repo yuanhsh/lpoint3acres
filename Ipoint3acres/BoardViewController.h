@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RefreshableViewController.h"
 #import "ServiceClient.h"
 #import "Board.h"
 
-@interface BoardViewController : UITableViewController <WebServiceDelegate>
+@interface BoardViewController : RefreshableViewController <WebServiceDelegate>
 
 @property (nonatomic, strong) Board *board;
 @property (nonatomic, strong) ServiceClient *service;

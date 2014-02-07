@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
 		1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA501D3189FA09C00C1810D /* InfoURLMapper.m */; };
+		1CA6B4BF18A4BB9D0072EE8D /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4BC18A4BB9D0072EE8D /* CircleView.m */; };
+		1CA6B4C018A4BB9D0072EE8D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4BE18A4BB9D0072EE8D /* EGORefreshTableHeaderView.m */; };
+		1CA6B4C518A4BF690072EE8D /* RefreshableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4C418A4BF690072EE8D /* RefreshableViewController.m */; };
+		1CA6B4D618A4E9DA0072EE8D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CA6B4CC18A4E9DA0072EE8D /* MJRefresh.bundle */; };
+		1CA6B4D718A4E9DA0072EE8D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4CF18A4E9DA0072EE8D /* MJRefreshBaseView.m */; };
+		1CA6B4D818A4E9DA0072EE8D /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4D118A4E9DA0072EE8D /* MJRefreshConst.m */; };
+		1CA6B4D918A4E9DA0072EE8D /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4D318A4E9DA0072EE8D /* MJRefreshFooterView.m */; };
+		1CA6B4DA18A4E9DA0072EE8D /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4D518A4E9DA0072EE8D /* MJRefreshHeaderView.m */; };
 		1CA6CD4C189A0A5300BC8045 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4B189A0A5300BC8045 /* Foundation.framework */; };
 		1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */; };
 		1CA6CD50189A0A5300BC8045 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6CD4F189A0A5300BC8045 /* UIKit.framework */; };
@@ -54,6 +62,22 @@
 		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		1CA501D2189FA09C00C1810D /* InfoURLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoURLMapper.h; sourceTree = "<group>"; };
 		1CA501D3189FA09C00C1810D /* InfoURLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoURLMapper.m; sourceTree = "<group>"; };
+		1CA6B4BB18A4BB9D0072EE8D /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		1CA6B4BC18A4BB9D0072EE8D /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		1CA6B4BD18A4BB9D0072EE8D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		1CA6B4BE18A4BB9D0072EE8D /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		1CA6B4C318A4BF690072EE8D /* RefreshableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableViewController.h; sourceTree = "<group>"; };
+		1CA6B4C418A4BF690072EE8D /* RefreshableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableViewController.m; sourceTree = "<group>"; };
+		1CA6B4CC18A4E9DA0072EE8D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		1CA6B4CD18A4E9DA0072EE8D /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		1CA6B4CE18A4E9DA0072EE8D /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		1CA6B4CF18A4E9DA0072EE8D /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		1CA6B4D018A4E9DA0072EE8D /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		1CA6B4D118A4E9DA0072EE8D /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		1CA6B4D218A4E9DA0072EE8D /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		1CA6B4D318A4E9DA0072EE8D /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		1CA6B4D418A4E9DA0072EE8D /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		1CA6B4D518A4E9DA0072EE8D /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 		1CA6CD48189A0A5300BC8045 /* Ipoint3acres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ipoint3acres.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA6CD4B189A0A5300BC8045 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +155,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CA6B4BA18A4BB9D0072EE8D /* EGOPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				1CA6B4BB18A4BB9D0072EE8D /* CircleView.h */,
+				1CA6B4BC18A4BB9D0072EE8D /* CircleView.m */,
+				1CA6B4BD18A4BB9D0072EE8D /* EGORefreshTableHeaderView.h */,
+				1CA6B4BE18A4BB9D0072EE8D /* EGORefreshTableHeaderView.m */,
+			);
+			path = EGOPullRefresh;
+			sourceTree = "<group>";
+		};
+		1CA6B4C218A4BF010072EE8D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CA6B4C318A4BF690072EE8D /* RefreshableViewController.h */,
+				1CA6B4C418A4BF690072EE8D /* RefreshableViewController.m */,
+				1CA6CD63189A0A5300BC8045 /* HomeViewController.h */,
+				1CA6CD64189A0A5300BC8045 /* HomeViewController.m */,
+				89E9512D189E56A900CB822B /* BoardViewController.h */,
+				89E9512E189E56A900CB822B /* BoardViewController.m */,
+				896A2C0918A3C376006BBB6A /* ArticleViewController.h */,
+				896A2C0A18A3C376006BBB6A /* ArticleViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1CA6B4CB18A4E9DA0072EE8D /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				1CA6B4CC18A4E9DA0072EE8D /* MJRefresh.bundle */,
+				1CA6B4CD18A4E9DA0072EE8D /* MJRefresh.h */,
+				1CA6B4CE18A4E9DA0072EE8D /* MJRefreshBaseView.h */,
+				1CA6B4CF18A4E9DA0072EE8D /* MJRefreshBaseView.m */,
+				1CA6B4D018A4E9DA0072EE8D /* MJRefreshConst.h */,
+				1CA6B4D118A4E9DA0072EE8D /* MJRefreshConst.m */,
+				1CA6B4D218A4E9DA0072EE8D /* MJRefreshFooterView.h */,
+				1CA6B4D318A4E9DA0072EE8D /* MJRefreshFooterView.m */,
+				1CA6B4D418A4E9DA0072EE8D /* MJRefreshHeaderView.h */,
+				1CA6B4D518A4E9DA0072EE8D /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
 		1CA6CD3F189A0A5300BC8045 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +232,8 @@
 		1CA6CD51189A0A5300BC8045 /* Ipoint3acres */ = {
 			isa = PBXGroup;
 			children = (
+				1CA6B4CB18A4E9DA0072EE8D /* MJRefresh */,
+				1CA6B4BA18A4BB9D0072EE8D /* EGOPullRefresh */,
 				89E95156189E8D1200CB822B /* Services */,
 				89E95134189E746E00CB822B /* Models */,
 				89E9511D189E069C00CB822B /* FlickTab */,
@@ -173,12 +242,7 @@
 				89E9512C189E48D500CB822B /* Common.h */,
 				1CA6CD5D189A0A5300BC8045 /* Main_iPhone.storyboard */,
 				1CA6CD60189A0A5300BC8045 /* Main_iPad.storyboard */,
-				1CA6CD63189A0A5300BC8045 /* HomeViewController.h */,
-				1CA6CD64189A0A5300BC8045 /* HomeViewController.m */,
-				89E9512D189E56A900CB822B /* BoardViewController.h */,
-				89E9512E189E56A900CB822B /* BoardViewController.m */,
-				896A2C0918A3C376006BBB6A /* ArticleViewController.h */,
-				896A2C0A18A3C376006BBB6A /* ArticleViewController.m */,
+				1CA6B4C218A4BF010072EE8D /* Controllers */,
 				89E95130189E637700CB822B /* ArticleTitleCell.h */,
 				89E95131189E637700CB822B /* ArticleTitleCell.m */,
 				1CA6CD66189A0A5300BC8045 /* Images.xcassets */,
@@ -326,6 +390,7 @@
 			files = (
 				1CA6CD62189A0A5300BC8045 /* Main_iPad.storyboard in Resources */,
 				1CA6CD67189A0A5300BC8045 /* Images.xcassets in Resources */,
+				1CA6B4D618A4E9DA0072EE8D /* MJRefresh.bundle in Resources */,
 				1CA6CD5F189A0A5300BC8045 /* Main_iPhone.storyboard in Resources */,
 				1CA6CD56189A0A5300BC8045 /* InfoPlist.strings in Resources */,
 				1CAE479618A321DB004F9EDC /* DefaultBoards.plist in Resources */,
@@ -387,16 +452,23 @@
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
+				1CA6B4D818A4E9DA0072EE8D /* MJRefreshConst.m in Sources */,
+				1CA6B4C518A4BF690072EE8D /* RefreshableViewController.m in Sources */,
 				1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */,
 				89E9512F189E56A900CB822B /* BoardViewController.m in Sources */,
 				1CAE479C18A32724004F9EDC /* Article.m in Sources */,
 				1CA6CD58189A0A5300BC8045 /* main.m in Sources */,
+				1CA6B4C018A4BB9D0072EE8D /* EGORefreshTableHeaderView.m in Sources */,
 				89E95146189E746E00CB822B /* NSString+Encode.m in Sources */,
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
 				89E95127189E069C00CB822B /* FlickTabButton.m in Sources */,
+				1CA6B4BF18A4BB9D0072EE8D /* CircleView.m in Sources */,
 				89E95144189E746E00CB822B /* NSData+Encode.m in Sources */,
+				1CA6B4D718A4E9DA0072EE8D /* MJRefreshBaseView.m in Sources */,
+				1CA6B4D918A4E9DA0072EE8D /* MJRefreshFooterView.m in Sources */,
 				89E95132189E637700CB822B /* ArticleTitleCell.m in Sources */,
+				1CA6B4DA18A4E9DA0072EE8D /* MJRefreshHeaderView.m in Sources */,
 				89E9514F189E869800CB822B /* BBSData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

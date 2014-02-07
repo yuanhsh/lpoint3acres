@@ -30,6 +30,7 @@ PODS:
   - FlurrySDK (4.3.0)
   - GoogleAnalytics-iOS-SDK (3.0.3)
   - hpple (0.2.0)
+  - NSDate+TimeAgo (1.0.2)
   - QuickDialog (0.9.1)
   - RegexKitLite (4.0)
   - SDWebImage (3.5.2):
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - FlurrySDK (~> 4.3.0)
   - GoogleAnalytics-iOS-SDK (~> 3.0.3)
   - hpple (~> 0.2.0)
+  - NSDate+TimeAgo (~> 1.0.2)
   - QuickDialog (~> 0.9.1)
   - RegexKitLite (~> 4.0)
   - SDWebImage (~> 3.5.2)
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   FlurrySDK: 7d91ccc3b3591fd8eb8919f2b90e271e2b0acabe
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
+  NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
   QuickDialog: fa9f2641b1c2028667e115add0005530c77193a3
   RegexKitLite: f7af7b4d2b675cd2ec9a4abab6aad6ae1f6499c0
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e

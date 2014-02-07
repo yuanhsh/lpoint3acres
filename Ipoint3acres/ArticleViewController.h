@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RefreshableViewController.h"
 
-@interface ArticleViewController : UITableViewController
+@interface ArticleViewController : RefreshableViewController
 
 @end

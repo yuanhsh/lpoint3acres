@@ -12,7 +12,7 @@
 static NSString *CellIdentifier = @"ArticleTitleCell";
 
 @interface BoardViewController ()
-@property (nonatomic, strong) UIButton *button;
+
 @end
 
 @implementation BoardViewController
