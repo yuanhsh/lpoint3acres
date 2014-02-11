@@ -7,6 +7,7 @@
 //
 
 #import "ArticleViewController.h"
+#import "ContentCell.h"
 
 @interface ArticleViewController ()
 
@@ -32,10 +33,10 @@
     self.navigationItem.title = self.article.title;
     self.article.isViewed = @YES;
 
-    self.comments = [NSOrderedSet orderedSet];
+    self.comments = [NSMutableOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
-    [self loadData];
+    [self loadDataAtPage:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,9 +45,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadData {
+- (void)loadDataAtPage:(NSInteger)pageNo {
     [self didReceiveComments:self.article.comments forArticle:self.article];
-    [self.service fetchCommentsForArticle:self.article atPage:1];
+    [self.service fetchCommentsForArticle:self.article atPage:pageNo];
 }
 
 #pragma mark - Table view data source
@@ -54,6 +55,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [ContentCell heightForComment:self.comments[indexPath.row]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,9 +70,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ContentCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    ContentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.comment = self.comments[indexPath.row];
     
     return cell;
 }
@@ -75,6 +81,7 @@
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
     self.comments = article.comments;
+//    [self.comments addObjectsFromArray:[comments array]];
     [self.tableView reloadData];
 }
 

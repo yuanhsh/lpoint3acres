@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * quoteContent;
 @property (nonatomic, retain) NSString * quoteUser;
 @property (nonatomic, retain) NSString * quoteDate;
+@property (nonatomic, retain) NSNumber * floorNo;
 @property (nonatomic, retain) Article *article;
 
 @end

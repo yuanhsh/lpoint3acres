@@ -33,6 +33,7 @@
         <attribute name="commenterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="floorNo" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="postID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quoteContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quoteDate" optional="YES" attributeType="String" syncable="YES"/>

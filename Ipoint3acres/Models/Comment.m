@@ -22,5 +22,6 @@
 @dynamic quoteContent;
 @dynamic quoteUser;
 @dynamic quoteDate;
+@dynamic floorNo;
 
 @end

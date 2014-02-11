@@ -57,6 +57,12 @@
     } else {
         self.titleLabel.text = article.title;
     }
+    
+    if ([self.article.isViewed boolValue]) {
+        self.titleLabel.textColor = [UIColor darkGrayColor];
+    } else {
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
 
 //    NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)};
 //    NSAttributedString *title = [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];

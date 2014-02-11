@@ -151,8 +151,8 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
-    InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
-    NSInteger i = 0;
+    NSMutableOrderedSet *commentArray = [NSMutableOrderedSet orderedSet];
+    
     for (TFHppleElement *element in nodes) {
         TFHppleElement *divPi = [element firstChildWithClassName:@"pi"];
         TFHppleElement *divPct = [element firstChildWithClassName:@"pct"];
@@ -161,30 +161,49 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             TFHppleElement *postIDNode = [[divPi firstChildWithTagName:@"strong"] firstChildWithTagName:@"a"];
             NSString *postIDStr = [postIDNode objectForKey:@"id"];
             NSString *postID = [[postIDStr componentsSeparatedByString:@"postnum"] lastObject];
-            if ([[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
-                // first post in this article
-            }
+            
+            Comment *comment = [self commentInArticle:article withID:postID];
             
             // get post content
+            NSString *quoteContent = nil;
             NSString *content = [[divPct firstChildWithTagName:@"div"] firstChildWithTagName:@"div"].raw;
             content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">"
                                                      withString:@"<div style=\"display:none\">"];
-            NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
-            NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
-            content = attributedContent.string;
-            
-            
-            // get quote content
-            NSString *quoteContent = nil;
-            NSString *matchedQuote = [content stringByMatching:@"<blockquote>.*</blockquote>"];
-            if (matchedQuote && ![matchedQuote isEqualToString:@""]) {
-                NSData *quoteData = [content dataUsingEncoding:NSUTF8StringEncoding];
-                NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
-                quoteContent = attributedQuote.string;
+            if (![[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
+                // get quote content
+                NSString *matchedQuote = [content stringByMatching:@"<blockquote>.*</blockquote>"];
+                if (matchedQuote && ![matchedQuote isEqualToString:@""]) {
+                    NSData *quoteData = [matchedQuote dataUsingEncoding:NSUTF8StringEncoding];
+                    NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
+                    quoteContent = attributedQuote.string;
+                }
+                // comment in this article
+                NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
+                NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
+                content = attributedContent.string;
+            } else {
+                comment.floorNo = @1;
             }
+            comment.quoteContent = quoteContent;
+            comment.content = content;
+            
+            TFHppleElement *commenterInfo = [[divPi firstChildWithTagName:@"div"] firstChildWithClassName:@"authi"];
+            TFHppleElement *commenterInfoLink = [commenterInfo firstChildWithTagName:@"a"];
+            TFHppleElement *commentDateInfo = [commenterInfo firstChildWithTagName:@"em"];
+            comment.commenterName = [commenterInfoLink firstTextChild].content;
+            comment.commenterID = [[InfoURLMapper sharedInstance] getUserIDfromUserLink:[commenterInfoLink objectForKey:@"href"]];
+            
+            TFHppleElement *dateSpan = [commentDateInfo firstChildWithTagName:@"span"];
+            if (dateSpan && [dateSpan.tagName isEqualToString:@"span"]) {
+                comment.createDate = [dateSpan objectForKey:@"title"];
+            } else {
+                comment.createDate = [commentDateInfo firstTextChild].content;
+            }
+            
+            [commentArray addObject:comment];
         }
     }
-    return nil;
+    return commentArray;
 }
 
 - (Comment *)commentInArticle:(Article *)article withID:(NSString *)postID {
