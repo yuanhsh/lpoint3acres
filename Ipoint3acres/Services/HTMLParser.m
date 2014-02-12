@@ -43,7 +43,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
                                     DTDefaultLinkDecoration: @0,
                                     DTDefaultLinkColor: @"#007AFF",
                                     DTDefaultLinkHighlightColor: @"#007AFF",
-                                    DTDefaultFontSize: @14.0,
+                                    DTDefaultFontSize: @kDefaultContentFontSize,
 //                                    DTDefaultFontFamily: @"Times New Roman", //Helvetica Neue
                                     DTWillFlushBlockCallBack: attributedCallBackBlock,
                                     DTUseiOS6Attributes: @YES};

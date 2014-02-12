@@ -62,7 +62,7 @@
 
 + (CGFloat)heightForComment:(Comment *)comment {
     UITextView *textView = [[UITextView alloc] init];
-    textView.font = [UIFont systemFontOfSize:14];
+    textView.font = [UIFont systemFontOfSize:kDefaultContentFontSize];
     textView.scrollEnabled = NO;
    
     if ([comment.floorNo intValue] == 1) {

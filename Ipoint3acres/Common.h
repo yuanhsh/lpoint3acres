@@ -19,3 +19,5 @@
 #define DataDirectory       [LibraryDirectory stringByAppendingPathComponent:@"Datas"]
 
 #define isIOS7  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+
+#define kDefaultContentFontSize 16.0f

@@ -91,7 +91,7 @@
     
     NSString *text = article.title;
     CGSize constraint = CGSizeMake(300.0f, FLT_MAX);
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:15.0f] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:16.0f] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = 55.0f + size.height + 10.0f;
     
     [heightCache setValue:@(height) forKey:article.articleID];
