@@ -15,7 +15,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
+    if (isIOS7) {
+        [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
+    }
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     return YES;
 }

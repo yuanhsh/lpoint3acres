@@ -41,9 +41,10 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     if (!_attributedTitleOptions) {
         _attributedTitleOptions = @{NSTextSizeMultiplierDocumentOption: @1.0,
                                     DTDefaultLinkDecoration: @0,
-                                    DTDefaultLinkColor: @"black",
+                                    DTDefaultLinkColor: @"#007AFF",
+                                    DTDefaultLinkHighlightColor: @"#007AFF",
                                     DTDefaultFontSize: @14.0,
-                                    DTDefaultFontFamily: @"Helvetica Neue",
+//                                    DTDefaultFontFamily: @"Times New Roman", //Helvetica Neue
                                     DTWillFlushBlockCallBack: attributedCallBackBlock,
                                     DTUseiOS6Attributes: @YES};
     }
@@ -187,7 +188,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             comment.quoteContent = quoteContent;
             comment.content = content;
             
-            TFHppleElement *commenterInfo = [[divPi firstChildWithTagName:@"div"] firstChildWithClassName:@"authi"];
+            TFHppleElement *commenterInfo = [[divPi firstChildWithClassName:@"pti"] firstChildWithClassName:@"authi"];
             TFHppleElement *commenterInfoLink = [commenterInfo firstChildWithTagName:@"a"];
             TFHppleElement *commentDateInfo = [commenterInfo firstChildWithTagName:@"em"];
             comment.commenterName = [commenterInfoLink firstTextChild].content;
@@ -199,6 +200,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             } else {
                 comment.createDate = [commentDateInfo firstTextChild].content;
             }
+            comment.createDate = [comment.createDate stringByReplacingOccurrencesOfString:@"发表于 " withString:@""];
             
             [commentArray addObject:comment];
         }
@@ -215,7 +217,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         }
     }
     
-    if (!article) {
+    if (!comment) {
         // add a new row in database
         NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
         comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:context];

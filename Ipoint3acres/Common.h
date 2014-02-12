@@ -17,3 +17,5 @@
 #define LibraryDirectory    [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject]
 #define CachesDirectory     [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 #define DataDirectory       [LibraryDirectory stringByAppendingPathComponent:@"Datas"]
+
+#define isIOS7  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)

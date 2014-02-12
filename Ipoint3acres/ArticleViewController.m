@@ -8,6 +8,7 @@
 
 #import "ArticleViewController.h"
 #import "ContentCell.h"
+#import "FirstFloorContentCell.h"
 
 @interface ArticleViewController ()
 
@@ -27,9 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
-                                     UITextAttributeTextColor: [UIColor whiteColor]};
-    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+//    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
+//                                     UITextAttributeTextColor: [UIColor whiteColor]};
+//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
     self.navigationItem.title = self.article.title;
     self.article.isViewed = @YES;
 
@@ -37,6 +38,13 @@
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
     [self loadDataAtPage:1];
+    
+    [self.tableView setTableFooterView:[UIView new]];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +67,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Comment *comment = self.comments[indexPath.row];
+    if ([comment.floorNo intValue] == 1) {
+        FirstFloorContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirstFloorContentCell"];
+        return [cell heightForComment:comment];
+    }
     return [ContentCell heightForComment:self.comments[indexPath.row]];
 }
 
@@ -70,16 +83,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ContentCell";
-    ContentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *FirstFloorCellIdentifier = @"FirstFloorContentCell";
+    Comment *comment = self.comments[indexPath.row];
+    if ([comment.floorNo intValue] == 1) {
+        FirstFloorContentCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstFloorCellIdentifier];
+        cell.comment = comment;
+        return cell;
+    } else {
+        ContentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.comment = comment;
+        return cell;
+    }
     
-    cell.comment = self.comments[indexPath.row];
-    
-    return cell;
 }
 
 #pragma mark - WebServiceDelegate Method
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
+    if (self.comments.count == article.comments.count) {
+        NSLog(@"Info: No need to refresh post tableview for article: %@", article.articleID);
+        return;
+    }
     self.comments = article.comments;
 //    [self.comments addObjectsFromArray:[comments array]];
     [self.tableView reloadData];

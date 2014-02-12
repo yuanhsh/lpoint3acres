@@ -82,6 +82,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     // Pass the selected object to the new view controller.
     ArticleViewController *controller = [segue destinationViewController];
     ArticleTitleCell *cell = (ArticleTitleCell *)sender;
+    cell.isViewed = YES;
     controller.article = cell.article;
 }
 

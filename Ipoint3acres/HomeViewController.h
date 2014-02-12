@@ -10,7 +10,7 @@
 #import "FlickTabView.h"
 #import "BoardViewController.h"
 
-@interface HomeViewController : UIViewController <UIPageViewControllerDelegate,UIPageViewControllerDataSource,FlickTabViewDataSource,FlickTabViewDelegate>
+@interface HomeViewController : UIViewController <UIPageViewControllerDelegate,UIPageViewControllerDataSource,FlickTabViewDataSource,FlickTabViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) FlickTabView *flickTabView;
 @property (nonatomic, strong) UIPageViewController *pageViewController;

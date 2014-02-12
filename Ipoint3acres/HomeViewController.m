@@ -42,6 +42,8 @@
     CGFloat offsetY = 0.0f + TAB_HEIGHT;
     self.pageViewController.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, self.view.bounds.size.height-offsetY);
     
+    [self.pageViewController.view.subviews[0] setDelegate:self];
+    
     NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
 }
 
@@ -126,6 +128,12 @@
         return nil;
     }
     return self.boardControllers[index+1];
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
 }
 
 

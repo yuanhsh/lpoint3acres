@@ -33,6 +33,16 @@
     // Configure the view for the selected state
 }
 
+- (void)setIsViewed:(BOOL)isViewed {
+    _isViewed = isViewed;
+    self.article.isViewed = @(isViewed);
+    if (isViewed) {
+        self.titleLabel.textColor = [UIColor lightGrayColor];
+    } else {
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
+}
+
 - (void)setArticle:(Article *)article {
     _article = article;
     self.useRichText = kUserRichText;
@@ -59,7 +69,7 @@
     }
     
     if ([self.article.isViewed boolValue]) {
-        self.titleLabel.textColor = [UIColor darkGrayColor];
+        self.titleLabel.textColor = [UIColor lightGrayColor];
     } else {
         self.titleLabel.textColor = [UIColor blackColor];
     }

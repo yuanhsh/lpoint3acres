@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) Article *article;
 @property (assign, nonatomic) BOOL useRichText;
+@property (assign, nonatomic) BOOL isViewed;
 
 + (CGFloat)heightForArticle:(Article *)article;
 @end
