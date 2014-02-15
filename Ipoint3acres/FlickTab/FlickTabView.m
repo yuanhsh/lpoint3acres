@@ -164,6 +164,11 @@
 
 - (void)selectTabAtIndex:(NSInteger)index animated:(BOOL)animated {
 	if(!scrollView.subviews || scrollView.subviews.count < index+1) return;
+    
+    // added by Yuan
+    if ([self selectedTabIndex] == index) {
+        return;
+    }
 	
 	[scrollView.subviews makeObjectsPerformSelector:@selector(markUnselected)];
 //	[(FlickTabButton*)[scrollView.subviews objectAtIndex:index] markSelected];
@@ -174,6 +179,10 @@
 	[scrollView scrollRectToVisible:rect animated:animated];
 	
 	[self setupCaps];
+    
+    // added by Yuan
+    FlickTabButton *btn = [scrollView.subviews objectAtIndex:index];
+    [self buttonClicked:btn];
 }
 
 - (void)updateOrientation {

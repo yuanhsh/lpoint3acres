@@ -55,12 +55,20 @@
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        
+        [self startLoadingMoreData];
         // 模拟延迟加载数据，因此2秒后才调用）
         // 这里的refreshView其实就是footer
-        [self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
+        //[self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
     };
     _refreshFooterView = footer;
+}
+
+- (void)startLoadingMoreData {
+    
+}
+
+- (void)stopLoadingMoreData {
+    [_refreshFooterView endRefreshing];
 }
 
 - (void)doneWithView:(MJRefreshBaseView *)refreshView

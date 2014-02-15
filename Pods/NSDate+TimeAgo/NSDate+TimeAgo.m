@@ -46,7 +46,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
     }
     else if (deltaMinutes < (24 * 60 * 2))
     {
-        return NSDateTimeAgoLocalizedStrings(@"Yesterday");
+//        return NSDateTimeAgoLocalizedStrings(@"Yesterday");
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        return [NSString stringWithFormat:@"%@ %@", NSDateTimeAgoLocalizedStrings(@"Yesterday"), [dateFormatter stringFromDate:self]];
     }
     else if (deltaMinutes < (24 * 60 * 7))
     {
@@ -267,7 +270,7 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
 
 - (NSString *) timeAgoWithLimit:(NSTimeInterval)limit
 {
-    return [self timeAgoWithLimit:limit dateFormat:NSDateFormatterFullStyle andTimeFormat:NSDateFormatterFullStyle];
+    return [self timeAgoWithLimit:limit dateFormat:NSDateFormatterShortStyle andTimeFormat:NSDateFormatterShortStyle];
 }
 
 - (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter
@@ -275,9 +278,24 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
     if (fabs([self timeIntervalSinceDate:[NSDate date]]) <= limit)
         return [self timeAgo];
     
-    return [NSDateFormatter localizedStringFromDate:self
-                                          dateStyle:dFormatter
-                                          timeStyle:tFormatter];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    if ([self isSameYearAsDate:[NSDate date]]) {
+        [dateFormatter setDateFormat:@"MM-dd HH:mm:ss"];
+    } else {
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    }
+    return [dateFormatter stringFromDate:self];
+    
+//    return [NSDateFormatter localizedStringFromDate:self
+//                                          dateStyle:dFormatter
+//                                          timeStyle:tFormatter];
+}
+
+- (BOOL) isSameYearAsDate:(NSDate *) aDate
+{
+	NSDateComponents *components1 = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:self];
+	NSDateComponents *components2 = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:aDate];
+	return (components1.year == components2.year);
 }
 
 // Helper functions

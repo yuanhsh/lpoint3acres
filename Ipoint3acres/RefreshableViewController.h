@@ -14,4 +14,7 @@
 - (void)startRefreshingTableView;
 - (void)stopRefreshingTableView;
 
+- (void)startLoadingMoreData;
+- (void)stopLoadingMoreData;
+
 @end

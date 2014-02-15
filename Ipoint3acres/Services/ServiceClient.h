@@ -12,6 +12,8 @@
 #import "Models.h"
 
 #define kBaseAPIURL         @"http://www.1point3acres.com/"
+#define kArticleCountPerPage    50
+#define kCommentCountPerPage    20
 
 @protocol WebServiceDelegate;
 

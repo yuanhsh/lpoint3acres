@@ -11,7 +11,7 @@
 #import "FirstFloorContentCell.h"
 
 @interface ArticleViewController ()
-
+@property (nonatomic, assign) NSInteger pageNo;
 @end
 
 @implementation ArticleViewController
@@ -31,15 +31,15 @@
 //    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
 //                                     UITextAttributeTextColor: [UIColor whiteColor]};
 //    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    [self.tableView setTableFooterView:[UIView new]];
     self.navigationItem.title = self.article.title;
     self.article.isViewed = @YES;
 
     self.comments = [NSMutableOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
+    [self didReceiveComments:self.article.comments forArticle:self.article];
     [self loadDataAtPage:1];
-    
-    [self.tableView setTableFooterView:[UIView new]];
 }
 
 
@@ -54,8 +54,24 @@
 }
 
 - (void)loadDataAtPage:(NSInteger)pageNo {
-    [self didReceiveComments:self.article.comments forArticle:self.article];
+    self.pageNo = pageNo;
     [self.service fetchCommentsForArticle:self.article atPage:pageNo];
+}
+
+- (void)startRefreshingTableView {
+    [self loadDataAtPage:1];
+}
+
+- (void)startLoadingMoreData {
+    NSInteger loadedCount = self.comments.count;
+//    NSInteger count = [self.article.commentCount integerValue];
+//    if (loadedCount >= count) {
+//        [self stopLoadingMoreData];
+//        return;
+//    } else {
+        NSInteger currentPage = loadedCount / kCommentCountPerPage;
+        [self loadDataAtPage:currentPage+1];
+//    }
 }
 
 #pragma mark - Table view data source
@@ -100,6 +116,9 @@
 #pragma mark - WebServiceDelegate Method
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
+    [self stopLoadingMoreData];
+    [self stopRefreshingTableView];
+    
     if (self.comments.count == article.comments.count) {
         NSLog(@"Info: No need to refresh post tableview for article: %@", article.articleID);
         return;

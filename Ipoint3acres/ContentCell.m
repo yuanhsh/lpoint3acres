@@ -35,7 +35,7 @@
     
     self.posterName.textColor = RGBCOLOR(0, 122, 255);
     self.posterName.text = comment.commenterName;
-    self.postDate.text = comment.createDate;
+    self.postDate.text = [comment.createDate chinaTimeToLocalTime];
     
     NSString *avatarPath = [[InfoURLMapper sharedInstance] getAvatarURLforUser:comment.commenterID];
     [self.avatar setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];

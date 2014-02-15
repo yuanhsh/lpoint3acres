@@ -51,7 +51,7 @@
     self.authorName.text = article.authorName;
     self.createDate.text = article.createDate;
     self.lastCommenter.text = article.lastCommenter;
-    self.lastCommentDate.text = article.lastCommentDate;
+    self.lastCommentDate.text = [article.lastCommentDate chinaTimeToLocalTime];
     int viewCount = [article.viewCount intValue];
     int commentCount = [article.commentCount intValue];
     self.viewCount.text = [NSString stringWithFormat:@"阅:%d 评:%d", viewCount, commentCount];

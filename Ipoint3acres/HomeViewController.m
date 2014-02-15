@@ -132,8 +132,18 @@
 
 #pragma mark - UIScrollViewDelegate Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+- (void)scrollViewDidScroll:(UIScrollView *)pageView {
+    CGFloat offsetX = pageView.contentOffset.x;
+    //CGFloat ratio = (offsetX - 320) / 320.0f;
+    if (offsetX == 320.0f) {
+        UIViewController *viewController = self.pageViewController.viewControllers[0];
+        NSInteger index = [self.boardControllers indexOfObject:viewController];
+        [self.flickTabView selectTabAtIndex:index animated:YES];
+    } else if (offsetX > 320) { // going to next page
+        
+    } else if (offsetX < 320) { // going to prev page
+        
+    }
 }
 
 

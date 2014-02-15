@@ -80,7 +80,7 @@
 #pragma mark Setters
 
 - (void)refreshLastUpdatedDate {
-    _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Last Updated: ", "Last Updated"), [self.lastRefreshDate timeAgo]];
+    _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"上次更新: ", "Last Updated"), [self.lastRefreshDate timeAgo]];
     [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -90,7 +90,7 @@
 	switch (aState) {
 		case EGOOPullRefreshPulling:
 			
-			_statusLabel.text = NSLocalizedString(@"Release to refresh...", @"Release to refresh status");
+			_statusLabel.text = NSLocalizedString(@"释放立即刷新...", @"Release to refresh status");
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
 			_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
@@ -109,7 +109,7 @@
                 [_circleView setNeedsDisplay];
             }
 			
-			_statusLabel.text = NSLocalizedString(@"Pull down to refresh...", @"Pull down to refresh status");
+			_statusLabel.text = NSLocalizedString(@"下拉刷新...", @"Pull down to refresh status");
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
 			_arrowImage.hidden = NO;
@@ -121,7 +121,7 @@
 			break;
 		case EGOOPullRefreshLoading: {
 			
-			_statusLabel.text = NSLocalizedString(@"Loading...", @"Loading Status");
+			_statusLabel.text = NSLocalizedString(@"正在加载...", @"Loading Status");
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
 			_arrowImage.hidden = YES;

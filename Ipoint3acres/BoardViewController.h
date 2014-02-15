@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong) Board *board;
 @property (nonatomic, strong) ServiceClient *service;
-@property (nonatomic, strong) NSOrderedSet *articles;
+@property (nonatomic, strong) NSMutableOrderedSet *articles;
 
 @end

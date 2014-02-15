@@ -14,6 +14,10 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 @interface BoardViewController ()
 
+@property (nonatomic, assign) BOOL showStickThread;
+@property (nonatomic, assign) BOOL isRemoteData;
+@property (nonatomic, assign) NSInteger pageNo;
+
 @end
 
 @implementation BoardViewController
@@ -28,19 +32,43 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.articles = [NSOrderedSet orderedSet];
+    self.showStickThread = NO; // should load from user defaults
+    self.isRemoteData = NO;
+    self.articles = [NSMutableOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
-    [self loadData];
+    [self loadLocalData];
+    [self startRefreshingTableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)loadData {
-    [self didReceiveArticles:self.board.articles forBoard:self.board];
-    [self.service fetchArticlesForBoard:self.board atPage:1];
+- (void)loadLocalData {
+    if (self.board.articles.count == 0) {
+        return;
+    }
+    NSMutableOrderedSet *tmpSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.board.articles];
+    NSSortDescriptor *stickSort = [[NSSortDescriptor alloc] initWithKey:@"isStick" ascending:NO];
+    NSSortDescriptor *timeSort = [[NSSortDescriptor alloc] initWithKey:@"articleID" ascending:NO];
+    [tmpSet sortUsingDescriptors:@[stickSort, timeSort]];
+    self.articles = tmpSet;
+    [self.tableView reloadData];
+}
+
+- (void)loadDataAtPage:(NSInteger)pageNo {
+//    [self didReceiveArticles:self.board.articles forBoard:self.board];
+    [self.service fetchArticlesForBoard:self.board atPage:pageNo];
+    self.pageNo = pageNo;
+}
+
+- (void)startLoadingMoreData {
+    [self loadDataAtPage:self.pageNo + 1];
+}
+
+- (void)startRefreshingTableView {
+    [self loadDataAtPage:1];
 }
 
 #pragma mark - Table view data source
@@ -68,7 +96,25 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 #pragma mark - WebServiceDelegate Method
 
 - (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board {
-    self.articles = board.articles;
+    if (self.isRemoteData) {
+        [self.articles addObjectsFromArray:[articles array]];
+//        [receivedData addObjectsFromArray:[self.articles array]];
+    } else {
+        self.articles = [NSMutableOrderedSet orderedSetWithOrderedSet:articles];
+        self.isRemoteData = YES;
+    }
+    
+    if (!self.showStickThread) {
+        // delete stick articles
+    }
+    
+    NSSortDescriptor *stickSort = [[NSSortDescriptor alloc] initWithKey:@"isStick" ascending:NO];
+    NSSortDescriptor *timeSort = [[NSSortDescriptor alloc] initWithKey:@"articleID" ascending:NO];
+    [self.articles sortUsingDescriptors:@[stickSort,timeSort]];
+    
+    [self stopRefreshingTableView];
+    [self stopLoadingMoreData];
+    
     [self.tableView reloadData];
 }
 
