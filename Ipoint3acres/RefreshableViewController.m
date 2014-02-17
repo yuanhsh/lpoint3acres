@@ -7,11 +7,9 @@
 //
 
 #import "RefreshableViewController.h"
-#import "MJRefresh.h"
 
 @interface RefreshableViewController ()
-@property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
-@property (nonatomic, strong) MJRefreshFooterView *refreshFooterView;
+
 @end
 
 @implementation RefreshableViewController

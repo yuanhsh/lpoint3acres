@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworkActivityIndicatorManager.h"
+#import "UIColor+iOS7.h"
 
 #define RGBCOLOR(r,g,b) RGBACOLOR(r,g,b,1.0f)
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
@@ -21,3 +22,4 @@
 #define isIOS7  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
 #define kDefaultContentFontSize 16.0f
+#define kDefaultQuoteFontSize 14.0f

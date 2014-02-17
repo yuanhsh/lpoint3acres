@@ -1,18 +1,18 @@
 //
-//  ContentCell.m
+//  QuoteContentCell.m
 //  Ipoint3acres
 //
-//  Created by YUAN on 14-2-11.
+//  Created by 苑　海勝 on 2014/02/17.
 //  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
-#import "ContentCell.h"
+#import "QuoteContentCell.h"
 #import "InfoURLMapper.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "NSAttributedString+HTML.h"
 #import "HTMLParser.h"
 
-@implementation ContentCell
+@implementation QuoteContentCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -45,46 +45,46 @@
     if ([comment.floorNo intValue] == 1) {
         NSData *contentData = [comment.content dataUsingEncoding:NSUTF8StringEncoding];
         NSAttributedString *attributedText = nil;
-//        if (NO) {
-//            attributedText = [[NSAttributedString alloc] initWithData:contentData
-//                                                              options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-//                                                   documentAttributes:nil error:nil];
-//        } else {
-            attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
-//        }
+        //        if (NO) {
+        //            attributedText = [[NSAttributedString alloc] initWithData:contentData
+        //                                                              options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+        //                                                   documentAttributes:nil error:nil];
+        //        } else {
+        attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
+        //        }
         
         self.postContentView.attributedText = attributedText;
     } else {
         self.postContentView.text = comment.content;
     }
+    
+    self.quoteView.text = comment.quoteContent;
+    
     self.postContentView.scrollsToTop = NO;
-}
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-    return YES;
+    self.quoteView.scrollsToTop = NO;
+    
+    [self  setNeedsLayout];
+    
 }
 
 + (CGFloat)heightForComment:(Comment *)comment {
     UITextView *textView = [[UITextView alloc] init];
     textView.font = [UIFont systemFontOfSize:kDefaultContentFontSize];
     textView.scrollEnabled = NO;
-   
+    
     if ([comment.floorNo intValue] == 1) {
         NSData *contentData = [comment.content dataUsingEncoding:NSUTF8StringEncoding];
         textView.attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
     } else {
         textView.text = comment.content;
     }
+    CGSize commentSize = [textView sizeThatFits:CGSizeMake(300, FLT_MAX)];
     
-    CGSize size = [textView sizeThatFits:CGSizeMake(300, FLT_MAX)];
+    textView.font = [UIFont systemFontOfSize:kDefaultQuoteFontSize];
+    textView.text = comment.quoteContent;
+    CGSize quoteSize = [textView sizeThatFits:CGSizeMake(300, FLT_MAX)];
     
-//    CGSize size = textView.contentSize;
-//    
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-//        size.width += (textView.textContainerInset.left + textView.textContainerInset.right ) / 2.0f;
-//        size.height += (textView.textContainerInset.top + textView.textContainerInset.bottom) / 2.0f;
-//    }
-    CGFloat height = 45.0f + size.height + 10.0f - 20.0f;
+    CGFloat height = 50.0f + commentSize.height + quoteSize.height - 20.0f;
     
     return height;
 }

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
+#import "MJRefresh.h"
 
 @interface RefreshableViewController : UITableViewController <EGORefreshTableHeaderDelegate>
+
+@property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
+@property (nonatomic, strong) MJRefreshFooterView *refreshFooterView;
 
 - (void)startRefreshingTableView;
 - (void)stopRefreshingTableView;

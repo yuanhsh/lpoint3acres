@@ -58,7 +58,6 @@
 //        }
     
     self.postContentView.attributedString = attributedText;
-    
 }
 
 - (DTAttributedTextView*)postContentView {
@@ -67,6 +66,7 @@
         _postContentView = [[DTAttributedTextView alloc] initWithFrame:frame];
         _postContentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _postContentView.scrollEnabled = NO;
+        _postContentView.scrollsToTop = NO;
         _postContentView.shouldDrawImages = NO;
         _postContentView.shouldDrawLinks = NO;
         _postContentView.textDelegate = self;

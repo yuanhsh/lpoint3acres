@@ -9,6 +9,7 @@
 #import "ArticleViewController.h"
 #import "ContentCell.h"
 #import "FirstFloorContentCell.h"
+#import "QuoteContentCell.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
@@ -87,8 +88,11 @@
     if ([comment.floorNo intValue] == 1) {
         FirstFloorContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirstFloorContentCell"];
         return [cell heightForComment:comment];
+    } else if(comment.quoteContent != nil){
+        return [QuoteContentCell heightForComment:comment];
+    } else {
+        return [ContentCell heightForComment:comment];
     }
-    return [ContentCell heightForComment:self.comments[indexPath.row]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,11 +102,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ContentCell";
     static NSString *FirstFloorCellIdentifier = @"FirstFloorContentCell";
+    static NSString *CellIdentifier = @"ContentCell";
+    static NSString *QuoteCellIdentifier = @"QuoteContentCell";
+    
     Comment *comment = self.comments[indexPath.row];
     if ([comment.floorNo intValue] == 1) {
         FirstFloorContentCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstFloorCellIdentifier];
+        cell.comment = comment;
+        return cell;
+    } else if(comment.quoteContent != nil){
+        QuoteContentCell *cell = [tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
         cell.comment = comment;
         return cell;
     } else {
@@ -124,6 +134,12 @@
         return;
     }
     self.comments = article.comments;
+    
+    // if all posts are loaded
+    if (self.comments.count == [self.article.commentCount integerValue] + 1) {
+        [self.refreshFooterView removeFromSuperview];
+    }
+    
 //    [self.comments addObjectsFromArray:[comments array]];
     [self.tableView reloadData];
 }

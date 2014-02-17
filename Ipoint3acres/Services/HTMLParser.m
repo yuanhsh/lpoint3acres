@@ -171,17 +171,20 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">"
                                                      withString:@"<div style=\"display:none\">"];
             if (![[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
-                // get quote content
-                NSString *matchedQuote = [content stringByMatching:@"<blockquote>.*</blockquote>"];
-                if (matchedQuote && ![matchedQuote isEqualToString:@""]) {
-                    NSData *quoteData = [matchedQuote dataUsingEncoding:NSUTF8StringEncoding];
-                    NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
-                    quoteContent = attributedQuote.string;
-                }
                 // comment in this article
                 NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
                 NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
                 content = attributedContent.string;
+                
+                // get quote content
+                TFHpple *quoteParser = [TFHpple hppleWithHTMLData:contentData];
+                NSArray *quoteNodes = [quoteParser searchWithXPathQuery:[NSString stringWithFormat:@"//blockquote"]];
+                if (quoteNodes.count >= 1) {
+                    TFHppleElement *quoteElement = quoteNodes[0];
+                    NSData *quoteData = [quoteElement.raw dataUsingEncoding:NSUTF8StringEncoding];
+                    NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
+                    quoteContent = attributedQuote.string;
+                }
             } else {
                 comment.floorNo = @1;
             }

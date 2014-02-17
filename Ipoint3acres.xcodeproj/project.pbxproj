@@ -34,6 +34,8 @@
 		1CA704ED18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */; };
 		1CA704F118AB2E700054FCE2 /* TWTSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */; };
 		1CA704F518AB5E170054FCE2 /* FirstFloorContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */; };
+		1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */; };
+		1CACBD7618B20A89004ADAEF /* UIColor+iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */; };
 		1CAE479618A321DB004F9EDC /* DefaultBoards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAE479518A321DB004F9EDC /* DefaultBoards.plist */; };
 		1CAE479918A32723004F9EDC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479818A32723004F9EDC /* Comment.m */; };
 		1CAE479C18A32724004F9EDC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479B18A32724004F9EDC /* Article.m */; };
@@ -108,6 +110,10 @@
 		1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSideMenuViewController.m; sourceTree = "<group>"; };
 		1CA704F318AB5E170054FCE2 /* FirstFloorContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFloorContentCell.h; sourceTree = "<group>"; };
 		1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFloorContentCell.m; sourceTree = "<group>"; };
+		1CACBD7118B1DD58004ADAEF /* QuoteContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteContentCell.h; sourceTree = "<group>"; };
+		1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuoteContentCell.m; sourceTree = "<group>"; };
+		1CACBD7418B20A89004ADAEF /* UIColor+iOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+iOS7.h"; sourceTree = "<group>"; };
+		1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+iOS7.m"; sourceTree = "<group>"; };
 		1CAE479518A321DB004F9EDC /* DefaultBoards.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultBoards.plist; sourceTree = "<group>"; };
 		1CAE479718A32723004F9EDC /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		1CAE479818A32723004F9EDC /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
@@ -259,12 +265,7 @@
 				1CA6CD5D189A0A5300BC8045 /* Main_iPhone.storyboard */,
 				1CA6CD60189A0A5300BC8045 /* Main_iPad.storyboard */,
 				1CA6B4C218A4BF010072EE8D /* Controllers */,
-				89E95130189E637700CB822B /* ArticleTitleCell.h */,
-				89E95131189E637700CB822B /* ArticleTitleCell.m */,
-				8940B84918AA46140035A228 /* ContentCell.h */,
-				8940B84A18AA46140035A228 /* ContentCell.m */,
-				1CA704F318AB5E170054FCE2 /* FirstFloorContentCell.h */,
-				1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */,
+				1CACBD7018B1DCF2004ADAEF /* Views */,
 				1CA6CD66189A0A5300BC8045 /* Images.xcassets */,
 				1CA6CD52189A0A5300BC8045 /* Supporting Files */,
 			);
@@ -312,6 +313,21 @@
 				89E9511D189E069C00CB822B /* FlickTab */,
 			);
 			name = ThirdParties;
+			sourceTree = "<group>";
+		};
+		1CACBD7018B1DCF2004ADAEF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89E95130189E637700CB822B /* ArticleTitleCell.h */,
+				89E95131189E637700CB822B /* ArticleTitleCell.m */,
+				1CA704F318AB5E170054FCE2 /* FirstFloorContentCell.h */,
+				1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */,
+				8940B84918AA46140035A228 /* ContentCell.h */,
+				8940B84A18AA46140035A228 /* ContentCell.m */,
+				1CACBD7118B1DD58004ADAEF /* QuoteContentCell.h */,
+				1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		89E9511D189E069C00CB822B /* FlickTab */ = {
@@ -366,6 +382,8 @@
 				89F8392A18AF3C200076C0E0 /* NSString+Encode.m */,
 				89F8392118AF3B2F0076C0E0 /* NSString+Date.h */,
 				89F8392218AF3B2F0076C0E0 /* NSString+Date.m */,
+				1CACBD7418B20A89004ADAEF /* UIColor+iOS7.h */,
+				1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -522,11 +540,13 @@
 				1CAE479C18A32724004F9EDC /* Article.m in Sources */,
 				1CA6CD58189A0A5300BC8045 /* main.m in Sources */,
 				1CA6B4C018A4BB9D0072EE8D /* EGORefreshTableHeaderView.m in Sources */,
+				1CACBD7618B20A89004ADAEF /* UIColor+iOS7.m in Sources */,
 				1CA704F518AB5E170054FCE2 /* FirstFloorContentCell.m in Sources */,
 				1CA704EB18AB08930054FCE2 /* AUIAutoGrowingTextView.m in Sources */,
 				89F8392318AF3B2F0076C0E0 /* NSString+Date.m in Sources */,
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
+				1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */,
 				89E95127189E069C00CB822B /* FlickTabButton.m in Sources */,
 				1CA704F118AB2E700054FCE2 /* TWTSideMenuViewController.m in Sources */,
 				1CA6B4BF18A4BB9D0072EE8D /* CircleView.m in Sources */,

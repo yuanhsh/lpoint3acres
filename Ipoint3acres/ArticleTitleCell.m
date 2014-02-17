@@ -36,8 +36,10 @@
 - (void)setIsViewed:(BOOL)isViewed {
     _isViewed = isViewed;
     self.article.isViewed = @(isViewed);
-    if (isViewed) {
-        self.titleLabel.textColor = [UIColor lightGrayColor];
+    if ([self.article.isStick boolValue]) {
+        self.titleLabel.textColor = [UIColor purpleColor];
+    } else if (isViewed) {
+        self.titleLabel.textColor = [UIColor grayColor];
     } else {
         self.titleLabel.textColor = [UIColor blackColor];
     }
@@ -67,9 +69,10 @@
     } else {
         self.titleLabel.text = article.title;
     }
-    
-    if ([self.article.isViewed boolValue]) {
-        self.titleLabel.textColor = [UIColor lightGrayColor];
+    if ([self.article.isStick boolValue]) {
+        self.titleLabel.textColor = [UIColor purpleColor];
+    } else if ([self.article.isViewed boolValue]) {
+        self.titleLabel.textColor = [UIColor grayColor];
     } else {
         self.titleLabel.textColor = [UIColor blackColor];
     }
