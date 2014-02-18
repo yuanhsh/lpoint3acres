@@ -19,12 +19,15 @@
 #define kArticleCountPerPage    50
 #define kCommentCountPerPage    20
 
+#define kKeyLoginedUserID   @"loginedUserId"
+
 @protocol WebServiceDelegate;
 
 @interface ServiceClient : AFHTTPRequestOperationManager
 
 //+ (ServiceClient *)sharedClient;
 
+@property (nonatomic, strong) NSString *loginedUserId;
 @property (nonatomic, weak) id<WebServiceDelegate> delegate;
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo;
@@ -38,6 +41,6 @@
 @optional
 - (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board;
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article;
-- (void)loginSuccessed;
+- (void)loginSuccessedWithUserId:(NSString *)loginedUserId;
 - (void)loginFailed;
 @end

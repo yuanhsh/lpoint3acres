@@ -8,11 +8,14 @@
 
 #import "ProfileViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "InfoURLMapper.h"
+#import "DataManager.h"
 
 @interface ProfileViewController () {
     CGFloat defaultY;
 }
-
+@property (nonatomic, strong) NSOrderedSet *userPosts; //主题
+@property (nonatomic, strong) NSOrderedSet *userFavorites; //收藏
 @end
 
 @implementation ProfileViewController
@@ -50,17 +53,19 @@
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
     header.backgroundColor = [UIColor clearColor];
-    self.avatar = [[UIImageView alloc] initWithFrame:CGRectMake(30, 20, 60, 60)];
-    [self.avatar setImageWithURL:[NSURL URLWithString:@"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=65973&size=middle"] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
+    
+    self.avatar = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, 60, 60)];
+    NSString *avatarPath = [[InfoURLMapper sharedInstance] getAvatarURLforUser:self.userID];
+    [self.avatar setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
     self.avatar.layer.cornerRadius = self.avatar.frame.size.height/2.0f;
     self.avatar.clipsToBounds = YES;
     [header addSubview:self.avatar];
     
-    self.gender = [[UIImageView alloc] initWithFrame:CGRectMake(100, 20, 18, 18)];
+    self.gender = [[UIImageView alloc] initWithFrame:CGRectMake(95, 30, 18, 18)];
     self.gender.image = [UIImage imageNamed:@"icon_male.png"];
     [header addSubview:self.gender];
     
-    self.infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 12, 160, 80)];
+    self.infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 22, 160, 80)];
     self.infoTextView.backgroundColor = [UIColor clearColor];
     self.infoTextView.textColor = [UIColor whiteColor];
     self.infoTextView.editable = NO;
@@ -68,7 +73,7 @@
     self.infoTextView.text = @"infoTextView infoTextView infoTextView infoTextView infoTextView";
     [header addSubview:self.infoTextView];
     
-    self.signatureTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 80, 280, 90)];
+    self.signatureTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 90, 280, 80)];
     self.signatureTextView.backgroundColor = [UIColor clearColor];
     self.signatureTextView.textColor = [UIColor whiteColor];
     self.signatureTextView.editable = NO;
@@ -77,9 +82,38 @@
     [header addSubview:self.signatureTextView];
     
     self.tableView.tableHeaderView = header;
+    [self.tableView setTableFooterView:[UIView new]];
     
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.tableView];
+    
+    //[self initUserData];
+}
+
+- (void)initUserData {
+    NSError *error;
+    NSManagedObjectContext *context = [DataManager sharedInstance].managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteUser" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+
+    NSString *query = [NSString stringWithFormat:@"userId == '%@'", self.userID];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:query]];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects.count > 0) {
+        
+    }
+    [self loadUserDataFromWeb];
+}
+
+- (void)loadUserDataFromWeb {
+    
+    // 1, load basic information & posts
+    
+    // 2, load signature
+    
+    // 3, if logined user, load favorites
+    
 }
 
 - (void)didReceiveMemoryWarning

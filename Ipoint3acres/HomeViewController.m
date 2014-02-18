@@ -89,12 +89,17 @@
 }
 
 - (IBAction)showUserProfile:(id)sender {
-    BOOL userLogined = YES;
-    if (userLogined) {//profileController
+    ServiceClient *client = [[ServiceClient alloc] init];
+    
+    if (client.loginedUserId) {//profileController
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        profileController.userID = client.loginedUserId;
         [self.navigationController pushViewController:profileController animated:YES];
     } else {
+        static NSString *userLoginNotification = @"UserLoginNotification";
         LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
+        loginController.notificationName = userLoginNotification;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUserProfile:) name:userLoginNotification object:nil];
         UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
         [self presentViewController:controller animated:YES completion:nil];
     }

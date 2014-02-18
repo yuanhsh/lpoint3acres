@@ -96,11 +96,42 @@
     NSDictionary *parameters = @{@"username": username, @"password": password, @"cookietime": @"2592000", @"quickforward": @"yes", @"handlekey": @"ls"};
     
     [self POST:kLoginURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
-        [self.delegate loginSuccessed];
+        NSString *resString = operation.responseString;
+        resString = [resString stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        if ( !resString || [resString isEqualToString:@""]) {
+            [self.delegate loginFailed];
+        } else {
+//            NSString *usernameMatch = [resString stringByMatching:@"'username':'.*?'"];
+            NSString *uidMatch = [resString stringByMatching:@"'uid':'.+?'"];
+            uidMatch = [uidMatch stringByReplacingOccurrencesOfString:@"'" withString:@""];
+            NSArray *userIdArray = [uidMatch componentsSeparatedByString:@":"];
+            if (userIdArray.count == 2) {
+                self.loginedUserId = userIdArray[1];
+                [self.delegate loginSuccessedWithUserId:self.loginedUserId];
+            } else {
+                [self.delegate loginFailed];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self.delegate loginFailed];
     }];
 }
+
+- (void)logout {
+    
+}
+
+- (NSString *)loginedUserId {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:kKeyLoginedUserID];
+}
+
+- (void)setLoginedUserId:(NSString *)loginedUserId {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:loginedUserId forKey:kKeyLoginedUserID];
+    [defaults synchronize];
+}
+
 @end
