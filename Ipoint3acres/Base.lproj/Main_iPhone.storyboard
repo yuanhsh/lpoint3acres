@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login View Controller - 一亩三分地-->
         <scene sceneID="9d4-oD-Fs0">
             <objects>
-                <viewController id="utf-hB-e0x" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" title="一亩三分地" useStoryboardIdentifierAsRestorationIdentifier="YES" id="utf-hB-e0x" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iQ9-YV-Nw9"/>
                         <viewControllerLayoutGuide type="bottom" id="vK2-6m-okV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EEZ-jn-y1v">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UID/Username/Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SdD-MZ-Tqf">
-                                <rect key="frame" x="40" y="64" width="240" height="30"/>
+                                <rect key="frame" x="40" y="22" width="240" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -27,7 +27,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FaG-I5-f1k">
-                                <rect key="frame" x="39" y="111" width="240" height="30"/>
+                                <rect key="frame" x="39" y="69" width="240" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56k-I3-1uQ">
-                                <rect key="frame" x="39" y="159" width="240" height="35"/>
+                                <rect key="frame" x="39" y="117" width="240" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.06749374245864348" green="0.55415874688596345" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -48,6 +48,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="password" destination="FaG-I5-f1k" id="qvE-hM-pcH"/>
                         <outlet property="submit" destination="56k-I3-1uQ" id="KNy-xx-mbo"/>
@@ -56,7 +58,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZ1-IH-FYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-74" y="-652"/>
+            <point key="canvasLocation" x="-545" y="-642"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="2P4-CC-e11">
+            <objects>
+                <viewController storyboardIdentifier="profileController" id="feK-f4-OfU" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kxy-38-4Gv"/>
+                        <viewControllerLayoutGuide type="bottom" id="HDB-Jl-f9W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t6b-WB-pOT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ge8-4Q-vdA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="-638"/>
         </scene>
         <!--Home View Controller - 一亩三分地-->
         <scene sceneID="hPT-OC-P0a">
@@ -77,7 +96,7 @@
                         <barButtonItem key="rightBarButtonItem" image="top_navigation_infoicon" id="Lvw-zt-Jih">
                             <inset key="imageInsets" minX="-15" minY="0.0" maxX="15" maxY="0.0"/>
                             <connections>
-                                <segue destination="utf-hB-e0x" kind="modal" identifier="LoginSegue" id="XSa-eS-1Kz"/>
+                                <action selector="showUserProfile:" destination="mXG-l1-CNp" id="mVT-OX-a84"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

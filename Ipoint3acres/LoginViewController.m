@@ -28,6 +28,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    NSDictionary *textAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelLogin)];
+    self.navigationItem.leftBarButtonItem = closeButton;
+}
+
+
+- (void)cancelLogin {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +74,6 @@
     NSLog(@"Success Login!");
     [SVProgressHUD dismiss];
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
     /**
      <?xml version="1.0" encoding="gbk"?>

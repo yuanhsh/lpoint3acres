@@ -40,6 +40,8 @@
 		1CAE479918A32723004F9EDC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479818A32723004F9EDC /* Comment.m */; };
 		1CAE479C18A32724004F9EDC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479B18A32724004F9EDC /* Article.m */; };
 		1CAE479F18A32724004F9EDC /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479E18A32724004F9EDC /* Board.m */; };
+		1CD0450A18B33868006A469A /* profile_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0450918B33868006A469A /* profile_bg.jpg */; };
+		1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0450C18B34A04006A469A /* ProfileViewController.m */; };
 		8940B84B18AA46140035A228 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8940B84A18AA46140035A228 /* ContentCell.m */; };
 		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
@@ -122,6 +124,9 @@
 		1CAE479B18A32724004F9EDC /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		1CAE479D18A32724004F9EDC /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		1CAE479E18A32724004F9EDC /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		1CD0450918B33868006A469A /* profile_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_bg.jpg; sourceTree = "<group>"; };
+		1CD0450B18B34A04006A469A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		1CD0450C18B34A04006A469A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		33BCE22A507F426AA9B696EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8940B84918AA46140035A228 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
 		8940B84A18AA46140035A228 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
@@ -205,6 +210,8 @@
 				896A2C0A18A3C376006BBB6A /* ArticleViewController.m */,
 				89D6F0B418B24D600062BFD4 /* LoginViewController.h */,
 				89D6F0B518B24D600062BFD4 /* LoginViewController.m */,
+				1CD0450B18B34A04006A469A /* ProfileViewController.h */,
+				1CD0450C18B34A04006A469A /* ProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -280,6 +287,7 @@
 		1CA6CD52189A0A5300BC8045 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1CD0450918B33868006A469A /* profile_bg.jpg */,
 				1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */,
 				1CA6CD53189A0A5300BC8045 /* Ipoint3acres-Info.plist */,
 				1CA6CD54189A0A5300BC8045 /* InfoPlist.strings */,
@@ -477,6 +485,7 @@
 				1CA6B4D618A4E9DA0072EE8D /* MJRefresh.bundle in Resources */,
 				1CA6CD5F189A0A5300BC8045 /* Main_iPhone.storyboard in Resources */,
 				1CA6CD56189A0A5300BC8045 /* InfoPlist.strings in Resources */,
+				1CD0450A18B33868006A469A /* profile_bg.jpg in Resources */,
 				1CAE479618A321DB004F9EDC /* DefaultBoards.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +541,7 @@
 				89E95129189E069C00CB822B /* FlickTabView.m in Sources */,
 				1CAE479918A32723004F9EDC /* Comment.m in Sources */,
 				89E95145189E746E00CB822B /* NSManagedObject+JSON.m in Sources */,
+				1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */,
 				89F8392F18AF3C200076C0E0 /* NSData+Encode.m in Sources */,
 				896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */,
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,

@@ -15,4 +15,5 @@
 @property (nonatomic, strong) FlickTabView *flickTabView;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 
+- (IBAction)showUserProfile:(id)sender;
 @end

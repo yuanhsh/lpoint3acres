@@ -7,6 +7,8 @@
 //
 
 #import "HomeViewController.h"
+#import "LoginViewController.h"
+#import "ProfileViewController.h"
 #import "DataManager.h"
 
 @interface HomeViewController ()
@@ -86,6 +88,18 @@
     return boardControllers;
 }
 
+- (IBAction)showUserProfile:(id)sender {
+    BOOL userLogined = YES;
+    if (userLogined) {//profileController
+        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        [self.navigationController pushViewController:profileController animated:YES];
+    } else {
+        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+}
+
 #pragma mark -
 #pragma mark FlickTabView Delegate & Data Source
 
@@ -145,6 +159,5 @@
         
     }
 }
-
 
 @end
