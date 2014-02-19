@@ -231,5 +231,40 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     return comment;
 }
 
+- (SiteUser *)parseProfileForUser:(NSString *)userId withData:(NSData *)data {
+    SiteUser *user = [self siteUserWithID:userId];
+    
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSString *queryString = [NSString stringWithFormat:@"//div[@class='pbm mbm bbda cl']"];
+    NSArray *nodes = [parser searchWithXPathQuery:queryString];
+    if (nodes.count >= 1) {
+        TFHppleElement *profileNode = nodes[0];
+    }
+    return user;
+}
+
+- (SiteUser *)siteUserWithID:(NSString *)userId {
+    SiteUser *user = nil;
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteUser" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"userId == '%@'", userId]]];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    for (SiteUser *item in fetchedObjects) {
+        if ([item.userId isEqualToString:userId]) {
+            user = item;
+            break;
+        }
+    }
+    
+    if (!user) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:@"SiteUser" inManagedObjectContext:context];
+        user.userId = userId;
+    }
+    
+    return user;
+}
 
 @end

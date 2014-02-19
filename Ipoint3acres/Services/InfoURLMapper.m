@@ -44,4 +44,16 @@
     return [NSString stringWithFormat:kAvatarURL, userID];
 }
 
+- (NSString *)getProfileURLForUser:(NSString *)userID {
+    return [NSString stringWithFormat:kUserProfileURL, userID];
+}
+
+- (NSString *)getPostsURLForUser:(NSString *)userID {
+    return [NSString stringWithFormat:kUserPostsURL, userID, 1];
+}
+
+- (NSString *)getFavoritesURLForUser:(NSString *)userID {
+    return kUserFavoritesURL;
+}
+
 @end

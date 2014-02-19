@@ -9,4 +9,5 @@
 #import "Board.h"
 #import "Article.h"
 #import "Comment.h"
+#import "SiteUser.h"
 #import "NSString+Date.h"

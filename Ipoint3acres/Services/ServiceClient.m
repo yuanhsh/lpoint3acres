@@ -28,6 +28,14 @@
     return self;
 }
 
+- (id)initWithDelegate:(id<WebServiceDelegate>) delegate {
+    if(self = [super initWithBaseURL:[NSURL URLWithString:kBaseAPIURL]]) {
+        self.responseSerializer = [AFHTTPResponseSerializer serializer];
+        self.delegate = delegate;
+    }
+    return self;
+}
+
 - (AFHTTPRequestOperation *)GET:(NSString *)URLString
                      parameters:(NSDictionary *)parameters
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -132,6 +140,22 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:loginedUserId forKey:kKeyLoginedUserID];
     [defaults synchronize];
+}
+
+- (void)loadUserProfile:(NSString *)userId {
+    NSString *profileURL = [[InfoURLMapper sharedInstance] getProfileURLForUser:userId];
+    [self GET:profileURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        HTMLParser *parser = [HTMLParser sharedInstance];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+- (void)loadUserPosts:(NSString *)userId {
+    
+}
+- (void)loadUserFavorites:(NSString *)userId {
+    
 }
 
 @end

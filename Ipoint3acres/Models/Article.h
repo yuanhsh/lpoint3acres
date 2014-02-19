@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Board, Comment;
+@class Board, Comment, SiteUser;
 
 @interface Article : NSManagedObject
 
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSData * titleData;
 @property (nonatomic, retain) NSNumber * viewCount;
 @property (nonatomic, retain) Board *board;
+@property (nonatomic, retain) SiteUser *author;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @end
 

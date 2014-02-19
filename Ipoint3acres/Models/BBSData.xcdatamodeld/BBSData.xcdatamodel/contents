@@ -16,6 +16,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SiteUser" inverseName="posts" inverseEntity="SiteUser" syncable="YES"/>
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="articles" inverseEntity="Board" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Comment" inverseName="article" inverseEntity="Comment" syncable="YES"/>
     </entity>
@@ -40,9 +41,18 @@
         <attribute name="quoteUser" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="comments" inverseEntity="Article" syncable="YES"/>
     </entity>
+    <entity name="SiteUser" representedClassName="SiteUser" syncable="YES">
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="favorites" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" syncable="YES"/>
+        <relationship name="posts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="author" inverseEntity="Article" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Article" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Board" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SiteUser" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -136,8 +136,9 @@
     self.comments = article.comments;
     
     // if all posts are loaded
-    if (self.comments.count == [self.article.commentCount integerValue] + 1) {
+    if (self.comments.count >= [self.article.commentCount integerValue] + 1) {
         [self.refreshFooterView removeFromSuperview];
+        self.article.commentCount = @(self.comments.count-1);
     }
     
 //    [self.comments addObjectsFromArray:[comments array]];

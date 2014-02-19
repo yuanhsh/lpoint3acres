@@ -23,4 +23,6 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 - (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data;
 
+- (SiteUser *)parseProfileForUser:(NSString *)userId withData:(NSData *)data;
+
 @end

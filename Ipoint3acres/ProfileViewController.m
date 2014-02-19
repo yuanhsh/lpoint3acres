@@ -16,6 +16,7 @@
 }
 @property (nonatomic, strong) NSOrderedSet *userPosts; //主题
 @property (nonatomic, strong) NSOrderedSet *userFavorites; //收藏
+@property (nonatomic, strong) ServiceClient *client;
 @end
 
 @implementation ProfileViewController
@@ -32,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.client = [[ServiceClient alloc] initWithDelegate:self];
+    self.userPosts = [NSOrderedSet orderedSet];
+    self.userFavorites = [NSOrderedSet orderedSet];
     
     UIImage *image = [UIImage imageNamed:@"profile_bg.jpg"];
     UIGraphicsBeginImageContext(CGSizeMake(320, 438));

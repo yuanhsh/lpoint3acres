@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServiceClient.h"
 
-@interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebServiceDelegate>
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UITableView *tableView;
 

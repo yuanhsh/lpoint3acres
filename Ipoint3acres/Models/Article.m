@@ -29,6 +29,7 @@
 @dynamic titleData;
 @dynamic viewCount;
 @dynamic board;
+@dynamic author;
 @dynamic comments;
 
 - (void)addCommentsObject:(Comment *)value {

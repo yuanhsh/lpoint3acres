@@ -45,6 +45,7 @@
 		8940B84B18AA46140035A228 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8940B84A18AA46140035A228 /* ContentCell.m */; };
 		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
+		89A0060718B4F25D00F34A0F /* SiteUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A0060618B4F25D00F34A0F /* SiteUser.m */; };
 		89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6F0B518B24D600062BFD4 /* LoginViewController.m */; };
 		89E95127189E069C00CB822B /* FlickTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E9511F189E069C00CB822B /* FlickTabButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		89E95129189E069C00CB822B /* FlickTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E95124189E069C00CB822B /* FlickTabView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -135,6 +136,8 @@
 		89926D8A189FCD69007BB20D /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		89926D8D189FD55F007BB20D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		89926D8E189FD55F007BB20D /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		89A0060518B4F25D00F34A0F /* SiteUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteUser.h; sourceTree = "<group>"; };
+		89A0060618B4F25D00F34A0F /* SiteUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteUser.m; sourceTree = "<group>"; };
 		89D6F0B418B24D600062BFD4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		89D6F0B518B24D600062BFD4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		89E9511E189E069C00CB822B /* FlickTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickTabButton.h; sourceTree = "<group>"; };
@@ -369,6 +372,8 @@
 				1CAE479B18A32724004F9EDC /* Article.m */,
 				1CAE479718A32723004F9EDC /* Comment.h */,
 				1CAE479818A32723004F9EDC /* Comment.m */,
+				89A0060518B4F25D00F34A0F /* SiteUser.h */,
+				89A0060618B4F25D00F34A0F /* SiteUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				1CA6B4D918A4E9DA0072EE8D /* MJRefreshFooterView.m in Sources */,
 				89E95132189E637700CB822B /* ArticleTitleCell.m in Sources */,
 				1CA6B4DA18A4E9DA0072EE8D /* MJRefreshHeaderView.m in Sources */,
+				89A0060718B4F25D00F34A0F /* SiteUser.m in Sources */,
 				89E9514F189E869800CB822B /* BBSData.xcdatamodeld in Sources */,
 				8940B84B18AA46140035A228 /* ContentCell.m in Sources */,
 			);
