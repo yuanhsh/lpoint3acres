@@ -2,8 +2,8 @@
 //  Article.h
 //  Ipoint3acres
 //
-//  Created by 苑　海勝 on 2014/02/06.
-//  Copyright (c) 2014年 Yuan. All rights reserved.
+//  Created by 苑　海勝 on 2014/02/20.
+//  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -28,8 +28,8 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSData * titleData;
 @property (nonatomic, retain) NSNumber * viewCount;
-@property (nonatomic, retain) Board *board;
 @property (nonatomic, retain) SiteUser *author;
+@property (nonatomic, retain) Board *board;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @end
 

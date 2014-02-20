@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by YUAN on 14-2-6.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -16,5 +16,6 @@
 @property (nonatomic, strong) Article *article;
 @property (nonatomic, strong) ServiceClient *service;
 @property (nonatomic, strong) NSOrderedSet *comments;
+@property (nonatomic, strong) NSString *articleID;
 
 @end

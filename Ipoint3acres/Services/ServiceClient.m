@@ -145,17 +145,47 @@
 - (void)loadUserProfile:(NSString *)userId {
     NSString *profileURL = [[InfoURLMapper sharedInstance] getProfileURLForUser:userId];
     [self GET:profileURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        HTMLParser *parser = [HTMLParser sharedInstance];
-        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            SiteUser *user = [parser parseProfileForUser:userId withData:operation.responseData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didLoadUserProfile:user];
+            });
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
+
 - (void)loadUserPosts:(NSString *)userId {
-    
+    NSString *postsURL = [[InfoURLMapper sharedInstance] getPostsURLForUser:userId];
+    [self GET:postsURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            NSOrderedSet *posts = [parser parsePostsForUser:userId withData:operation.responseData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didLoadPosts:posts forUser:userId];
+            });
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
+
 - (void)loadUserFavorites:(NSString *)userId {
-    
+    // todo
+    NSString *favsURL = [[InfoURLMapper sharedInstance] getFavoritesURLForUser:userId];
+    [self GET:favsURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //[self.delegate didLoadFavorites:favs forUser:userId];
+            });
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end

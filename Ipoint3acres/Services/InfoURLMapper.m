@@ -40,6 +40,17 @@
     return @"0";
 }
 
+- (NSString *)getArticleIDfromURL:(NSString *)link {
+    NSString *regEx = @"http://www.1point3acres.com/bbs/thread-[0-9]+-1-1.html";
+    NSString *match = [link stringByMatching:regEx];
+    if ([match isEqual:@""] == NO) {
+        match = [match stringByReplacingOccurrencesOfString:@"http://www.1point3acres.com/bbs/thread-" withString:@""];
+        match = [match stringByReplacingOccurrencesOfString:@"-1-1.html" withString:@""];
+        return match;
+    }
+    return nil;
+}
+
 - (NSString *)getAvatarURLforUser:(NSString *)userID {
     return [NSString stringWithFormat:kAvatarURL, userID];
 }

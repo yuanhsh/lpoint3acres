@@ -2,13 +2,14 @@
 //  Article.m
 //  Ipoint3acres
 //
-//  Created by 苑　海勝 on 2014/02/06.
-//  Copyright (c) 2014年 Yuan. All rights reserved.
+//  Created by 苑　海勝 on 2014/02/20.
+//  Copyright (c) 2014年 Kickmogu. All rights reserved.
 //
 
 #import "Article.h"
 #import "Board.h"
 #import "Comment.h"
+#import "SiteUser.h"
 
 
 @implementation Article
@@ -28,8 +29,8 @@
 @dynamic title;
 @dynamic titleData;
 @dynamic viewCount;
-@dynamic board;
 @dynamic author;
+@dynamic board;
 @dynamic comments;
 
 - (void)addCommentsObject:(Comment *)value {

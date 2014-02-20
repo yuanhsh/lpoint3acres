@@ -150,6 +150,30 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 
 - (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    
+    //update view count and comment count of the article
+    NSArray *countNodes = [parser searchWithXPathQuery:@"//td[@class='pls ptm pbm']"];
+    if (countNodes.count >= 1) {
+        NSArray *countElements = [[(TFHppleElement *)countNodes[0] firstChildWithTagName:@"div"] childrenWithClassName:@"xi1"];
+        if (countElements.count == 2) {
+            NSString *viewCountStr = [(TFHppleElement *)countElements[0] firstTextChild].content;
+            NSString *commentCountStr = [(TFHppleElement *)countElements[1] firstTextChild].content;
+            @try {
+                article.viewCount = @([viewCountStr integerValue]);
+                article.commentCount = @([commentCountStr integerValue]);
+            }
+            @catch (NSException *exception) {}
+            @finally {}
+        }
+    }
+    
+    if (!article.title) {
+        NSArray *titleNodes = [parser searchWithXPathQuery:@"//meta[@name='keywords']"];
+        if (titleNodes.count >= 1) {
+            article.title = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
+        }
+    }
+    
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
     NSMutableOrderedSet *commentArray = [NSMutableOrderedSet orderedSet];
@@ -235,10 +259,52 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     SiteUser *user = [self siteUserWithID:userId];
     
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-    NSString *queryString = [NSString stringWithFormat:@"//div[@class='pbm mbm bbda cl']"];
-    NSArray *nodes = [parser searchWithXPathQuery:queryString];
+    NSArray *nodes = [parser searchWithXPathQuery:@"//div[@class='pbm mbm bbda cl']"];
     if (nodes.count >= 1) {
         TFHppleElement *profileNode = nodes[0];
+        NSString *username = [[profileNode firstChildWithTagName:@"h2"] firstTextChild].content;
+        user.username = username;
+        
+        NSArray *ulNodes = [profileNode childrenWithTagName:@"ul"];
+        if (ulNodes.count >= 2) {
+            NSArray *signatureNodes = [(TFHppleElement *)ulNodes[0] childrenWithTagName:@"li"];
+            for (TFHppleElement *item in signatureNodes) {
+                NSString *sign = [[item firstChildWithTagName:@"em"] firstTextChild].content;
+                if ([@"个人签名" isEqualToString:sign]) {
+                    NSString *rawSignHtml = [item firstChildWithTagName:@"table"].raw;
+                    NSData *signData = [rawSignHtml dataUsingEncoding:NSUTF8StringEncoding];
+                    NSAttributedString *attributedSign = [[NSAttributedString alloc] initWithHTMLData:signData options:self.attributedTitleOptions documentAttributes:nil];
+                    user.signature = attributedSign.string;
+                    break;
+                }
+            }
+            
+            NSArray *infoNodes = [(TFHppleElement *)ulNodes[1] childrenWithTagName:@"li"];
+            for (TFHppleElement *item in infoNodes) {
+                NSString *itemName = [[item firstChildWithTagName:@"em"] firstTextChild].content;
+                itemName = [itemName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                NSString *itemValue = [item firstTextChild].content;
+                itemValue = [itemValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                if ([@"性别" isEqualToString:itemName]) {
+                    user.gender = itemValue;
+                    continue;
+                } else if([@"生日" isEqualToString:itemName]) {
+                    if (![itemValue isEqualToString:@"-"] && ![itemValue isEqualToString:@""]) {
+                        user.birthdate = itemValue;
+                    }
+                    continue;
+                } else if([@"毕业学校" isEqualToString:itemName]) {
+                    user.college = itemValue;
+                    continue;
+                } else if([@"学历" isEqualToString:itemName]) {
+                    user.degree = itemValue;
+                    continue;
+                } else if([@"目前专业" isEqualToString:itemName]) {
+                    user.major = itemValue;
+                    continue;
+                }
+            }
+        }
     }
     return user;
 }
@@ -262,9 +328,60 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     if (!user) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"SiteUser" inManagedObjectContext:context];
         user.userId = userId;
+        [[DataManager sharedInstance] save];
     }
     
     return user;
+}
+
+- (NSOrderedSet *)parsePostsForUser:(NSString *)userId withData:(NSData *)data {
+    SiteUser *user = [self siteUserWithID:userId];
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSArray *thNodes = [parser searchWithXPathQuery:@"//th"];
+    for (TFHppleElement *item in thNodes) {
+        TFHppleElement *aNode = [item firstChildWithTagName:@"a"];
+        NSString *url = [aNode objectForKey:@"href"];
+        NSString *title = [aNode firstTextChild].content;
+        if (!aNode || !url || !title) {
+            continue;
+        } else {
+            NSString *articleId = [[InfoURLMapper sharedInstance] getArticleIDfromURL:url];
+            if (articleId) {
+                Article *article = [self articleWithID:articleId];
+                article.title = title;
+                article.author = user;
+                [user addPostsObject:article];
+            }
+        }
+    }
+    
+    return user.posts;
+}
+
+- (Article *)articleWithID:(NSString *)articleID {
+    Article *article = nil;
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"articleID == '%@'", articleID]]];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    for (Article *item in fetchedObjects) {
+        if ([item.articleID isEqualToString:articleID]) {
+            article = item;
+            break;
+        }
+    }
+    
+    if (!article) {
+        // add a new row in database
+        NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+        article = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:context];
+        article.articleID = articleID;
+        [[DataManager sharedInstance] save];
+    }
+    
+    return article;
 }
 
 @end

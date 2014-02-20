@@ -45,6 +45,11 @@
 @optional
 - (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board;
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article;
+
 - (void)loginSuccessedWithUserId:(NSString *)loginedUserId;
 - (void)loginFailed;
+
+- (void)didLoadUserProfile: (SiteUser *)user;
+- (void)didLoadPosts:(NSOrderedSet *)posts forUser:(NSString *)userId;
+- (void)didLoadFavorites:(NSOrderedSet *)favs forUser:(NSString *)userId;
 @end

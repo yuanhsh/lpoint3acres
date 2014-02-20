@@ -10,4 +10,5 @@
 #import "Article.h"
 #import "Comment.h"
 #import "SiteUser.h"
+#import "Favorite.h"
 #import "NSString+Date.h"

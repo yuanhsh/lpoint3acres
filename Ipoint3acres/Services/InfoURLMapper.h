@@ -36,6 +36,8 @@
 
 - (NSString *)getUserIDfromUserLink:(NSString *)link;
 
+- (NSString *)getArticleIDfromURL:(NSString *)link;
+
 - (NSString *)getAvatarURLforUser:(NSString *)userID;
 
 - (NSString *)getProfileURLForUser:(NSString *)userID;

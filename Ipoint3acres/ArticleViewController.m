@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by YUAN on 14-2-6.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
 #import "ArticleViewController.h"
@@ -29,16 +29,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
-//                                     UITextAttributeTextColor: [UIColor whiteColor]};
-//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
-    [self.tableView setTableFooterView:[UIView new]];
-    self.navigationItem.title = self.article.title;
-    self.article.isViewed = @YES;
-
     self.comments = [NSMutableOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
+    [self.tableView setTableFooterView:[UIView new]];
+    
+//    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
+//                                     UITextAttributeTextColor: [UIColor whiteColor]};
+//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    if (!self.article && self.articleID) {
+        self.article = [[HTMLParser sharedInstance] articleWithID:self.articleID];
+    }
+    
+    self.navigationItem.title = self.article.title;
+    self.article.isViewed = @YES;
+
     [self didReceiveComments:self.article.comments forArticle:self.article];
     [self loadDataAtPage:1];
 }
@@ -76,11 +81,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -126,6 +126,7 @@
 #pragma mark - WebServiceDelegate Method
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
+    self.navigationItem.title = self.article.title;
     [self stopLoadingMoreData];
     [self stopRefreshingTableView];
     
