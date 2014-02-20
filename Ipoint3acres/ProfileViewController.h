@@ -19,5 +19,6 @@
 @property (strong, nonatomic) UITextView *signatureTextView;
 
 @property (strong, nonatomic) NSString *userID;
+@property (assign, nonatomic) BOOL viewSelf;
 
 @end

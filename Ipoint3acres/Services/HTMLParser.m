@@ -257,13 +257,18 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 
 - (SiteUser *)parseProfileForUser:(NSString *)userId withData:(NSData *)data {
     SiteUser *user = [self siteUserWithID:userId];
-    
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    
+    NSArray *titleNodes = [parser searchWithXPathQuery:@"//meta[@name='keywords']"];
+    if (titleNodes.count >= 1) {
+        NSString *username = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
+        username = [username stringByReplacingOccurrencesOfString:@"的个人资料" withString:@""];
+        user.username = username;
+    }
+    
     NSArray *nodes = [parser searchWithXPathQuery:@"//div[@class='pbm mbm bbda cl']"];
     if (nodes.count >= 1) {
         TFHppleElement *profileNode = nodes[0];
-        NSString *username = [[profileNode firstChildWithTagName:@"h2"] firstTextChild].content;
-        user.username = username;
         
         NSArray *ulNodes = [profileNode childrenWithTagName:@"ul"];
         if (ulNodes.count >= 2) {

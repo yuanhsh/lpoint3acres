@@ -12,6 +12,8 @@
 #import "Models.h"
 #import "HTMLParser.h"
 
+@protocol ContentCellDelegate;
+
 @interface FirstFloorContentCell : UITableViewCell<UIActionSheetDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *posterName;
 @property (weak, nonatomic) IBOutlet UILabel *postDate;
@@ -23,6 +25,14 @@
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
 @property (nonatomic, strong) NSURL *lastActionLink;
 
+@property (nonatomic, weak) id<ContentCellDelegate> delegate;
+
 - (CGFloat)heightForComment:(Comment *)comment;
+
+@end
+
+@protocol ContentCellDelegate <NSObject>
+
+- (void)requestOpenURL:(NSString *)url;
 
 @end

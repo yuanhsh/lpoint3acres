@@ -41,6 +41,15 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     [self startRefreshingTableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // Unselect the selected row if any
+    NSIndexPath *selection = [self.tableView indexPathForSelectedRow];
+    if (selection) {
+        [self.tableView deselectRowAtIndexPath:selection animated:YES];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

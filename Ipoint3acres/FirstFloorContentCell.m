@@ -290,21 +290,15 @@
 - (void)linkPushed:(DTLinkButton *)button
 {
 	NSURL *URL = button.URL;
-	
-	if ([[UIApplication sharedApplication] canOpenURL:[URL absoluteURL]])
-	{
+    if ([URL.scheme hasPrefix:@"http"]) {
+        [self.delegate requestOpenURL:[URL absoluteString]];
+    } else if ([[UIApplication sharedApplication] canOpenURL:[URL absoluteURL]]) {
 		[[UIApplication sharedApplication] openURL:[URL absoluteURL]];
-	}
-	else
-	{
-		if (![URL host] && ![URL path])
-		{
-            
+	} else {
+		if (![URL host] && ![URL path]) {
 			// possibly a local anchor link
 			NSString *fragment = [URL fragment];
-			
-			if (fragment)
-			{
+			if (fragment) {
 				[self.postContentView scrollToAnchorNamed:fragment animated:NO];
 			}
 		}
@@ -313,22 +307,19 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex != actionSheet.cancelButtonIndex)
-	{
+	if (buttonIndex != actionSheet.cancelButtonIndex) {
 		[[UIApplication sharedApplication] openURL:[self.lastActionLink absoluteURL]];
 	}
 }
 
 - (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture
 {
-	if (gesture.state == UIGestureRecognizerStateBegan)
-	{
+	if (gesture.state == UIGestureRecognizerStateBegan) {
 		DTLinkButton *button = (id)[gesture view];
 		button.highlighted = NO;
 		self.lastActionLink = button.URL;
 		
-		if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]])
-		{
+		if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]]) {
 			UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
 			[action showFromRect:button.frame inView:button.superview animated:YES];
 		}

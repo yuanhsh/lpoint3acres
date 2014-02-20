@@ -35,6 +35,8 @@
     
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelLogin)];
     self.navigationItem.leftBarButtonItem = closeButton;
+    
+    [self.username becomeFirstResponder];
 }
 
 
@@ -73,13 +75,9 @@
 - (void)loginSuccessedWithUserId:(NSString *)loginedUserId {
     NSLog(@"Success Login!");
     [SVProgressHUD dismiss];
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:NO completion:^{
         if (self.notificationName) {
-            double delayInSeconds = 0.2;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
-            });
+            [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
         }
     }];
 }

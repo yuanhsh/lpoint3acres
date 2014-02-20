@@ -94,6 +94,7 @@
     if (client.loginedUserId) {//profileController
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
         profileController.userID = client.loginedUserId;
+        profileController.viewSelf = YES;
         [self.navigationController pushViewController:profileController animated:YES];
     } else {
         static NSString *userLoginNotification = @"UserLoginNotification";

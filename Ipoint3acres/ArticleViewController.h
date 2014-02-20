@@ -10,8 +10,9 @@
 #import "RefreshableViewController.h"
 #import "Models.h"
 #import "ServiceClient.h"
+#import "FirstFloorContentCell.h"
 
-@interface ArticleViewController : RefreshableViewController <WebServiceDelegate>
+@interface ArticleViewController : RefreshableViewController <WebServiceDelegate, ContentCellDelegate>
 
 @property (nonatomic, strong) Article *article;
 @property (nonatomic, strong) ServiceClient *service;

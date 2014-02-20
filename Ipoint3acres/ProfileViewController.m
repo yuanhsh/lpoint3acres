@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "ArticleViewController.h"
+#import "LoginViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "InfoURLMapper.h"
 #import "DataManager.h"
@@ -40,8 +41,16 @@
     self.userFavorites = [NSOrderedSet orderedSet];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIImage *image = [UIImage imageNamed:@"profile_bg.jpg"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(100, 44), NO, 0);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+    [@"个人资料" drawInRect:CGRectMake(0, 12, 100, 44) withFont:[UIFont boldSystemFontOfSize:18]
+          lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+    UIImage *titleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
+    self.navigationItem.title = @"";
     
+    UIImage *image = [UIImage imageNamed:@"profile_bg.jpg"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 438), YES, 0);
     [image drawInRect:CGRectMake(0, 0, 320, 438)];
     image = UIGraphicsGetImageFromCurrentImageContext();
@@ -49,7 +58,7 @@
     
     self.imageView = [[UIImageView alloc] initWithImage:image];
     CGRect frame = self.imageView.frame;
-    frame.origin.y -= 130;
+    frame.origin.y -= 170;
     defaultY = frame.origin.y;
     self.imageView.frame = frame;
     
@@ -73,12 +82,14 @@
     self.gender.image = [UIImage imageNamed:@"icon_male.png"];
     [header addSubview:self.gender];
     
-    self.infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 10, 160, 80)];
+    self.infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 20, 160, 80)];
+//    self.infoTextView = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 160, 80)];
     self.infoTextView.backgroundColor = [UIColor clearColor];
     self.infoTextView.textColor = [UIColor whiteColor];
     self.infoTextView.editable = NO;
     self.infoTextView.scrollsToTop = NO;
     self.infoTextView.text = @"";
+    self.infoTextView.font = [UIFont systemFontOfSize:15];
     [header addSubview:self.infoTextView];
     
     self.signatureTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 95, 280, 80)];
@@ -95,17 +106,16 @@
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.tableView];
     
+    if (self.viewSelf) {
+        self.userID = self.client.loginedUserId;
+    }
+    
     [self initUserData];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.title = @"个人资料";
 }
 
 - (void)initUserData {
     NSError *error;
-    NSManagedObjectContext *context = [DataManager sharedInstance].managedObjectContext;
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteUser" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
@@ -114,7 +124,10 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:query]];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     if (fetchedObjects.count > 0) {
-        [self didLoadUserProfile:fetchedObjects[0]];
+        SiteUser *user = fetchedObjects[0];
+        [self didLoadUserProfile:user];
+        [self didLoadPosts:user.posts forUser:user.userId];
+        [self didLoadFavorites:user.favorites forUser:user.userId];
     }
     [self loadUserDataFromWeb];
 }
@@ -129,6 +142,16 @@
     // 3, if logined user, load favorites
     if ([self.userID isEqualToString:self.client.loginedUserId]) {
         [self.client loadUserFavorites:self.userID];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Unselect the selected row if any
+    NSIndexPath *selection = [self.tableView indexPathForSelectedRow];
+    if (selection) {
+        [self.tableView deselectRowAtIndexPath:selection animated:YES];
     }
 }
 
@@ -157,20 +180,21 @@
     }
     self.signatureTextView.text = signature;
     
-    NSMutableString *info = [NSMutableString stringWithString:user.username];
+    NSMutableArray *infoArray = [NSMutableArray array];
     if (user.birthdate) {
-        [info appendFormat:@"\n%@", user.birthdate];
+        [infoArray addObject:user.birthdate];
     }
     if (user.college) {
-        [info appendFormat:@"\n%@", user.college];
+        [infoArray addObject:user.college];
     }
     if (user.degree) {
-        [info appendFormat:@"\n%@", user.degree];
+        [infoArray addObject:user.degree];
     }
     if (user.major) {
-        [info appendFormat:@"\n%@", user.major];
+        [infoArray addObject:user.major];
     }
-    self.infoTextView.text = info;
+    NSString *infoStr = [infoArray componentsJoinedByString:@", "];
+    self.infoTextView.text = [NSString stringWithFormat:@"%@\n%@", user.username, infoStr];
 }
 
 - (void)didLoadPosts:(NSOrderedSet *)posts forUser:(NSString *)userId {
@@ -203,13 +227,9 @@
     Article *article = self.userPosts[indexPath.item];
     ArticleViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"articleController"];
     controller.article = article;
-    self.navigationItem.title = @"";
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
-
-//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 50;
-//}
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
     

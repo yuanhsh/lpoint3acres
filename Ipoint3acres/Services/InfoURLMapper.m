@@ -37,7 +37,7 @@
         match = [match stringByReplacingOccurrencesOfString:@"space-uid-" withString:@""];
         return match;
     }
-    return @"0";
+    return nil;
 }
 
 - (NSString *)getArticleIDfromURL:(NSString *)link {

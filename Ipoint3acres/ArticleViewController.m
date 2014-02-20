@@ -10,6 +10,8 @@
 #import "ContentCell.h"
 #import "FirstFloorContentCell.h"
 #import "QuoteContentCell.h"
+#import "ProfileViewController.h"
+#import "QWebViewController.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
@@ -110,6 +112,7 @@
     if ([comment.floorNo intValue] == 1) {
         FirstFloorContentCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstFloorCellIdentifier];
         cell.comment = comment;
+        cell.delegate = self;
         return cell;
     } else if(comment.quoteContent != nil){
         QuoteContentCell *cell = [tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
@@ -144,6 +147,26 @@
     
 //    [self.comments addObjectsFromArray:[comments array]];
     [self.tableView reloadData];
+}
+
+#pragma mark - ContentCellDelegate Method
+
+- (void)requestOpenURL:(NSString *)url {
+    InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
+    NSString *userId = [mapper getUserIDfromUserLink:url];
+    NSString *articleId = [mapper getArticleIDfromURL:url];
+    if (userId) {
+        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        profileController.userID = userId;
+        [self.navigationController pushViewController:profileController animated:YES];
+    } else if(articleId) {
+        ArticleViewController *articleController = [self.storyboard instantiateViewControllerWithIdentifier:@"articleController"];
+        articleController.articleID = articleId;
+        [self.navigationController pushViewController:articleController animated:YES];
+    } else {
+        QWebViewController *webViewController = [[QWebViewController alloc] initWithUrl:url];
+        [self.navigationController pushViewController:webViewController animated:YES];
+    }
 }
 
 /*
