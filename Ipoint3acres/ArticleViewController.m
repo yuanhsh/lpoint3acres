@@ -11,7 +11,7 @@
 #import "FirstFloorContentCell.h"
 #import "QuoteContentCell.h"
 #import "ProfileViewController.h"
-#import "QWebViewController.h"
+#import "SVWebViewController.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
@@ -164,7 +164,7 @@
         articleController.articleID = articleId;
         [self.navigationController pushViewController:articleController animated:YES];
     } else {
-        QWebViewController *webViewController = [[QWebViewController alloc] initWithUrl:url];
+        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }
