@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString * lastCommenter;
 @property (nonatomic, retain) NSString * lastCommenterID;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * shortTitle;
 @property (nonatomic, retain) NSData * titleData;
 @property (nonatomic, retain) NSNumber * viewCount;
 @property (nonatomic, retain) SiteUser *author;

@@ -20,13 +20,14 @@
 
 #define kArticleURL     @"/bbs/thread-%@-1-1.html"
 #define kCommentURL     @"/bbs/thread-%@-%ld-1.html"
-#define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%@&size=middle"
 
 #define kUserProfileURL @"/bbs/home.php?mod=space&uid=%@&do=profile"
 #define kUserFavoritesURL   @"/bbs/home.php?mod=space&do=favorite&type=thread"
 #define kUserPostsURL   @"/bbs/home.php?mod=space&uid=%@&do=thread&view=me&type=thread&order=dateline&from=space&page=%d"
 
+#define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%@&size=middle"
 #define kUserProfileFullURL @"http://www.1point3acres.com/bbs/home.php?mod=space&uid=%@&do=profile"
+#define kArticleFullURL     @"http://www.1point3acres.com/bbs/thread-%@-1-1.html"
 
 @interface InfoURLMapper : NSObject
 
@@ -49,5 +50,7 @@
 - (NSString *)getFavoritesURLForUser:(NSString *)userID;
 
 - (NSString *)getProfileFullURLForUser:(NSString *)userID;
+
+- (NSString *)getArticleFullURL:(NSString *)articleID;
 
 @end

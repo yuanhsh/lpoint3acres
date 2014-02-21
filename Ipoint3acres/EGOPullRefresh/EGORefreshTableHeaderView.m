@@ -225,6 +225,19 @@
     self.lastRefreshDate = [NSDate date];
 }
 
+- (void)triggerRefresh:(UIScrollView *)scrollView {
+    [self setProgress:1.0];
+    [_circleView setNeedsDisplay];
+    [self setState:EGOOPullRefreshLoading];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+    [UIView commitAnimations];
+    
+    [_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
+}
+
 - (void)setProgress:(float)p {
     _circleView.progress = p;
     _statusLabel.alpha = p;

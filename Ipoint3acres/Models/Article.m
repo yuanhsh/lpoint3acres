@@ -27,6 +27,7 @@
 @dynamic lastCommenter;
 @dynamic lastCommenterID;
 @dynamic title;
+@dynamic shortTitle;
 @dynamic titleData;
 @dynamic viewCount;
 @dynamic author;

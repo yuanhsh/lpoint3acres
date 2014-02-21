@@ -125,8 +125,8 @@
             LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
             loginController.notificationName = userLoginNotification;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelfProfile) name:userLoginNotification object:nil];
-            //            UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
-            //            [self presentViewController:controller animated:YES completion:nil];
+//            UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
+//            [self presentViewController:controller animated:YES completion:nil];
             [self.navigationController pushViewController:loginController animated:NO];
         }
     }
@@ -143,24 +143,23 @@
     }
     NSString *avatarPath = [[InfoURLMapper sharedInstance] getAvatarURLforUser:self.userID];
     [self.avatar setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
-    NSLog(@"44444444");
+    
     NSError *error;
     NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteUser" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    NSLog(@"5555");
     NSString *query = [NSString stringWithFormat:@"userId == '%@'", self.userID];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:query]];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    NSLog(@"6666");
+    
     if (fetchedObjects.count > 0) {
         SiteUser *user = fetchedObjects[0];
         [self didLoadUserProfile:user];
         [self didLoadPosts:user.posts forUser:user.userId];
         [self didLoadFavorites:user.favorites forUser:user.userId];
     }
-    NSLog(@"7777");
+    
     [self loadUserDataFromWeb];
 }
 
@@ -286,7 +285,7 @@
 
 - (void)doMoreAction {
     NSString *logoutTitle = nil;
-    if (self.client.loginedUserId) {
+    if (self.viewSelf && self.client.loginedUserId) {
         logoutTitle = @"退出当前账号";
     }
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:logoutTitle otherButtonTitles:@"查看网页", nil];

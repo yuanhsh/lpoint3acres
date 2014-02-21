@@ -56,7 +56,6 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%@']/tbody", board.boardID];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
     InfoURLMapper *mapper = [InfoURLMapper sharedInstance];
-//    NSMutableArray *articleArray = [NSMutableArray array];
     NSMutableOrderedSet *articleArray = [NSMutableOrderedSet orderedSet];
     
     // there should be 50 articles
@@ -167,12 +166,17 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         }
     }
     
-    if (!article.title) {
-        NSArray *titleNodes = [parser searchWithXPathQuery:@"//meta[@name='keywords']"];
-        if (titleNodes.count >= 1) {
-            article.title = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
-        }
+//    NSArray *titleNodes = [parser searchWithXPathQuery:@"//meta[@name='keywords']"];
+//    if (titleNodes.count >= 1) {
+//        article.shortTitle = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
+//    }
+    NSArray *titleNodes = [parser searchWithXPathQuery:@"//title"];
+    NSString *shortTitle = [(TFHppleElement *)titleNodes[0] firstTextChild].content;
+    NSRange range = [shortTitle rangeOfString:@"【" options:NSBackwardsSearch];
+    if(range.location != NSNotFound) {
+        shortTitle = [shortTitle substringToIndex:range.location];
     }
+    article.shortTitle = shortTitle;
     
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];

@@ -51,6 +51,10 @@
     return nil;
 }
 
+- (NSString *)getArticleFullURL:(NSString *)articleID {
+    return [NSString stringWithFormat:kArticleFullURL, articleID];
+}
+
 - (NSString *)getAvatarURLforUser:(NSString *)userID {
     return [NSString stringWithFormat:kAvatarURL, userID];
 }

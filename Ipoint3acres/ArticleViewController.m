@@ -36,6 +36,9 @@
     self.service.delegate = self;
     [self.tableView setTableFooterView:[UIView new]];
     
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
+    self.navigationItem.rightBarButtonItem = actionButton;
+    
 //    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
 //                                     UITextAttributeTextColor: [UIColor whiteColor]};
 //    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
@@ -43,16 +46,12 @@
         self.article = [[HTMLParser sharedInstance] articleWithID:self.articleID];
     }
     
-    self.navigationItem.title = self.article.title;
+    self.navigationItem.title = @"加载中...";
     self.article.isViewed = @YES;
 
     [self didReceiveComments:self.article.comments forArticle:self.article];
-    [self loadDataAtPage:1];
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+    //[self loadDataAtPage:1];
+    [self.refreshHeaderView triggerRefresh:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,7 +128,9 @@
 #pragma mark - WebServiceDelegate Method
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
-    self.navigationItem.title = self.article.title;
+    if (article.shortTitle) {
+        self.navigationItem.title = article.shortTitle;
+    }
     [self stopLoadingMoreData];
     [self stopRefreshingTableView];
     
@@ -166,6 +167,21 @@
     } else {
         SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webViewController animated:YES];
+    }
+}
+
+- (void)doMoreAction {
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", nil];
+    [action showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"查看网页"]) {
+        NSString *url = [[InfoURLMapper sharedInstance] getArticleFullURL:self.article.articleID];
+        SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
+        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 

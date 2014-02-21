@@ -112,7 +112,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
 	[self startRefreshingTableView];
-	[self performSelector:@selector(stopRefreshingTableView) withObject:nil afterDelay:3.0];
+//	[self performSelector:@selector(stopRefreshingTableView) withObject:nil afterDelay:3.0];
 }
 
 #pragma mark - Table view data source
