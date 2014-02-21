@@ -49,6 +49,9 @@
 - (void)loginSuccessedWithUserId:(NSString *)loginedUserId;
 - (void)loginFailed;
 
+- (void)logoutSuccessed;
+- (void)logoutFailed;
+
 - (void)didLoadUserProfile: (SiteUser *)user;
 - (void)didLoadPosts:(NSOrderedSet *)posts forUser:(NSString *)userId;
 - (void)didLoadFavorites:(NSOrderedSet *)favs forUser:(NSString *)userId;

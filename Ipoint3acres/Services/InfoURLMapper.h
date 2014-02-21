@@ -26,6 +26,8 @@
 #define kUserFavoritesURL   @"/bbs/home.php?mod=space&do=favorite&type=thread"
 #define kUserPostsURL   @"/bbs/home.php?mod=space&uid=%@&do=thread&view=me&type=thread&order=dateline&from=space&page=%d"
 
+#define kUserProfileFullURL @"http://www.1point3acres.com/bbs/home.php?mod=space&uid=%@&do=profile"
+
 @interface InfoURLMapper : NSObject
 
 + (instancetype)sharedInstance;
@@ -45,5 +47,7 @@
 - (NSString *)getPostsURLForUser:(NSString *)userID;
 
 - (NSString *)getFavoritesURLForUser:(NSString *)userID;
+
+- (NSString *)getProfileFullURLForUser:(NSString *)userID;
 
 @end

@@ -90,20 +90,22 @@
 
 - (IBAction)showUserProfile:(id)sender {
     ServiceClient *client = [[ServiceClient alloc] init];
-    
-    if (client.loginedUserId) {//profileController
+    NSLog(@"000000000");
+//    if (client.loginedUserId) {//profileController
+        NSLog(@"1111111");
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
         profileController.userID = client.loginedUserId;
         profileController.viewSelf = YES;
         [self.navigationController pushViewController:profileController animated:YES];
-    } else {
-        static NSString *userLoginNotification = @"UserLoginNotification";
-        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
-        loginController.notificationName = userLoginNotification;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUserProfile:) name:userLoginNotification object:nil];
-        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
-        [self presentViewController:controller animated:YES completion:nil];
-    }
+//    } else {
+//        NSLog(@"99999999");
+//        static NSString *userLoginNotification = @"UserLoginNotification";
+//        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
+//        loginController.notificationName = userLoginNotification;
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUserProfile:) name:userLoginNotification object:nil];
+//        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
+//        [self presentViewController:controller animated:YES completion:nil];
+//    }
 }
 
 #pragma mark -

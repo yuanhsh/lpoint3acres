@@ -12,6 +12,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "InfoURLMapper.h"
 #import "DataManager.h"
+#import "SVWebViewController.h"
 
 @interface ProfileViewController () {
     CGFloat defaultY;
@@ -50,6 +51,9 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
     self.navigationItem.title = @"";
     
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
+    self.navigationItem.rightBarButtonItem = actionButton;
+    
     UIImage *image = [UIImage imageNamed:@"profile_bg.jpg"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 438), YES, 0);
     [image drawInRect:CGRectMake(0, 0, 320, 438)];
@@ -62,7 +66,7 @@
     defaultY = frame.origin.y;
     self.imageView.frame = frame;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -106,29 +110,57 @@
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.tableView];
     
+    
+    NSLog(@"2222222");
+    [self initUserData];
+    NSLog(@"3333333");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (self.viewSelf) {
         self.userID = self.client.loginedUserId;
+        if (!self.userID) {
+            static NSString *userLoginNotification = @"UserLoginNotification";
+            LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
+            loginController.notificationName = userLoginNotification;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelfProfile) name:userLoginNotification object:nil];
+            //            UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
+            //            [self presentViewController:controller animated:YES completion:nil];
+            [self.navigationController pushViewController:loginController animated:NO];
+        }
     }
-    
+}
+
+- (void)showSelfProfile {
+    self.userID = self.client.loginedUserId;
     [self initUserData];
 }
 
 - (void)initUserData {
+    if (!self.userID) {
+        return;
+    }
+    NSString *avatarPath = [[InfoURLMapper sharedInstance] getAvatarURLforUser:self.userID];
+    [self.avatar setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
+    NSLog(@"44444444");
     NSError *error;
     NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteUser" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-
+    NSLog(@"5555");
     NSString *query = [NSString stringWithFormat:@"userId == '%@'", self.userID];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:query]];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"6666");
     if (fetchedObjects.count > 0) {
         SiteUser *user = fetchedObjects[0];
         [self didLoadUserProfile:user];
         [self didLoadPosts:user.posts forUser:user.userId];
         [self didLoadFavorites:user.favorites forUser:user.userId];
     }
+    NSLog(@"7777");
     [self loadUserDataFromWeb];
 }
 
@@ -206,6 +238,16 @@
     self.userFavorites = favs;
 }
 
+- (void)logoutSuccessed {
+    [SVProgressHUD dismiss];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)logoutFailed {
+    [SVProgressHUD dismiss];
+    // Alert Information
+}
+
 #pragma mark TableViewDelegate methods
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -232,19 +274,36 @@
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    
     float offsetY = scrollView.contentOffset.y;
-    
     CGRect frame = self.imageView.frame;
-    
     if (offsetY < 0) {
         frame.origin.y = defaultY - offsetY * 0.7;
     } else {
         frame.origin.y = defaultY - offsetY;
     }
     self.imageView.frame = frame;
-    
 }
 
+- (void)doMoreAction {
+    NSString *logoutTitle = nil;
+    if (self.client.loginedUserId) {
+        logoutTitle = @"退出当前账号";
+    }
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:logoutTitle otherButtonTitles:@"查看网页", nil];
+    [action showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        [SVProgressHUD showWithStatus:@"正在退出..."];
+        [self.client logout];
+    } else if ([buttonTitle isEqualToString:@"查看网页"]) {
+        NSString *url = [[InfoURLMapper sharedInstance] getProfileFullURLForUser:self.userID];
+        SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+}
 
 @end

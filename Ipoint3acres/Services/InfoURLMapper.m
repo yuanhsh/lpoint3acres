@@ -59,6 +59,10 @@
     return [NSString stringWithFormat:kUserProfileURL, userID];
 }
 
+- (NSString *)getProfileFullURLForUser:(NSString *)userID {
+    return [NSString stringWithFormat:kUserProfileFullURL, userID];
+}
+
 - (NSString *)getPostsURLForUser:(NSString *)userID {
     return [NSString stringWithFormat:kUserPostsURL, userID, 1];
 }

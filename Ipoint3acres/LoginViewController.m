@@ -10,7 +10,7 @@
 #import "SVProgressHUD.h"
 
 @interface LoginViewController ()
-
+@property (nonatomic, assign) BOOL isLogined;
 @end
 
 @implementation LoginViewController
@@ -28,20 +28,29 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    NSDictionary *textAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
-    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
-    
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelLogin)];
+//    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    NSDictionary *textAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
+//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+//    
+//    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelLogin)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelLogin)];
     self.navigationItem.leftBarButtonItem = closeButton;
     
     [self.username becomeFirstResponder];
 }
 
+//- (void)viewDidDisappear:(BOOL)animated {
+//    [super viewDidDisappear:animated];
+//    if (self.notificationName && self.isLogined) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
+//    }
+//}
+
 
 - (void)cancelLogin {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,11 +84,10 @@
 - (void)loginSuccessedWithUserId:(NSString *)loginedUserId {
     NSLog(@"Success Login!");
     [SVProgressHUD dismiss];
-    [self dismissViewControllerAnimated:NO completion:^{
-        if (self.notificationName) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
-        }
-    }];
+    self.isLogined = YES;
+//    [self dismissViewControllerAnimated:NO completion:^{}];
+    [self.navigationController popViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
 }
 
 - (void)loginFailed {

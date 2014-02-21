@@ -26,6 +26,6 @@ extern NSString * const DataManagerDidSaveFailedNotification;
 - (BOOL)save;
 - (NSManagedObjectContext*)mainObjectContext;
 - (NSManagedObjectContext*)childObjectContext;
-- (NSManagedObjectContext*)managedObjectContext;
+//- (NSManagedObjectContext*)managedObjectContext;
 
 @end

@@ -333,7 +333,6 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     if (!user) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"SiteUser" inManagedObjectContext:context];
         user.userId = userId;
-        [[DataManager sharedInstance] save];
     }
     
     return user;
@@ -380,10 +379,8 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     
     if (!article) {
         // add a new row in database
-        NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
         article = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:context];
         article.articleID = articleID;
-        [[DataManager sharedInstance] save];
     }
     
     return article;

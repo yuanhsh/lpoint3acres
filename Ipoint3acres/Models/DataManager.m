@@ -171,10 +171,10 @@ NSString * const kDataManagerSQLiteName = @"BBSData.sqlite";
 	return ctx;
 }
 
-- (NSManagedObjectContext*)managedObjectContext {
-	NSManagedObjectContext *ctx = [[NSManagedObjectContext alloc] init];
-    [ctx setPersistentStoreCoordinator:self.persistentStoreCoordinator];
-	return ctx;
-}
+//- (NSManagedObjectContext*)managedObjectContext {
+//	NSManagedObjectContext *ctx = [[NSManagedObjectContext alloc] init];
+//    [ctx setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+//	return ctx;
+//}
 
 @end

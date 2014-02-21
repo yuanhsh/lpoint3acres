@@ -320,7 +320,7 @@
 		self.lastActionLink = button.URL;
 		
 		if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]]) {
-			UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
+			UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"用Safari打开", nil];
 			[action showFromRect:button.frame inView:button.superview animated:YES];
 		}
 	}
