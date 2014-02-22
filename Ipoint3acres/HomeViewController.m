@@ -90,15 +90,12 @@
 
 - (IBAction)showUserProfile:(id)sender {
     ServiceClient *client = [[ServiceClient alloc] init];
-    NSLog(@"000000000");
 //    if (client.loginedUserId) {//profileController
-        NSLog(@"1111111");
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
         profileController.userID = client.loginedUserId;
         profileController.viewSelf = YES;
         [self.navigationController pushViewController:profileController animated:YES];
 //    } else {
-//        NSLog(@"99999999");
 //        static NSString *userLoginNotification = @"UserLoginNotification";
 //        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
 //        loginController.notificationName = userLoginNotification;

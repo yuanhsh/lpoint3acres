@@ -48,6 +48,8 @@ typedef enum{
 @property (nonatomic, weak) id<EGORefreshTableHeaderDelegate> delegate;
 @property (nonatomic, assign, getter = isLoading) BOOL loading;
 
+- (id)initWithFrame:(CGRect)frame delegate:(id<EGORefreshTableHeaderDelegate>)delegate;
+
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewWillBeginScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
@@ -60,5 +62,8 @@ typedef enum{
 @protocol EGORefreshTableHeaderDelegate
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view;
+
+@optional
+- (NSString *)egoRefreshLastUpdatedDateStoreKey;
 
 @end

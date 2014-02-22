@@ -38,7 +38,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
     [self loadLocalData];
-    [self startRefreshingTableView];
+    [self triggerRefreshTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,7 +67,6 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 }
 
 - (void)loadDataAtPage:(NSInteger)pageNo {
-//    [self didReceiveArticles:self.board.articles forBoard:self.board];
     [self.service fetchArticlesForBoard:self.board atPage:pageNo];
     self.pageNo = pageNo;
 }
@@ -77,6 +76,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 }
 
 - (void)startRefreshingTableView {
+    [super startRefreshingTableView];
     [self loadDataAtPage:1];
 }
 
@@ -107,7 +107,6 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 - (void)didReceiveArticles: (NSOrderedSet *)articles forBoard: (Board *)board {
     if (self.isRemoteData) {
         [self.articles addObjectsFromArray:[articles array]];
-//        [receivedData addObjectsFromArray:[self.articles array]];
     } else {
         self.articles = [NSMutableOrderedSet orderedSetWithOrderedSet:articles];
         self.isRemoteData = YES;
@@ -127,6 +126,11 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     [self.tableView reloadData];
 }
 
+#pragma mark - EGORefreshTableHeaderDelegate Method
+
+- (NSString *)egoRefreshLastUpdatedDateStoreKey {
+    return self.board.name;
+}
 
 #pragma mark - Navigation
 

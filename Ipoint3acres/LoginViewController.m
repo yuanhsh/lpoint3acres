@@ -34,8 +34,9 @@
 //    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 //    
 //    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelLogin)];
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelLogin)];
-    self.navigationItem.leftBarButtonItem = closeButton;
+    
+//    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelLogin)];
+//    self.navigationItem.leftBarButtonItem = closeButton;
     
     [self.username becomeFirstResponder];
 }
@@ -86,8 +87,11 @@
     [SVProgressHUD dismiss];
     self.isLogined = YES;
 //    [self dismissViewControllerAnimated:NO completion:^{}];
-    [self.navigationController popViewControllerAnimated:NO];
+    
+//    [self.navigationController popViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationName object:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 - (void)loginFailed {

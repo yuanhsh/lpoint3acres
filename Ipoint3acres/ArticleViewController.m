@@ -15,6 +15,7 @@
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
+@property (nonatomic, strong) UILabel *titleLabel;
 @end
 
 @implementation ArticleViewController
@@ -46,12 +47,26 @@
         self.article = [[HTMLParser sharedInstance] articleWithID:self.articleID];
     }
     
-    self.navigationItem.title = @"加载中...";
+    UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.textColor = [UIColor whiteColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16];
+    titlelabel.text =@"加载中...";
+    self.titleLabel = titlelabel;
+    self.navigationItem.titleView = titlelabel;
+    self.navigationItem.title = @"";
     self.article.isViewed = @YES;
 
     [self didReceiveComments:self.article.comments forArticle:self.article];
-    //[self loadDataAtPage:1];
-    [self.refreshHeaderView triggerRefresh:self.tableView];
+    NSInteger currentCount = self.article.comments.count;
+    NSInteger commentCount = [self.article.commentCount integerValue];
+    if (currentCount == 0) {
+        [self triggerRefreshTableView];
+    } else if((commentCount < kCommentCountPerPage && currentCount != commentCount+1) ||
+              (commentCount >= kCommentCountPerPage &&  currentCount < kCommentCountPerPage)) {
+        [self startRefreshingTableView];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,6 +81,7 @@
 }
 
 - (void)startRefreshingTableView {
+    [super startRefreshingTableView];
     [self loadDataAtPage:1];
 }
 
@@ -129,7 +145,7 @@
 
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
     if (article.shortTitle) {
-        self.navigationItem.title = article.shortTitle;
+        self.titleLabel.text = article.shortTitle;
     }
     [self stopLoadingMoreData];
     [self stopRefreshingTableView];

@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSOrderedSet *userFavorites; //收藏
 @property (nonatomic, strong) ServiceClient *client;
 @property (nonatomic, strong) SiteUser *user;
+
+@property (nonatomic, strong) UIBarButtonItem *actionButton;
 @end
 
 @implementation ProfileViewController
@@ -42,17 +44,24 @@
     self.userFavorites = [NSOrderedSet orderedSet];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(100, 44), NO, 0);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
-    [@"个人资料" drawInRect:CGRectMake(0, 12, 100, 44) withFont:[UIFont boldSystemFontOfSize:18]
-          lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
-    UIImage *titleImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
+//    UIGraphicsBeginImageContextWithOptions(CGSizeMake(100, 44), NO, 0);
+//    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+//    [@"个人资料" drawInRect:CGRectMake(0, 12, 100, 44) withFont:[UIFont boldSystemFontOfSize:18]
+//          lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+//    UIImage *titleImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
+    UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.textColor = [UIColor whiteColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:18];
+    titlelabel.text =@"个人资料";
+    self.navigationItem.titleView = titlelabel;
     self.navigationItem.title = @"";
     
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
-    self.navigationItem.rightBarButtonItem = actionButton;
+    self.actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
+    self.navigationItem.rightBarButtonItem = self.actionButton;
     
     UIImage *image = [UIImage imageNamed:@"profile_bg.jpg"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 438), YES, 0);
@@ -82,12 +91,10 @@
     self.avatar.clipsToBounds = YES;
     [header addSubview:self.avatar];
     
-    self.gender = [[UIImageView alloc] initWithFrame:CGRectMake(95, 30, 18, 18)];
-    self.gender.image = [UIImage imageNamed:@"icon_male.png"];
+    self.gender = [[UIImageView alloc] initWithFrame:CGRectMake(97, 30, 18, 18)];
     [header addSubview:self.gender];
     
     self.infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 20, 160, 80)];
-//    self.infoTextView = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 160, 80)];
     self.infoTextView.backgroundColor = [UIColor clearColor];
     self.infoTextView.textColor = [UIColor whiteColor];
     self.infoTextView.editable = NO;
@@ -110,14 +117,28 @@
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.tableView];
     
-    
-    NSLog(@"2222222");
     [self initUserData];
-    NSLog(@"3333333");
+    
+    [self showLoginViewIfNeeded];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    if (self.viewSelf) {
+//        self.userID = self.client.loginedUserId;
+//        if (!self.userID) {
+//            static NSString *userLoginNotification = @"UserLoginNotification";
+//            LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
+//            loginController.notificationName = userLoginNotification;
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelfProfile) name:userLoginNotification object:nil];
+////            UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
+////            [self presentViewController:controller animated:YES completion:nil];
+//            [self.navigationController pushViewController:loginController animated:NO];
+//        }
+//    }
+//}
+
+- (void)showLoginViewIfNeeded {
     if (self.viewSelf) {
         self.userID = self.client.loginedUserId;
         if (!self.userID) {
@@ -125,15 +146,19 @@
             LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
             loginController.notificationName = userLoginNotification;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSelfProfile) name:userLoginNotification object:nil];
-//            UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
-//            [self presentViewController:controller animated:YES completion:nil];
-            [self.navigationController pushViewController:loginController animated:NO];
+
+            [self addChildViewController:loginController];
+            [self.view addSubview:loginController.view];
+            [loginController didMoveToParentViewController:self];
+            
+            self.navigationItem.rightBarButtonItem = nil;
         }
     }
 }
 
 - (void)showSelfProfile {
     self.userID = self.client.loginedUserId;
+    self.navigationItem.rightBarButtonItem = self.actionButton;
     [self initUserData];
 }
 

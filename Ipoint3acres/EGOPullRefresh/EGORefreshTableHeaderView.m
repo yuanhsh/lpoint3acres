@@ -40,11 +40,15 @@
 @implementation EGORefreshTableHeaderView
 
 - (id)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame delegate:nil];
+}
+
+- (id)initWithFrame:(CGRect)frame delegate:(id<EGORefreshTableHeaderDelegate>)delegate {
     if (self = [super initWithFrame:frame]) {
-		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor clearColor];
-
+        self.delegate = delegate;
+        
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130.0f, frame.size.height - 40.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont systemFontOfSize:13.0f];
@@ -62,27 +66,56 @@
 		label.textAlignment = NSTextAlignmentLeft;
 		[self addSubview:label];
 		_lastUpdatedLabel=label;
-    
+        
 		_circleView = [[CircleView alloc] initWithFrame:CGRectMake(95, frame.size.height - 40.0f, 26, 26)];
         [self addSubview:_circleView];
 		
-		self.lastRefreshDate = [NSDate date];
+		self.lastRefreshDate = [self retrieveLastUpdatedDate];
 		
 		[self setState:EGOOPullRefreshNormal];
     }
 	
     return self;
-	
 }
 
 
 #pragma mark -
 #pragma mark Setters
 
+- (NSString *)getLastUpdatedDateStoreKey {
+    NSString *egoLastUpdateKey = nil;
+    if ([(id)self.delegate respondsToSelector:@selector(egoRefreshLastUpdatedDateStoreKey)]) {
+        NSString *storeKey = [self.delegate egoRefreshLastUpdatedDateStoreKey];
+        if (storeKey && ![storeKey isEqualToString:@""]) {
+            egoLastUpdateKey = [NSString stringWithFormat:@"EGORefreshTableView_LastRefresh_%@", storeKey];
+        }
+    }
+    return egoLastUpdateKey;
+}
+
+- (NSDate *)retrieveLastUpdatedDate {
+    NSString *egoLastUpdateKey = [self getLastUpdatedDateStoreKey];
+    if (egoLastUpdateKey) {
+        NSNumber *timeInterval = [[NSUserDefaults standardUserDefaults] objectForKey:egoLastUpdateKey];
+        if (timeInterval) {
+            return [NSDate dateWithTimeIntervalSince1970:[timeInterval doubleValue]];
+        }
+    }
+    return nil;
+}
+
 - (void)refreshLastUpdatedDate {
-    _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"上次更新: ", "Last Updated"), [self.lastRefreshDate timeAgo]];
-    [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *lastUpdate = @"从未";
+    if (self.lastRefreshDate) {
+        lastUpdate = [self.lastRefreshDate timeAgo];
+        NSString *egoLastUpdateKey = [self getLastUpdatedDateStoreKey];
+        if (egoLastUpdateKey) {
+            [[NSUserDefaults standardUserDefaults] setObject:@([self.lastRefreshDate timeIntervalSince1970]) forKey:egoLastUpdateKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
+    _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"上次更新: ", "Last Updated"), lastUpdate];
+    
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
@@ -228,14 +261,22 @@
 - (void)triggerRefresh:(UIScrollView *)scrollView {
     [self setProgress:1.0];
     [_circleView setNeedsDisplay];
-    [self setState:EGOOPullRefreshLoading];
+    [self setState:EGOOPullRefreshPulling];
+//    [self setState:EGOOPullRefreshLoading];
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2];
-    scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.2 animations:^{
+        scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+        scrollView.contentOffset = CGPointMake(0, -65.0f);
+    }];
     
-    [_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self setState:EGOOPullRefreshLoading];
+        [_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
+    });
+    
+//    [_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
 }
 
 - (void)setProgress:(float)p {

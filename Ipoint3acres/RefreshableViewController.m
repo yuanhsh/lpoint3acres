@@ -29,8 +29,8 @@
     
     self.navigationController.navigationBar.translucent = NO;
     
-    EGORefreshTableHeaderView *headerView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.frame.size.height, self.view.frame.size.width, self.tableView.frame.size.height)];
-    headerView.delegate = self;
+    EGORefreshTableHeaderView *headerView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.frame.size.height, self.view.frame.size.width, self.tableView.frame.size.height) delegate:self];
+//    headerView.delegate = self;
     [self.tableView addSubview:headerView];
     _refreshHeaderView = headerView;
     
@@ -54,9 +54,6 @@
     footer.scrollView = self.tableView;
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         [self startLoadingMoreData];
-        // 模拟延迟加载数据，因此2秒后才调用）
-        // 这里的refreshView其实就是footer
-        //[self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
     };
     _refreshFooterView = footer;
 }
@@ -76,19 +73,20 @@
 
 #pragma mark - Data Source Loading / Reloading Methods
 
+- (void)triggerRefreshTableView {
+    [self.refreshHeaderView triggerRefresh:self.tableView];
+}
+
 - (void)startRefreshingTableView{
-	
 	//  should be calling your tableviews data source model to reload
 	//  put here just for demo
 	_refreshHeaderView.loading = YES;
 }
 
 - (void)stopRefreshingTableView{
-	
 	//  model should call this when its done loading
     _refreshHeaderView.loading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-	
 }
 
 #pragma mark - UIScrollViewDelegate Methods

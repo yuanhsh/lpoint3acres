@@ -15,6 +15,8 @@
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
 @property (nonatomic, strong) MJRefreshFooterView *refreshFooterView;
 
+- (void)triggerRefreshTableView;
+
 - (void)startRefreshingTableView;
 - (void)stopRefreshingTableView;
 
