@@ -42,22 +42,63 @@
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+    [request setTimeoutInterval:30];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [self.operationQueue addOperation:operation];
     return operation;
 }
 
+- (AFHTTPRequestOperation *)GET:(NSString *)URLString
+                     parameters:(NSDictionary *)parameters
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success{
+    return [self GET:URLString parameters:parameters success:success failure:self.failureBlock];
+}
+
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
                       parameters:(NSDictionary *)parameters
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
+                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     [self.operationQueue addOperation:operation];
     return operation;
+}
+
+- (AFHTTPRequestOperation *)POST:(NSString *)URLString
+                      parameters:(NSDictionary *)parameters
+                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success {
+    return [self POST:URLString parameters:parameters success:success failure:self.failureBlock];
+}
+
+- (void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock {
+    __weak ServiceClient *weakSelf = self;
+    if (!_failureBlock) {
+        _failureBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"HTTP Request Error: %@", error);
+            switch ((int32_t)error.code) {
+                case NSURLErrorTimedOut:
+                    if ([(id)weakSelf.delegate respondsToSelector:@selector(requestTimedOut)]) {
+                        [weakSelf.delegate requestTimedOut];
+                    } else {
+                        [SVProgressHUD showErrorWithStatus:@"请求超时"];
+                    }
+                    break;
+                case NSURLErrorCancelled:
+                    
+                    break;
+                default:
+                    if ([(id)weakSelf.delegate respondsToSelector:@selector(requestError)]) {
+                        [weakSelf.delegate requestError];
+                    } else {
+                        [SVProgressHUD showErrorWithStatus:@"连接错误"];
+                    }
+                    break;
+            }
+        };
+    }
+    return _failureBlock;
 }
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo {
@@ -75,8 +116,6 @@
             });
         });
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"fetchArticlesForBoard %@ at page %ld, Error: %@", board.name, (long)pageNo, error);
     }];
 }
 
@@ -95,8 +134,6 @@
             });
         });
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"fetchCommentsForArticle %@ at page %ld, Error: %@", article.articleID, (long)pageNo, error);
     }];
 }
 
@@ -121,9 +158,6 @@
                 [self.delegate loginFailed];
             }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self.delegate loginFailed];
     }];
 }
 
@@ -131,9 +165,6 @@
     [self GET:kLogoutURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyLoginedUserID];
         [self.delegate logoutSuccessed];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"Error: %@", error);
-        [self.delegate logoutFailed];
     }];
 }
 
@@ -158,8 +189,6 @@
                 [self.delegate didLoadUserProfile:user];
 //            });
 //        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
     }];
 }
 
@@ -173,8 +202,6 @@
                 [self.delegate didLoadPosts:posts forUser:userId];
 //            });
 //        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
     }];
 }
 
@@ -189,8 +216,6 @@
                 //[self.delegate didLoadFavorites:favs forUser:userId];
             });
         });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
     }];
 }
 

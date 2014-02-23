@@ -126,6 +126,18 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     [self.tableView reloadData];
 }
 
+- (void)requestTimedOut {
+    [self stopRefreshingTableView];
+    [self stopLoadingMoreData];
+    [SVProgressHUD showErrorWithStatus:@"请求超时"];
+}
+
+- (void)requestError {
+    [self stopLoadingMoreData];
+    [self stopRefreshingTableView];
+    [SVProgressHUD showErrorWithStatus:@"连接错误"];
+}
+
 #pragma mark - EGORefreshTableHeaderDelegate Method
 
 - (NSString *)egoRefreshLastUpdatedDateStoreKey {

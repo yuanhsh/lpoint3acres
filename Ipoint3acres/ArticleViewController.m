@@ -49,10 +49,11 @@
     
     UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.textColor = [UIColor whiteColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16];
-    titlelabel.text =@"加载中...";
+    //titlelabel.text =@"加载中...";
     self.titleLabel = titlelabel;
     self.navigationItem.titleView = titlelabel;
     self.navigationItem.title = @"";
@@ -151,7 +152,7 @@
     [self stopRefreshingTableView];
     
     if (self.comments.count == article.comments.count) {
-        NSLog(@"Info: No need to refresh post tableview for article: %@", article.articleID);
+//        NSLog(@"Info: No need to refresh post tableview for article: %@", article.articleID);
         return;
     }
     self.comments = article.comments;
@@ -162,8 +163,19 @@
         self.article.commentCount = @(self.comments.count-1);
     }
     
-//    [self.comments addObjectsFromArray:[comments array]];
     [self.tableView reloadData];
+}
+
+- (void)requestTimedOut {
+    [self stopLoadingMoreData];
+    [self stopRefreshingTableView];
+    [SVProgressHUD showErrorWithStatus:@"请求超时"];
+}
+
+- (void)requestError {
+    [self stopLoadingMoreData];
+    [self stopRefreshingTableView];
+    [SVProgressHUD showErrorWithStatus:@"连接错误"];
 }
 
 #pragma mark - ContentCellDelegate Method

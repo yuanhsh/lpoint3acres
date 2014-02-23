@@ -10,6 +10,7 @@
 #import "HTMLParser.h"
 #import "InfoURLMapper.h"
 #import "Models.h"
+#import "SVProgressHUD.h"
 
 #define kUserAgent  @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.102 Safari/537.36"
 
@@ -26,6 +27,7 @@
 
 @property (nonatomic, strong) NSString *loginedUserId;
 @property (nonatomic, weak) id<WebServiceDelegate> delegate;
+@property (nonatomic, strong) void (^failureBlock)(AFHTTPRequestOperation *operation, NSError *error);
 
 - (id)initWithDelegate:(id<WebServiceDelegate>) delegate;
 
@@ -55,4 +57,7 @@
 - (void)didLoadUserProfile: (SiteUser *)user;
 - (void)didLoadPosts:(NSOrderedSet *)posts forUser:(NSString *)userId;
 - (void)didLoadFavorites:(NSOrderedSet *)favs forUser:(NSString *)userId;
+
+- (void)requestTimedOut;
+- (void)requestError;
 @end
