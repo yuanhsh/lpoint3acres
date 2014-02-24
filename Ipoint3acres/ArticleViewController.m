@@ -150,6 +150,7 @@
     }
     [self stopLoadingMoreData];
     [self stopRefreshingTableView];
+//    [self dismissLoadingHeaderAndFooter];
     
     if (self.comments.count == article.comments.count) {
 //        NSLog(@"Info: No need to refresh post tableview for article: %@", article.articleID);
@@ -164,18 +165,6 @@
     }
     
     [self.tableView reloadData];
-}
-
-- (void)requestTimedOut {
-    [self stopLoadingMoreData];
-    [self stopRefreshingTableView];
-    [SVProgressHUD showErrorWithStatus:@"请求超时"];
-}
-
-- (void)requestError {
-    [self stopLoadingMoreData];
-    [self stopRefreshingTableView];
-    [SVProgressHUD showErrorWithStatus:@"连接错误"];
 }
 
 #pragma mark - ContentCellDelegate Method
@@ -210,6 +199,20 @@
         NSString *url = [[InfoURLMapper sharedInstance] getArticleFullURL:self.article.articleID];
         SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webVC animated:YES];
+    }
+}
+
+#pragma mark - Navigation
+
+- (IBAction)viewUser:(id)sender {
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchLocation];
+    if (indexPath) {
+        Comment *comment = self.comments[indexPath.row];
+        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        profileController.userID = comment.commenterID;
+        [self.navigationController pushViewController:profileController animated:YES];
     }
 }
 

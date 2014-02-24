@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "MJRefresh.h"
+#import "SVProgressHUD.h"
 
 @interface RefreshableViewController : UITableViewController <EGORefreshTableHeaderDelegate>
 
@@ -23,4 +24,5 @@
 - (void)startLoadingMoreData;
 - (void)stopLoadingMoreData;
 
+- (void)dismissLoadingHeaderAndFooter;
 @end

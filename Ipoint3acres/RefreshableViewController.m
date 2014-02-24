@@ -71,6 +71,31 @@
     [refreshView endRefreshing];
 }
 
+
+- (void)requestTimedOut {
+    [SVProgressHUD showErrorWithStatus:@"请求超时"];
+    [self dismissLoadingHeaderAndFooter];
+}
+
+- (void)requestError {
+    [SVProgressHUD showErrorWithStatus:@"连接错误"];
+    [self dismissLoadingHeaderAndFooter];
+}
+
+- (void)dismissLoadingHeaderAndFooter {
+    @try {
+        NSTimer *fadeOutTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(stopAllLoading) userInfo:nil repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:fadeOutTimer forMode:NSRunLoopCommonModes];
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+}
+
+- (void)stopAllLoading {
+    [self stopLoadingMoreData];
+    [self stopRefreshingTableView];
+}
+
 #pragma mark - Data Source Loading / Reloading Methods
 
 - (void)triggerRefreshTableView {

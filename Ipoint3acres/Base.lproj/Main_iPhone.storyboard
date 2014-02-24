@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -121,9 +121,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-PN-GvD">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-PN-GvD">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="SN3-Fc-o8r" appends="YES" id="Fmv-dY-o6L"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CY3-Su-Qx9">
                                             <rect key="frame" x="58" y="15" width="125" height="24"/>
@@ -182,9 +186,13 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="KqX-Se-ULC">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="KqX-Se-ULC">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="27u-VZ-M4W" appends="YES" id="pR4-FQ-Hm2"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-ft-cUT">
                                             <rect key="frame" x="58" y="15" width="125" height="24"/>
@@ -231,9 +239,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-xN-Ld5">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-xN-Ld5">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="dfb-rx-NwX" appends="YES" id="iSO-FO-pHn"/>
+                                            </connections>
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-Sd-T2w" customClass="AUIAutoGrowingTextView">
                                             <rect key="frame" x="10" y="90" width="300" height="20"/>
@@ -315,6 +327,21 @@
                     <navigationItem key="navigationItem" id="wo1-ke-ohy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALn-IF-j92" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="SN3-Fc-o8r">
+                    <connections>
+                        <action selector="viewUser:" destination="krd-Fb-UEe" id="8lL-GQ-ers"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="27u-VZ-M4W">
+                    <connections>
+                        <action selector="viewUser:" destination="krd-Fb-UEe" id="vdd-xi-a0X"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="dfb-rx-NwX">
+                    <connections>
+                        <action selector="viewUser:" destination="krd-Fb-UEe" id="Foo-SP-Ohc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="683" y="56"/>
         </scene>
@@ -334,9 +361,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEu-5g-tbX">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEu-5g-tbX">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="otR-Ex-kax" appends="YES" id="vmM-BW-EZM"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbD-5H-tKk">
                                             <rect key="frame" x="58" y="4" width="125" height="24"/>
@@ -405,6 +436,11 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwJ-pF-j1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="otR-Ex-kax">
+                    <connections>
+                        <action selector="viewUser:" destination="a3W-VH-7Zh" id="wN9-ih-beQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="252" y="56"/>
         </scene>

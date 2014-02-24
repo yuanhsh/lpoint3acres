@@ -3,11 +3,12 @@
 //  Ipoint3acres
 //
 //  Created by YUAN on 14-2-2.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
 #import "BoardViewController.h"
 #import "ArticleViewController.h"
+#import "ProfileViewController.h"
 #import "ArticleTitleCell.h"
 
 static NSString *CellIdentifier = @"ArticleTitleCell";
@@ -120,22 +121,11 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     NSSortDescriptor *timeSort = [[NSSortDescriptor alloc] initWithKey:@"articleID" ascending:NO];
     [self.articles sortUsingDescriptors:@[stickSort,timeSort]];
     
-    [self stopRefreshingTableView];
-    [self stopLoadingMoreData];
+//    [self stopRefreshingTableView];
+//    [self stopLoadingMoreData];
+    [self dismissLoadingHeaderAndFooter];
     
     [self.tableView reloadData];
-}
-
-- (void)requestTimedOut {
-    [self stopRefreshingTableView];
-    [self stopLoadingMoreData];
-    [SVProgressHUD showErrorWithStatus:@"请求超时"];
-}
-
-- (void)requestError {
-    [self stopLoadingMoreData];
-    [self stopRefreshingTableView];
-    [SVProgressHUD showErrorWithStatus:@"连接错误"];
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate Method
@@ -145,6 +135,18 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 }
 
 #pragma mark - Navigation
+
+- (IBAction)viewUser:(id)sender {
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchLocation];
+    if (indexPath) {
+        Article *article = self.articles[indexPath.row];
+        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        profileController.userID = article.authorID;
+        [self.navigationController pushViewController:profileController animated:YES];
+    }
+}
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
