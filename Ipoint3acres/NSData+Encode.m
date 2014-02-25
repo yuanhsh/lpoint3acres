@@ -2,8 +2,8 @@
 //  NSData+Encode.m
 //  Galapagos
 //
-//  Created by 洋 富岡 on 12/05/04.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by YUAN on 12/05/04.
+//  Copyright (c) 2012年 YUAN. All rights reserved.
 //
 
 #import "NSData+Encode.h"
@@ -89,11 +89,11 @@
     return [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
 }
 
-- (uint32_t)crc32 {
-    uint32_t crc = crc32(0L, Z_NULL, 0);
-    crc = crc32(crc, [self bytes], [self length]);
-    return crc;
-}
+//- (uint32_t)crc32 {
+//    uint32_t crc = crc32(0L, Z_NULL, 0);
+//    crc = crc32(crc, [self bytes], [self length]);
+//    return crc;
+//}
 
 - (NSString*)md5 {
     const char *cStr = [self bytes];

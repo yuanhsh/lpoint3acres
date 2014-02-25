@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by YUAN on 14-2-15.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
 #import "NSString+Date.h"

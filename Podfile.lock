@@ -27,8 +27,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.6.1):
     - DTFoundation/Core
-  - FlurrySDK (4.3.0)
-  - GoogleAnalytics-iOS-SDK (3.0.3)
+  - FlurrySDK (4.3.2)
   - hpple (0.2.0)
   - NSDate+TimeAgo (1.0.2)
   - RegexKitLite (4.0)
@@ -42,8 +41,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
   - Appirater (~> 2.0.2)
   - DTCoreText (~> 1.6.10)
-  - FlurrySDK (~> 4.3.0)
-  - GoogleAnalytics-iOS-SDK (~> 3.0.3)
+  - FlurrySDK (~> 4.3.2)
   - hpple (~> 0.2.0)
   - NSDate+TimeAgo (~> 1.0.2)
   - RegexKitLite (~> 4.0)
@@ -56,8 +54,7 @@ SPEC CHECKSUMS:
   Appirater: 32fb9089615b5e542c7ad7b5749741a8aed55290
   DTCoreText: 39e316024954ef7e86c7fbfb5f0eee991f7211f1
   DTFoundation: 23d39b258d481221167cd4bf3df86ff3f22b1f55
-  FlurrySDK: 7d91ccc3b3591fd8eb8919f2b90e271e2b0acabe
-  GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
+  FlurrySDK: 508afbd655fe2ff935d3e9543cb1c8aa432794de
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
   NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
   RegexKitLite: f7af7b4d2b675cd2ec9a4abab6aad6ae1f6499c0

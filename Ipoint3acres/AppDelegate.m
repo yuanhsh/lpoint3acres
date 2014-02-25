@@ -3,7 +3,7 @@
 //  Ipoint3acres
 //
 //  Created by 苑　海勝 on 2014/01/30.
-//  Copyright (c) 2014年 Kickmogu. All rights reserved.
+//  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"MT7SZ9P4YSKW2YCHJHSY"];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (isIOS7) {
         [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];

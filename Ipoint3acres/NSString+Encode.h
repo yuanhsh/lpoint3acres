@@ -2,8 +2,8 @@
 //  NSString+Encode.h
 //  Galapagos
 //
-//  Created by 洋 富岡 on 12/05/04.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by YUAN on 12/05/04.
+//  Copyright (c) 2012年 YUAN. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
