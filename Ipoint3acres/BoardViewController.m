@@ -40,6 +40,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     self.service.delegate = self;
     [self loadLocalData];
     [self triggerRefreshTableView];
+    [Flurry logEvent:@"Load Board View" withParameters:@{@"版块": self.board.name}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

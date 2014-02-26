@@ -68,6 +68,7 @@
               (commentCount >= kCommentCountPerPage &&  currentCount < kCommentCountPerPage)) {
         [self startRefreshingTableView];
     }
+    [Flurry logEvent:@"Load Article View" withParameters:@{@"Article": self.article.articleID}];
 }
 
 - (void)didReceiveMemoryWarning

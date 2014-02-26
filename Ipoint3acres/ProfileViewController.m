@@ -120,6 +120,9 @@
     [self initUserData];
     
     [self showLoginViewIfNeeded];
+    if(self.userID) {
+        [Flurry logEvent:@"Load Profile View" withParameters:@{@"User": self.userID}];
+    }
 }
 
 //- (void)viewDidAppear:(BOOL)animated {

@@ -9,17 +9,19 @@
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "Common.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
     [Flurry startSession:@"MT7SZ9P4YSKW2YCHJHSY"];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (isIOS7) {
         [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
     }
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     return YES;
 }
 							
@@ -27,6 +29,13 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    __block UIBackgroundTaskIdentifier backgroundTaskIdentifier = [application beginBackgroundTaskWithExpirationHandler:^(void) {
+        [application endBackgroundTask:backgroundTaskIdentifier];
+//        [[DownloadManager sharedInstance] cancelAllOperations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[DataManager sharedInstance] save];
+        });
+    }];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
