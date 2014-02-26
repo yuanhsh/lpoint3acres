@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postDate;
 @property (weak, nonatomic) IBOutlet UILabel *floorNo;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UIImageView *commentIcon;
 
 @property (strong, nonatomic) DTAttributedTextView *postContentView;
 @property (weak, nonatomic) Comment *comment;

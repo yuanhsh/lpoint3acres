@@ -70,7 +70,8 @@
         _postContentView.shouldDrawImages = NO;
         _postContentView.shouldDrawLinks = NO;
         _postContentView.textDelegate = self;
-        [self.contentView addSubview:_postContentView];
+//        [self.contentView addSubview:_postContentView];
+        [self.contentView insertSubview:_postContentView belowSubview:self.commentIcon];
     }
     return _postContentView;
 }

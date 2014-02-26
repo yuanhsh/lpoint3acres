@@ -12,6 +12,8 @@
 #import "QuoteContentCell.h"
 #import "ProfileViewController.h"
 #import "SVWebViewController.h"
+#import "CommentViewController.h"
+#import "FXBlurView.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
@@ -217,6 +219,29 @@
     } else {
         NSLog(@"ViewUser indexPath is NULL!");
     }
+}
+
+- (IBAction)makeComment:(id)sender {
+    NSLog(@"makeComment");
+    CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
+    
+    [self presentViewController:commentController animated:YES completion:nil];
+//    [self addChildViewController:commentController];
+//    [self.view addSubview:commentController.view];
+//    [commentController didMoveToParentViewController:self];
+//    
+//    commentController.view.frame = CGRectMake(40, 480, 240, 0);
+//    FXBlurView *blurView = (FXBlurView *)commentController.view;
+//    blurView.dynamic = NO;
+//    blurView.tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+//    
+//    [blurView updateAsynchronously:NO completion:^{
+//        blurView.frame = CGRectMake(40, 480, 240, 0);
+//    }];
+//    
+//    [UIView animateWithDuration:0.5 animations:^{
+//        blurView.frame = CGRectMake(40, 0, 240, 300);
+//    }];
 }
 
 /*

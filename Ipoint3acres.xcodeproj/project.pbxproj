@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
 		1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */; };
+		1C689E3B18BDE0170069C3C5 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3A18BDE0170069C3C5 /* CommentViewController.m */; };
 		1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA501D3189FA09C00C1810D /* InfoURLMapper.m */; };
 		1CA670FF18B5CEC700FB91CE /* SiteUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA670FE18B5CEC700FB91CE /* SiteUser.m */; };
 		1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6710118B5CEC800FB91CE /* Favorite.m */; };
@@ -78,6 +79,8 @@
 		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		1C689E3618BDCBA90069C3C5 /* PSPDFTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFTextView.h; sourceTree = "<group>"; };
 		1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTextView.m; sourceTree = "<group>"; };
+		1C689E3918BDE0170069C3C5 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		1C689E3A18BDE0170069C3C5 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		1CA501D2189FA09C00C1810D /* InfoURLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoURLMapper.h; sourceTree = "<group>"; };
 		1CA501D3189FA09C00C1810D /* InfoURLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoURLMapper.m; sourceTree = "<group>"; };
 		1CA670FD18B5CEC700FB91CE /* SiteUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteUser.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				89D6F0B518B24D600062BFD4 /* LoginViewController.m */,
 				1CD0450B18B34A04006A469A /* ProfileViewController.h */,
 				1CD0450C18B34A04006A469A /* ProfileViewController.m */,
+				1C689E3918BDE0170069C3C5 /* CommentViewController.h */,
+				1C689E3A18BDE0170069C3C5 /* CommentViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				89E95129189E069C00CB822B /* FlickTabView.m in Sources */,
 				1CAE479918A32723004F9EDC /* Comment.m in Sources */,
 				89E95145189E746E00CB822B /* NSManagedObject+JSON.m in Sources */,
+				1C689E3B18BDE0170069C3C5 /* CommentViewController.m in Sources */,
 				1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */,
 				89F8392F18AF3C200076C0E0 /* NSData+Encode.m in Sources */,
 				896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */,

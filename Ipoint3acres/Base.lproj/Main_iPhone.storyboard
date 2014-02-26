@@ -157,10 +157,26 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-sk-sYA">
+                                            <rect key="frame" x="292" y="78" width="18" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="hdI-Bv-kip"/>
+                                                <constraint firstAttribute="height" constant="18" id="oZj-ra-xXJ"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="lv2-K2-4FK" appends="YES" id="rkv-V6-9xF"/>
+                                            </connections>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="gOx-sk-sYA" secondAttribute="bottom" constant="3" id="abA-xi-7TL"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="8d4-PN-GvD" id="f66-eq-gPV"/>
+                                    <outlet property="commentIcon" destination="gOx-sk-sYA" id="gIv-IP-6ba"/>
                                     <outlet property="floorNo" destination="xqC-SX-PRw" id="UQk-ay-1nM"/>
                                     <outlet property="postDate" destination="u6i-YQ-3fn" id="Yiq-yd-tiL"/>
                                     <outlet property="posterName" destination="CY3-Su-Qx9" id="k6J-uc-P9y"/>
@@ -222,7 +238,22 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-fI-qAG">
+                                            <rect key="frame" x="292" y="77" width="18" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="Pfd-xm-eb2"/>
+                                                <constraint firstAttribute="height" constant="18" id="Qi3-bC-A9J"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="hMI-pw-zgX" appends="YES" id="yn9-mg-ygv"/>
+                                            </connections>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="DGL-fI-qAG" secondAttribute="bottom" constant="3" id="5V8-eS-YGe"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="KqX-Se-ULC" id="SFT-zd-Kbx"/>
@@ -302,9 +333,22 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="EyT-XV-7bS">
+                                            <rect key="frame" x="292" y="77" width="18" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="816-0p-xOn"/>
+                                                <constraint firstAttribute="width" constant="18" id="iKJ-ln-Gm2"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="m8s-fH-Pue" appends="YES" id="rsQ-QW-JaA"/>
+                                            </connections>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="6dw-Sd-T2w" secondAttribute="bottom" priority="500" constant="-20" id="JYL-Kh-0rx"/>
+                                        <constraint firstAttribute="bottom" secondItem="EyT-XV-7bS" secondAttribute="bottom" constant="3" id="RNH-gp-FHD"/>
                                         <constraint firstItem="N1e-gr-ePK" firstAttribute="leading" secondItem="6Vx-6y-rNu" secondAttribute="leading" constant="10" id="gIn-ak-YdU"/>
                                         <constraint firstItem="6dw-Sd-T2w" firstAttribute="leading" secondItem="6Vx-6y-rNu" secondAttribute="leading" constant="10" id="hIj-On-k2F"/>
                                     </constraints>
@@ -342,8 +386,82 @@
                         <action selector="viewUser:" destination="krd-Fb-UEe" id="Foo-SP-Ohc"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="hMI-pw-zgX">
+                    <connections>
+                        <action selector="makeComment:" destination="krd-Fb-UEe" id="8GW-Vs-bLl"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="lv2-K2-4FK">
+                    <connections>
+                        <action selector="makeComment:" destination="krd-Fb-UEe" id="G9t-5m-lQH"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="m8s-fH-Pue">
+                    <connections>
+                        <action selector="makeComment:" destination="krd-Fb-UEe" id="1Ej-h2-8s0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="683" y="56"/>
+        </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="gl2-Zf-TeU">
+            <objects>
+                <viewController storyboardIdentifier="commentController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HWZ-TN-xje" customClass="CommentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iA7-20-UYd"/>
+                        <viewControllerLayoutGuide type="bottom" id="p7d-4X-bsf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7dj-sE-RKd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-0h-E2e" customClass="PSPDFTextView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-9k-LCq">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSi-Jp-NGE">
+                                        <rect key="frame" x="3" y="7" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="取消">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="HWZ-TN-xje" eventType="touchUpInside" id="vcy-g3-Loo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJf-fz-MgR">
+                                        <rect key="frame" x="270" y="7" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="发送"/>
+                                        <connections>
+                                            <action selector="send:" destination="HWZ-TN-xje" eventType="touchUpInside" id="b0W-y0-pcy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="navView" destination="QaG-9k-LCq" id="7Ly-3d-p9c"/>
+                        <outlet property="textView" destination="kNc-0h-E2e" id="T2i-e7-gkS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IuT-rV-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1067" y="56"/>
         </scene>
         <!--Board View Controller-->
         <scene sceneID="WMc-AR-Jkv">
@@ -471,6 +589,7 @@
     </scenes>
     <resources>
         <image name="avatar_placeholder" width="120" height="120"/>
+        <image name="icon_comment" width="18" height="18"/>
         <image name="top_navigation_infoicon" width="45" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
