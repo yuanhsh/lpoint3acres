@@ -170,13 +170,15 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 //    if (titleNodes.count >= 1) {
 //        article.shortTitle = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
 //    }
-    NSArray *titleNodes = [parser searchWithXPathQuery:@"//title"];
-    NSString *shortTitle = [(TFHppleElement *)titleNodes[0] firstTextChild].content;
-    NSRange range = [shortTitle rangeOfString:@"【" options:NSBackwardsSearch];
-    if(range.location != NSNotFound) {
-        shortTitle = [shortTitle substringToIndex:range.location];
+    if (!article.shortTitle || [article.shortTitle isEqualToString:@""]) {
+        NSArray *titleNodes = [parser searchWithXPathQuery:@"//title"];
+        NSString *shortTitle = [(TFHppleElement *)titleNodes[0] firstTextChild].content;
+        NSRange range = [shortTitle rangeOfString:@"【" options:NSBackwardsSearch];
+        if(range.location != NSNotFound) {
+            shortTitle = [shortTitle substringToIndex:range.location];
+        }
+        article.shortTitle = shortTitle;
     }
-    article.shortTitle = shortTitle;
     
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
@@ -356,7 +358,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             NSString *articleId = [[InfoURLMapper sharedInstance] getArticleIDfromURL:url];
             if (articleId) {
                 Article *article = [self articleWithID:articleId];
-                article.title = title;
+                article.shortTitle = title;
                 article.author = user;
                 [user addPostsObject:article];
             }

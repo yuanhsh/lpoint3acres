@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
+		1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */; };
 		1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA501D3189FA09C00C1810D /* InfoURLMapper.m */; };
 		1CA670FF18B5CEC700FB91CE /* SiteUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA670FE18B5CEC700FB91CE /* SiteUser.m */; };
 		1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6710118B5CEC800FB91CE /* Favorite.m */; };
@@ -75,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		1C689E3618BDCBA90069C3C5 /* PSPDFTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFTextView.h; sourceTree = "<group>"; };
+		1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTextView.m; sourceTree = "<group>"; };
 		1CA501D2189FA09C00C1810D /* InfoURLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoURLMapper.h; sourceTree = "<group>"; };
 		1CA501D3189FA09C00C1810D /* InfoURLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoURLMapper.m; sourceTree = "<group>"; };
 		1CA670FD18B5CEC700FB91CE /* SiteUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteUser.h; sourceTree = "<group>"; };
@@ -198,6 +201,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C689E3518BDCBA90069C3C5 /* PSPDFTextView */ = {
+			isa = PBXGroup;
+			children = (
+				1C689E3618BDCBA90069C3C5 /* PSPDFTextView.h */,
+				1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */,
+			);
+			path = PSPDFTextView;
+			sourceTree = "<group>";
+		};
 		1CA6B4BA18A4BB9D0072EE8D /* EGOPullRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +344,7 @@
 		1CA704F218AB2E8A0054FCE2 /* ThirdParties */ = {
 			isa = PBXGroup;
 			children = (
+				1C689E3518BDCBA90069C3C5 /* PSPDFTextView */,
 				1CA704EE18AB2E700054FCE2 /* TWTSideMenuViewController */,
 				1CA704E818AB08930054FCE2 /* AutoGrowingTextView */,
 				1CA6B4CB18A4E9DA0072EE8D /* MJRefresh */,
@@ -583,6 +596,7 @@
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
 				1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */,
+				1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */,
 				89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */,
 				89E95127189E069C00CB822B /* FlickTabButton.m in Sources */,
 				1CA704F118AB2E700054FCE2 /* TWTSideMenuViewController.m in Sources */,

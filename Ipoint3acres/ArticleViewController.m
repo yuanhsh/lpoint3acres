@@ -214,6 +214,8 @@
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
         profileController.userID = comment.commenterID;
         [self.navigationController pushViewController:profileController animated:YES];
+    } else {
+        NSLog(@"ViewUser indexPath is NULL!");
     }
 }
 

@@ -282,7 +282,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     Article *post = self.userPosts[indexPath.item];
-    cell.textLabel.text = post.title;
+    cell.textLabel.text = post.shortTitle;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     
     return cell;
