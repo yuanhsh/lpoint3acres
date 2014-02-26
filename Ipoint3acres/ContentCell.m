@@ -45,14 +45,14 @@
     if ([comment.floorNo intValue] == 1) {
         NSData *contentData = [comment.content dataUsingEncoding:NSUTF8StringEncoding];
         NSAttributedString *attributedText = nil;
-//        if (NO) {
-//            attributedText = [[NSAttributedString alloc] initWithData:contentData
-//                                                              options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-//                                                   documentAttributes:nil error:nil];
-//        } else {
+        if (isIOS7) {
+            attributedText = [[NSAttributedString alloc] initWithData:contentData
+                                                              options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                                                   documentAttributes:nil error:nil];
+        } else {
             attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
-//        }
-        
+        }
+    
         self.postContentView.attributedText = attributedText;
     } else {
         self.postContentView.text = comment.content;
@@ -71,7 +71,14 @@
    
     if ([comment.floorNo intValue] == 1) {
         NSData *contentData = [comment.content dataUsingEncoding:NSUTF8StringEncoding];
-        textView.attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
+        if (isIOS7) {
+            textView.attributedText = [[NSAttributedString alloc] initWithData:contentData
+                                                                       options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                                                            documentAttributes:nil error:nil];
+        } else {
+            textView.attributedText = [[NSAttributedString alloc] initWithHTMLData:contentData options:[HTMLParser sharedInstance].attributedTitleOptions documentAttributes:nil];
+        }
+        
     } else {
         textView.text = comment.content;
     }

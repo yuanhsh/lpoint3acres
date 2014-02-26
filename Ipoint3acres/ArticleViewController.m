@@ -42,9 +42,6 @@
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
     
-//    NSDictionary *textAttributes = @{UITextAttributeFont: [UIFont systemFontOfSize:12.0f],
-//                                     UITextAttributeTextColor: [UIColor whiteColor]};
-//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
     if (!self.article && self.articleID) {
         self.article = [[HTMLParser sharedInstance] articleWithID:self.articleID];
     }
@@ -55,7 +52,6 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.textColor = [UIColor whiteColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16];
-    //titlelabel.text =@"加载中...";
     self.titleLabel = titlelabel;
     self.navigationItem.titleView = titlelabel;
     self.navigationItem.title = @"";

@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface CommentViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
 
 @end
 
@@ -27,13 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.navView.layer.masksToBounds = NO;
-    self.navView.layer.cornerRadius = 2; // if you like rounded corners
-    self.navView.layer.shadowOffset = CGSizeMake(-2, 2);
-    self.navView.layer.shadowRadius = 1;
-    self.navView.layer.shadowOpacity = 0.1;
-    self.navView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.navView.bounds].CGPath;
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShown:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,6 +49,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)keyboardWillShown:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect keyboardFrame = [kbFrame CGRectValue];
+    CGFloat height = keyboardFrame.size.height;
+    self.keyboardHeight.constant = height;
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (IBAction)cancel:(id)sender {

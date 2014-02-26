@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -157,13 +157,13 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-sk-sYA">
-                                            <rect key="frame" x="292" y="78" width="18" height="18"/>
+                                        <imageView contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-sk-sYA">
+                                            <rect key="frame" x="292" y="76" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="18" id="hdI-Bv-kip"/>
-                                                <constraint firstAttribute="height" constant="18" id="oZj-ra-xXJ"/>
+                                                <constraint firstAttribute="width" constant="20" id="hdI-Bv-kip"/>
+                                                <constraint firstAttribute="height" constant="20" id="oZj-ra-xXJ"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="lv2-K2-4FK" appends="YES" id="rkv-V6-9xF"/>
@@ -238,13 +238,13 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-fI-qAG">
-                                            <rect key="frame" x="292" y="77" width="18" height="18"/>
+                                        <imageView contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-fI-qAG">
+                                            <rect key="frame" x="292" y="76" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="18" id="Pfd-xm-eb2"/>
-                                                <constraint firstAttribute="height" constant="18" id="Qi3-bC-A9J"/>
+                                                <constraint firstAttribute="width" constant="20" id="Pfd-xm-eb2"/>
+                                                <constraint firstAttribute="height" constant="20" id="Qi3-bC-A9J"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="hMI-pw-zgX" appends="YES" id="yn9-mg-ygv"/>
@@ -333,13 +333,13 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="EyT-XV-7bS">
-                                            <rect key="frame" x="292" y="77" width="18" height="18"/>
+                                        <imageView contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_comment" translatesAutoresizingMaskIntoConstraints="NO" id="EyT-XV-7bS">
+                                            <rect key="frame" x="292" y="76" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="18" id="816-0p-xOn"/>
-                                                <constraint firstAttribute="width" constant="18" id="iKJ-ln-Gm2"/>
+                                                <constraint firstAttribute="height" constant="20" id="816-0p-xOn"/>
+                                                <constraint firstAttribute="width" constant="20" id="iKJ-ln-Gm2"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="m8s-fH-Pue" appends="YES" id="rsQ-QW-JaA"/>
@@ -416,21 +416,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-0h-E2e" customClass="PSPDFTextView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-0h-E2e" customClass="PSPDFTextView">
+                                <rect key="frame" x="10" y="64" width="300" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-9k-LCq">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-9k-LCq">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSi-Jp-NGE">
-                                        <rect key="frame" x="3" y="7" width="46" height="30"/>
+                                        <rect key="frame" x="8" y="7" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="取消">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -440,21 +441,32 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJf-fz-MgR">
-                                        <rect key="frame" x="270" y="7" width="46" height="30"/>
+                                        <rect key="frame" x="265" y="7" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="发送"/>
                                         <connections>
                                             <action selector="send:" destination="HWZ-TN-xje" eventType="touchUpInside" id="b0W-y0-pcy"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wp3-DF-fgv">
+                                        <rect key="frame" x="10" y="40" width="300" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.067493742460000006" green="0.5541587469" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p7d-4X-bsf" firstAttribute="top" secondItem="kNc-0h-E2e" secondAttribute="bottom" constant="10" id="5AY-b5-wcg"/>
+                            <constraint firstItem="kNc-0h-E2e" firstAttribute="top" secondItem="QaG-9k-LCq" secondAttribute="bottom" id="HgV-qT-9hx"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="keyboardHeight" destination="5AY-b5-wcg" id="nBr-z4-uEi"/>
                         <outlet property="navView" destination="QaG-9k-LCq" id="7Ly-3d-p9c"/>
                         <outlet property="textView" destination="kNc-0h-E2e" id="T2i-e7-gkS"/>
                     </connections>

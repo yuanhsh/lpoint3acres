@@ -183,8 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */,
 				1CA675C318BDAFCE003CD9EE /* Crashlytics.framework in Frameworks */,
+				1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */,
 				1CA6CD50189A0A5300BC8045 /* UIKit.framework in Frameworks */,
 				1CA6CD4C189A0A5300BC8045 /* Foundation.framework in Frameworks */,
 				1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */,
@@ -746,6 +746,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/yuan/Documents/apps/lpoint3acres,
+					/Users/yuanhsh/Documents/Workspace/lpoint3acres,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ipoint3acres/Ipoint3acres-Prefix.pch";
@@ -767,6 +768,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/yuan/Documents/apps/lpoint3acres,
+					/Users/yuanhsh/Documents/Workspace/lpoint3acres,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ipoint3acres/Ipoint3acres-Prefix.pch";
