@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="-124" y="-638"/>
         </scene>
-        <!--Table View Controller - 设置-->
+        <!--Config View Controller - 设置-->
         <scene sceneID="XBY-wT-KCK">
             <objects>
-                <tableViewController id="TwU-qx-urg" sceneMemberID="viewController">
+                <tableViewController id="TwU-qx-urg" customClass="ConfigViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nXi-Jn-Ddq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,6 +118,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wIQ-Ct-7jB">
                                                     <rect key="frame" x="260" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="onViewTopValueChange:" destination="TwU-qx-urg" eventType="valueChanged" id="UId-vt-jct"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="显示置顶文章" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DM-bs-Ss2">
                                                     <rect key="frame" x="15" y="6" width="163" height="31"/>
@@ -219,17 +222,23 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="os5-NA-z8g"/>
                         <barButtonItem key="leftBarButtonItem" title="完成" id="yKv-yK-p0R">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onDone:" destination="TwU-qx-urg" id="LSd-ix-XcV"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="viewTopSwitch" destination="wIQ-Ct-7jB" id="uFA-NZ-d10"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsB-oA-6Jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="67" y="720"/>
         </scene>
-        <!--Table View Controller - 板块设置-->
+        <!--Board Config Controller - 板块设置-->
         <scene sceneID="rYv-hB-IEL">
             <objects>
-                <tableViewController title="板块设置" id="ZRl-7V-Wvp" sceneMemberID="viewController">
+                <tableViewController title="板块设置" id="ZRl-7V-Wvp" customClass="BoardConfigController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WIf-se-NnJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,10 +274,10 @@
             </objects>
             <point key="canvasLocation" x="494" y="726"/>
         </scene>
-        <!--View Controller - 开源组件许可-->
+        <!--Open Source View Controller - 开源组件许可-->
         <scene sceneID="hFZ-Hy-bbq">
             <objects>
-                <viewController title="开源组件许可" id="z2K-AB-x06" sceneMemberID="viewController">
+                <viewController title="开源组件许可" id="z2K-AB-x06" customClass="OpenSourceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wto-IU-qbw"/>
                         <viewControllerLayoutGuide type="bottom" id="R7p-aR-hkB"/>
@@ -277,15 +286,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9M5-2K-NFe">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9M5-2K-NFe">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9M5-2K-NFe" secondAttribute="trailing" id="My7-P5-2t1"/>
+                            <constraint firstItem="9M5-2K-NFe" firstAttribute="top" secondItem="TFT-LW-SLx" secondAttribute="top" id="OwR-s1-14K"/>
+                            <constraint firstItem="R7p-aR-hkB" firstAttribute="top" secondItem="9M5-2K-NFe" secondAttribute="bottom" id="cCc-Vb-Kgi"/>
+                            <constraint firstItem="9M5-2K-NFe" firstAttribute="leading" secondItem="TFT-LW-SLx" secondAttribute="leading" id="hUD-aI-ZLh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Bv-ua-4sO"/>
+                    <connections>
+                        <outlet property="webView" destination="9M5-2K-NFe" id="dCn-b7-c3r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPM-Ns-8go" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

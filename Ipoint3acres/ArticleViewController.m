@@ -218,7 +218,6 @@
 }
 
 - (IBAction)makeComment:(id)sender {
-    NSLog(@"makeComment");
     CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
     
     [self presentViewController:commentController animated:YES completion:nil];

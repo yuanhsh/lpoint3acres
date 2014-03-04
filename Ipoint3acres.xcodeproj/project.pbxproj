@@ -41,6 +41,10 @@
 		1CA704ED18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */; };
 		1CA704F118AB2E700054FCE2 /* TWTSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */; };
 		1CA704F518AB5E170054FCE2 /* FirstFloorContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */; };
+		1CAA558518C5CF5B00F8B1F5 /* ios_libraries.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAA558418C5CF5B00F8B1F5 /* ios_libraries.html */; };
+		1CAA558818C5D28100F8B1F5 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA558718C5D28100F8B1F5 /* ConfigViewController.m */; };
+		1CAA558B18C5D2B700F8B1F5 /* BoardConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA558A18C5D2B700F8B1F5 /* BoardConfigController.m */; };
+		1CAA558E18C5D2FE00F8B1F5 /* OpenSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA558D18C5D2FE00F8B1F5 /* OpenSourceViewController.m */; };
 		1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */; };
 		1CACBD7618B20A89004ADAEF /* UIColor+iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */; };
 		1CAE479618A321DB004F9EDC /* DefaultBoards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAE479518A321DB004F9EDC /* DefaultBoards.plist */; };
@@ -132,6 +136,13 @@
 		1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSideMenuViewController.m; sourceTree = "<group>"; };
 		1CA704F318AB5E170054FCE2 /* FirstFloorContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFloorContentCell.h; sourceTree = "<group>"; };
 		1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFloorContentCell.m; sourceTree = "<group>"; };
+		1CAA558418C5CF5B00F8B1F5 /* ios_libraries.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ios_libraries.html; sourceTree = "<group>"; };
+		1CAA558618C5D28100F8B1F5 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		1CAA558718C5D28100F8B1F5 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		1CAA558918C5D2B700F8B1F5 /* BoardConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardConfigController.h; sourceTree = "<group>"; };
+		1CAA558A18C5D2B700F8B1F5 /* BoardConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardConfigController.m; sourceTree = "<group>"; };
+		1CAA558C18C5D2FE00F8B1F5 /* OpenSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSourceViewController.h; sourceTree = "<group>"; };
+		1CAA558D18C5D2FE00F8B1F5 /* OpenSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSourceViewController.m; sourceTree = "<group>"; };
 		1CACBD7118B1DD58004ADAEF /* QuoteContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteContentCell.h; sourceTree = "<group>"; };
 		1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuoteContentCell.m; sourceTree = "<group>"; };
 		1CACBD7418B20A89004ADAEF /* UIColor+iOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+iOS7.h"; sourceTree = "<group>"; };
@@ -241,6 +252,12 @@
 				1CD0450C18B34A04006A469A /* ProfileViewController.m */,
 				1C689E3918BDE0170069C3C5 /* CommentViewController.h */,
 				1C689E3A18BDE0170069C3C5 /* CommentViewController.m */,
+				1CAA558618C5D28100F8B1F5 /* ConfigViewController.h */,
+				1CAA558718C5D28100F8B1F5 /* ConfigViewController.m */,
+				1CAA558918C5D2B700F8B1F5 /* BoardConfigController.h */,
+				1CAA558A18C5D2B700F8B1F5 /* BoardConfigController.m */,
+				1CAA558C18C5D2FE00F8B1F5 /* OpenSourceViewController.h */,
+				1CAA558D18C5D2FE00F8B1F5 /* OpenSourceViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -317,6 +334,7 @@
 		1CA6CD52189A0A5300BC8045 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1CAA558418C5CF5B00F8B1F5 /* ios_libraries.html */,
 				1CD0450918B33868006A469A /* profile_bg@2x.jpg */,
 				1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */,
 				1CA6CD53189A0A5300BC8045 /* Ipoint3acres-Info.plist */,
@@ -517,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CA6CD62189A0A5300BC8045 /* Main_iPad.storyboard in Resources */,
+				1CAA558518C5CF5B00F8B1F5 /* ios_libraries.html in Resources */,
 				1CA6CD67189A0A5300BC8045 /* Images.xcassets in Resources */,
 				1CA704ED18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg in Resources */,
 				1CA6B4D618A4E9DA0072EE8D /* MJRefresh.bundle in Resources */,
@@ -578,6 +597,7 @@
 				89E95129189E069C00CB822B /* FlickTabView.m in Sources */,
 				1CAE479918A32723004F9EDC /* Comment.m in Sources */,
 				89E95145189E746E00CB822B /* NSManagedObject+JSON.m in Sources */,
+				1CAA558818C5D28100F8B1F5 /* ConfigViewController.m in Sources */,
 				1C689E3B18BDE0170069C3C5 /* CommentViewController.m in Sources */,
 				1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */,
 				89F8392F18AF3C200076C0E0 /* NSData+Encode.m in Sources */,
@@ -587,6 +607,7 @@
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
 				1CA6B4D818A4E9DA0072EE8D /* MJRefreshConst.m in Sources */,
+				1CAA558E18C5D2FE00F8B1F5 /* OpenSourceViewController.m in Sources */,
 				1CA6B4C518A4BF690072EE8D /* RefreshableViewController.m in Sources */,
 				1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */,
 				1CA6710518B5CEC800FB91CE /* Article.m in Sources */,
@@ -601,6 +622,7 @@
 				89F8392318AF3B2F0076C0E0 /* NSString+Date.m in Sources */,
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
+				1CAA558B18C5D2B700F8B1F5 /* BoardConfigController.m in Sources */,
 				1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */,
 				1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */,
 				89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */,
