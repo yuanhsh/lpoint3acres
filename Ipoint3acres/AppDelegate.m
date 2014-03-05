@@ -10,6 +10,7 @@
 #import "DataManager.h"
 #import "Common.h"
 #import <Crashlytics/Crashlytics.h>
+#import "Appirater.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,16 @@
     [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
     [Flurry startSession:@"MT7SZ9P4YSKW2YCHJHSY"];
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    [Appirater setAppId:@"770699556"];
+    [Appirater setDaysUntilPrompt:2];
+    [Appirater setUsesUntilPrompt:3];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setOpenInAppStore:YES];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (isIOS7) {
         [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(0,122,255)];
@@ -48,6 +59,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
