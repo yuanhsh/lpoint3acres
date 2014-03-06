@@ -53,8 +53,8 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
@@ -102,6 +102,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"抱歉，您的帖子大于 50000 个字符的限制" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     } else {
+//        message = [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.formData setValue:message forKey:@"message"];
         [self.client postReplyMessage:self.comment parameters:self.formData];
         [SVProgressHUD showWithStatus:@"正在发布..."];

@@ -76,7 +76,8 @@
 }
 
 - (NSString *)getReplyFormURLForComment:(Comment *)comment {
-    return [NSString stringWithFormat:kReplyFormURL, comment.article.board.boardID, comment.article.articleID, comment.postID];
+    NSString *urlFormat = ([comment.floorNo integerValue] == 1) ? kReplyFormURL : kReplyQuoteFormURL;
+    return [NSString stringWithFormat:urlFormat, comment.article.board.boardID, comment.article.articleID, comment.postID];
 }
 
 - (NSString *)getReplyPostURLForComment:(Comment *)comment {

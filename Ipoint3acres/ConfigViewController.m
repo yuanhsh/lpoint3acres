@@ -49,6 +49,7 @@
 
 - (IBAction)onViewTopValueChange:(id)sender {
     [SettingManager sharedInstance].showStickThread = self.viewTopSwitch.on;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kChangeStickNotification object:nil];
 }
 
 - (IBAction)onDone:(id)sender {

@@ -61,8 +61,10 @@
                       parameters:(NSDictionary *)parameters
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    self.requestSerializer.stringEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     [self.operationQueue addOperation:operation];
     return operation;
@@ -216,7 +218,7 @@
 }
 
 - (void)loadUserFavorites:(NSString *)userId {
-    // todo
+    // TODO
     NSString *favsURL = [[InfoURLMapper sharedInstance] getFavoritesURLForUser:userId];
     [self GET:favsURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

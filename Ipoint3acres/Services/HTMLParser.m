@@ -381,6 +381,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     for (TFHppleElement *field in fields) {
         NSString *name = [field objectForKey:@"name"];
         NSString *value = [field objectForKey:@"value"];
+//        value = [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [formData setValue:value forKey:name];
     }
     return formData;

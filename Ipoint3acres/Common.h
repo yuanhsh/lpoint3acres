@@ -27,5 +27,6 @@
 
 #define kCommentSuccessNotification @"PostCommentSuccessNotification"
 #define kBoardReorderNotification   @"BoardConfigReorderNotification"
+#define kChangeStickNotification   @"ChangeStickNotification"
 
 #define kShowStickThreadKey @"ShowStickThreadKey"

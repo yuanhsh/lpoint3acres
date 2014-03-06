@@ -10,12 +10,12 @@
 #import "ArticleViewController.h"
 #import "ProfileViewController.h"
 #import "ArticleTitleCell.h"
+#import "SettingManager.h"
 
 static NSString *CellIdentifier = @"ArticleTitleCell";
 
 @interface BoardViewController ()
 
-@property (nonatomic, assign) BOOL showStickThread;
 @property (nonatomic, assign) BOOL isRemoteData;
 @property (nonatomic, assign) NSInteger pageNo;
 
@@ -33,13 +33,13 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.showStickThread = NO; // should load from user defaults
     self.isRemoteData = NO;
     self.articles = [NSMutableOrderedSet orderedSet];
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
     [self loadLocalData];
     [self triggerRefreshTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sortAndReloadArticles) name:kChangeStickNotification object:nil];
     [Flurry logEvent:@"Load Board View" withParameters:@{@"版块": self.board.name}];
 }
 
@@ -60,11 +60,25 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     if (self.board.articles.count == 0) {
         return;
     }
-    NSMutableOrderedSet *tmpSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.board.articles];
+    self.articles = [NSMutableOrderedSet orderedSetWithOrderedSet:self.board.articles];
+    [self sortAndReloadArticles];
+}
+
+- (void)sortAndReloadArticles {
+    if (![SettingManager sharedInstance].showStickThread) {
+        NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+        for (NSUInteger i=0; i < self.articles.count; i++) {
+            Article *article = self.articles[i];
+            if ([article.isStick boolValue]) {
+                [indexSet addIndex:i];
+            }
+        }
+        [self.articles removeObjectsAtIndexes:indexSet];
+    }
+    
     NSSortDescriptor *stickSort = [[NSSortDescriptor alloc] initWithKey:@"isStick" ascending:NO];
     NSSortDescriptor *timeSort = [[NSSortDescriptor alloc] initWithKey:@"articleID" ascending:NO];
-    [tmpSet sortUsingDescriptors:@[stickSort, timeSort]];
-    self.articles = tmpSet;
+    [self.articles sortUsingDescriptors:@[stickSort,timeSort]];
     [self.tableView reloadData];
 }
 
@@ -114,19 +128,11 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
         self.isRemoteData = YES;
     }
     
-    if (!self.showStickThread) {
-        // delete stick articles
-    }
-    
-    NSSortDescriptor *stickSort = [[NSSortDescriptor alloc] initWithKey:@"isStick" ascending:NO];
-    NSSortDescriptor *timeSort = [[NSSortDescriptor alloc] initWithKey:@"articleID" ascending:NO];
-    [self.articles sortUsingDescriptors:@[stickSort,timeSort]];
-    
 //    [self stopRefreshingTableView];
 //    [self stopLoadingMoreData];
     [self dismissLoadingHeaderAndFooter];
     
-    [self.tableView reloadData];
+    [self sortAndReloadArticles];
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate Method
