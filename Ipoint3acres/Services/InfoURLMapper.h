@@ -25,6 +25,10 @@
 #define kUserFavoritesURL   @"/bbs/home.php?mod=space&do=favorite&type=thread"
 #define kUserPostsURL   @"/bbs/home.php?mod=space&uid=%@&do=thread&view=me&type=thread&order=dateline&from=space&page=%d"
 
+//&extra=page%3D1&page=3 was deleted, need XMLHttpRequest header
+#define kReplyFormURL   @"/bbs/forum.php?mod=post&action=reply&fid=%@&tid=%@&repquote=%@&infloat=yes&handlekey=reply&inajax=1&ajaxtarget=fwin_content_reply"
+#define kReplyPostURL   @"/bbs/forum.php?mod=post&infloat=yes&action=reply&fid=%@&tid=%@&replysubmit=yes&inajax=1"
+
 #define kAvatarURL      @"http://www.1point3acres.com/bbs/uc_server/avatar.php?uid=%@&size=middle"
 #define kUserProfileFullURL @"http://www.1point3acres.com/bbs/home.php?mod=space&uid=%@&do=profile"
 #define kArticleFullURL     @"http://www.1point3acres.com/bbs/thread-%@-1-1.html"
@@ -52,5 +56,9 @@
 - (NSString *)getProfileFullURLForUser:(NSString *)userID;
 
 - (NSString *)getArticleFullURL:(NSString *)articleID;
+
+- (NSString *)getReplyFormURLForComment:(Comment *)comment;
+
+- (NSString *)getReplyPostURLForComment:(Comment *)comment;
 
 @end

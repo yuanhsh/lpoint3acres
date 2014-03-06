@@ -75,4 +75,12 @@
     return kUserFavoritesURL;
 }
 
+- (NSString *)getReplyFormURLForComment:(Comment *)comment {
+    return [NSString stringWithFormat:kReplyFormURL, comment.article.board.boardID, comment.article.articleID, comment.postID];
+}
+
+- (NSString *)getReplyPostURLForComment:(Comment *)comment {
+    return [NSString stringWithFormat:kReplyPostURL, comment.article.board.boardID, comment.article.articleID];
+}
+
 @end

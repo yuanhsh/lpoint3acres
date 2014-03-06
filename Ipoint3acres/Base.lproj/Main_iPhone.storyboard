@@ -231,6 +231,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="versionLabel" destination="ola-R2-vbP" id="Jur-Xs-IOD"/>
                         <outlet property="viewTopSwitch" destination="wIQ-Ct-7jB" id="uFA-NZ-d10"/>
                     </connections>
                 </tableViewController>
@@ -242,7 +243,7 @@
         <scene sceneID="rYv-hB-IEL">
             <objects>
                 <tableViewController title="板块设置" id="ZRl-7V-Wvp" customClass="BoardConfigController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WIf-se-NnJ">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WIf-se-NnJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -263,6 +264,31 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="BoardNameEdittingCell" id="yUU-Y8-ebg" customClass="BoardNameCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yUU-Y8-ebg" id="Mmz-ri-b2g">
+                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5si-QW-eDi">
+                                            <rect key="frame" x="59" y="0.0" width="213" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="WCH-pX-7fj">
+                                            <rect key="frame" x="15" y="2" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkMark" destination="WCH-pX-7fj" id="vT4-Cr-VzH"/>
+                                    <outlet property="nameLabel" destination="5si-QW-eDi" id="AUY-IC-eLy"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -707,6 +733,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.067493742460000006" green="0.5541587469" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="回复" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2N0-aM-1NP">
+                                        <rect key="frame" x="85" y="7" width="150" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -721,7 +754,9 @@
                     <connections>
                         <outlet property="keyboardHeight" destination="5AY-b5-wcg" id="nBr-z4-uEi"/>
                         <outlet property="navView" destination="QaG-9k-LCq" id="7Ly-3d-p9c"/>
+                        <outlet property="sendBtn" destination="JJf-fz-MgR" id="Roy-DK-InD"/>
                         <outlet property="textView" destination="kNc-0h-E2e" id="T2i-e7-gkS"/>
+                        <outlet property="titleLabel" destination="2N0-aM-1NP" id="3IJ-Ud-bz0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IuT-rV-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -854,6 +889,7 @@
     </scenes>
     <resources>
         <image name="avatar_placeholder" width="120" height="120"/>
+        <image name="checkmark" width="20" height="20"/>
         <image name="icon_comment" width="18" height="18"/>
         <image name="top_navigation_infoicon" width="45" height="44"/>
     </resources>

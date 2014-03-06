@@ -27,6 +27,8 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 - (NSOrderedSet *)parsePostsForUser:(NSString *)userId withData:(NSData *)data;
 
+- (NSMutableDictionary *)parseReplyFormData:(NSData *)data;
+
 - (Article *)articleWithID:(NSString *)articleID;
 
 @end

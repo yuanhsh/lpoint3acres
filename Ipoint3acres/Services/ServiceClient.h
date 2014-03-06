@@ -24,7 +24,6 @@
 @interface ServiceClient : AFHTTPRequestOperationManager
 
 //+ (ServiceClient *)sharedClient;
-
 @property (nonatomic, strong) NSString *loginedUserId;
 @property (nonatomic, weak) id<WebServiceDelegate> delegate;
 @property (nonatomic, strong) void (^failureBlock)(AFHTTPRequestOperation *operation, NSError *error);
@@ -40,6 +39,9 @@
 - (void)loadUserProfile:(NSString *)userId;
 - (void)loadUserPosts:(NSString *)userId;
 - (void)loadUserFavorites:(NSString *)userId;
+
+- (void)loadReplyFormData:(Comment *)comment;
+- (void)postReplyMessage:(Comment *)comment parameters:(NSDictionary *)params;
 
 @end
 
@@ -57,6 +59,9 @@
 - (void)didLoadUserProfile: (SiteUser *)user;
 - (void)didLoadPosts:(NSOrderedSet *)posts forUser:(NSString *)userId;
 - (void)didLoadFavorites:(NSOrderedSet *)favs forUser:(NSString *)userId;
+
+- (void)didLoadReplyFormData:(NSMutableDictionary *)data;
+- (void)didPostReplyMessage:(BOOL)successed;
 
 - (void)requestTimedOut;
 - (void)requestError;

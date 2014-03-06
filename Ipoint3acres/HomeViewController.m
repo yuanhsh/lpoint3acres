@@ -13,6 +13,7 @@
 
 @interface HomeViewController ()
 @property (nonatomic, strong) NSArray *boardControllers;
+@property (nonatomic, strong) Board *openingBoard;
 @end
 
 @implementation HomeViewController
@@ -46,7 +47,15 @@
     
     [self.pageViewController.view.subviews[0] setDelegate:self];
     
-    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reorderBoards) name:kBoardReorderNotification object:nil];
+//    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    BoardViewController *openingController = self.pageViewController.viewControllers[0];
+    self.openingBoard = openingController.board;
+//    NSLog(@"opeingboard : %@", self.openingBoard.name);
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,16 +64,38 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)reorderBoards {
+    self.boardControllers = [self getBoardControllers];
+    NSInteger index = 0;
+    BoardViewController *viewController = self.boardControllers[0];
+    for (NSInteger i=0; i <self.boardControllers.count; i++) {
+        BoardViewController *controller = self.boardControllers[i];
+        if ([controller.board.boardID isEqualToString:self.openingBoard.boardID]) {
+            index = i;
+            viewController = controller;
+            break;
+        }
+    }
+    
+//    [self.pageViewController setViewControllers:@[viewController]
+//                                      direction:UIPageViewControllerNavigationDirectionForward
+//                                       animated:NO
+//                                     completion:nil];
+    [self.flickTabView reloadData];
+    [self.flickTabView selectTabAtIndex:index animated:YES];
+}
+
 - (NSArray *)getBoardControllers {
     NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Board" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
+    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"hidden == 0"]];
     
-//    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"firstName == 'George'"]];
     NSArray *fetchedBoards = [context executeFetchRequest:fetchRequest error:nil];
     if (!fetchedBoards || fetchedBoards.count == 0) {
         NSLog(@"Board data is null, insert default boards");

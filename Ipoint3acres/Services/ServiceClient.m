@@ -10,6 +10,8 @@
 
 @implementation ServiceClient
 
+@synthesize loginedUserId = _loginedUserId;
+
 + (ServiceClient *)sharedClient {
     static ServiceClient *_sharedClient = nil;
     static dispatch_once_t oncePredicate;
@@ -163,19 +165,27 @@
 
 - (void)logout {
     [self GET:kLogoutURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyLoginedUserID];
+        self.loginedUserId = nil;
         [self.delegate logoutSuccessed];
     }];
 }
 
 - (NSString *)loginedUserId {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:kKeyLoginedUserID];
+    if (!_loginedUserId) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _loginedUserId = [defaults objectForKey:kKeyLoginedUserID];
+    }
+    return _loginedUserId;
 }
 
 - (void)setLoginedUserId:(NSString *)loginedUserId {
+    _loginedUserId = loginedUserId;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:loginedUserId forKey:kKeyLoginedUserID];
+    if (loginedUserId) {
+        [defaults setObject:loginedUserId forKey:kKeyLoginedUserID];
+    } else {
+        [defaults removeObjectForKey:kKeyLoginedUserID];
+    }
     [defaults synchronize];
 }
 
@@ -210,12 +220,33 @@
     NSString *favsURL = [[InfoURLMapper sharedInstance] getFavoritesURLForUser:userId];
     [self GET:favsURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            HTMLParser *parser = [HTMLParser sharedInstance];
+            //HTMLParser *parser = [HTMLParser sharedInstance];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 //[self.delegate didLoadFavorites:favs forUser:userId];
             });
         });
+    }];
+}
+
+- (void)loadReplyFormData:(Comment *)comment {
+    NSString *url = [[InfoURLMapper sharedInstance] getReplyFormURLForComment:comment];
+    NSLog(@"loadReplyFormData url %@", url);
+    [super GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            NSMutableDictionary *formData = [parser parseReplyFormData:operation.responseData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didLoadReplyFormData:formData];
+            });
+        });
+    } failure:self.failureBlock];
+}
+
+- (void)postReplyMessage:(Comment *)comment parameters:(NSDictionary *)params {
+    NSString *url = [[InfoURLMapper sharedInstance] getReplyPostURLForComment:comment];
+    [self POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.delegate didPostReplyMessage:YES];
     }];
 }
 

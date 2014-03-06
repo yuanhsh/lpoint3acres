@@ -50,6 +50,8 @@
 		1CAE479618A321DB004F9EDC /* DefaultBoards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAE479518A321DB004F9EDC /* DefaultBoards.plist */; };
 		1CAE479918A32723004F9EDC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479818A32723004F9EDC /* Comment.m */; };
 		1CAE479F18A32724004F9EDC /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479E18A32724004F9EDC /* Board.m */; };
+		1CB4717718C869E5008F89E1 /* BoardNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB4717618C869E5008F89E1 /* BoardNameCell.m */; };
+		1CB4717B18C883B4008F89E1 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB4717A18C883B4008F89E1 /* SettingManager.m */; };
 		1CD0450A18B33868006A469A /* profile_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0450918B33868006A469A /* profile_bg@2x.jpg */; };
 		1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0450C18B34A04006A469A /* ProfileViewController.m */; };
 		8940B84B18AA46140035A228 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8940B84A18AA46140035A228 /* ContentCell.m */; };
@@ -152,6 +154,10 @@
 		1CAE479818A32723004F9EDC /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		1CAE479D18A32724004F9EDC /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		1CAE479E18A32724004F9EDC /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		1CB4717518C869E5008F89E1 /* BoardNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardNameCell.h; sourceTree = "<group>"; };
+		1CB4717618C869E5008F89E1 /* BoardNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardNameCell.m; sourceTree = "<group>"; };
+		1CB4717918C883B4008F89E1 /* SettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingManager.h; sourceTree = "<group>"; };
+		1CB4717A18C883B4008F89E1 /* SettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingManager.m; sourceTree = "<group>"; };
 		1CD0450918B33868006A469A /* profile_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile_bg@2x.jpg"; sourceTree = "<group>"; };
 		1CD0450B18B34A04006A469A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		1CD0450C18B34A04006A469A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
@@ -390,6 +396,8 @@
 				1CACBD7218B1DD58004ADAEF /* QuoteContentCell.m */,
 				1CA6710618B5F79900FB91CE /* CommonBaseCell.h */,
 				1CA6710718B5F79900FB91CE /* CommonBaseCell.m */,
+				1CB4717518C869E5008F89E1 /* BoardNameCell.h */,
+				1CB4717618C869E5008F89E1 /* BoardNameCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -424,6 +432,8 @@
 				1CA6710118B5CEC800FB91CE /* Favorite.m */,
 				1CA6710318B5CEC800FB91CE /* Article.h */,
 				1CA6710418B5CEC800FB91CE /* Article.m */,
+				1CB4717918C883B4008F89E1 /* SettingManager.h */,
+				1CB4717A18C883B4008F89E1 /* SettingManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -603,11 +613,13 @@
 				89F8392F18AF3C200076C0E0 /* NSData+Encode.m in Sources */,
 				896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */,
 				1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */,
+				1CB4717B18C883B4008F89E1 /* SettingManager.m in Sources */,
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
 				1CA6B4D818A4E9DA0072EE8D /* MJRefreshConst.m in Sources */,
 				1CAA558E18C5D2FE00F8B1F5 /* OpenSourceViewController.m in Sources */,
+				1CB4717718C869E5008F89E1 /* BoardNameCell.m in Sources */,
 				1CA6B4C518A4BF690072EE8D /* RefreshableViewController.m in Sources */,
 				1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */,
 				1CA6710518B5CEC800FB91CE /* Article.m in Sources */,

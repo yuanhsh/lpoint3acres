@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "PSPDFTextView.h"
+#import "Models.h"
+#import "ServiceClient.h"
 
-@interface CommentViewController : UIViewController
+@interface CommentViewController : UIViewController <WebServiceDelegate>
+@property (weak, nonatomic) Comment *comment;
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet PSPDFTextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 - (IBAction)cancel:(id)sender;
 - (IBAction)send:(id)sender;
 

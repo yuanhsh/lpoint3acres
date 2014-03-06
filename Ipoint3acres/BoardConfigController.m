@@ -7,9 +7,13 @@
 //
 
 #import "BoardConfigController.h"
+#import "BoardNameCell.h"
+#import "DataManager.h"
+#import "Board.h"
 
 @interface BoardConfigController ()
-
+@property (nonatomic, strong) NSMutableArray *boards;
+@property (nonatomic, assign) BOOL reordered;
 @end
 
 @implementation BoardConfigController
@@ -28,6 +32,29 @@
     [super viewDidLoad];
 	self.navigationItem.title = @"板块设置";
     [self.tableView setEditing:YES animated:NO];
+    [self.tableView setTableFooterView:[UIView new]];
+    
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Board" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSSortDescriptor *hiddenDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hidden" ascending:YES];
+    NSSortDescriptor *indexDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    [fetchRequest setSortDescriptors:@[hiddenDescriptor, indexDescriptor]];
+    self.boards = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    for (NSInteger i=0; i < self.boards.count; i++) {
+        Board *board = self.boards[i];
+        board.index = @(i);
+    }
+    [[DataManager sharedInstance] save];
+    if (self.reordered) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBoardReorderNotification object:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,9 +66,9 @@
 #pragma mark TableViewDataSource & Delegate methods
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"BoardNameCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.textLabel.text = @"hahha";
+    static NSString *cellIdentifier = @"BoardNameEdittingCell";
+    BoardNameCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.board = self.boards[indexPath.item];
     return cell;
 }
 
@@ -66,11 +93,10 @@
 //            [movedReorderControl setTransform:transform];
 //        }
 //    }
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
 //}
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 15;
+    return self.boards.count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,10 +115,18 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-//    [tableData insertObject: [tableData objectAtIndex:sourceIndexPath.row] atIndex:destinationIndexPath.row];
-//    [tableData removeObjectAtIndex:(sourceIndexPath.row + 1)];
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    Board *board = [self.boards objectAtIndex:sourceIndexPath.row];
+    [self.boards removeObjectAtIndex:sourceIndexPath.row];
+    [self.boards insertObject:board atIndex:destinationIndexPath.row];
+    self.reordered = YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Board *board = self.boards[indexPath.item];
+    board.hidden = @(![board.hidden boolValue]);
+    [self.tableView reloadData];
+    self.reordered = YES;
 }
 
 @end

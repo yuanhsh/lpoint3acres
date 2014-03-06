@@ -368,6 +368,24 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     return user.posts;
 }
 
+- (NSMutableDictionary *)parseReplyFormData:(NSData *)data {
+    TFHpple *parser = [TFHpple hppleWithXMLData:data];
+    NSMutableDictionary *formData = [NSMutableDictionary dictionaryWithObject:@"true" forKey:@"replysubmit"];
+    TFHppleElement *root = [parser peekAtSearchWithXPathQuery:@"//root/text()"];
+    if (!root) {
+        return nil;
+    }
+    NSData *rootData = [root.content dataUsingEncoding:NSUTF8StringEncoding];
+    parser = [TFHpple hppleWithHTMLData:rootData];
+    NSArray *fields = [parser searchWithXPathQuery:@"//input"];
+    for (TFHppleElement *field in fields) {
+        NSString *name = [field objectForKey:@"name"];
+        NSString *value = [field objectForKey:@"value"];
+        [formData setValue:value forKey:name];
+    }
+    return formData;
+}
+
 - (Article *)articleWithID:(NSString *)articleID {
     Article *article = nil;
     NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;

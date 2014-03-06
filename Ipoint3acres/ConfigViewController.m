@@ -8,9 +8,11 @@
 
 #import "ConfigViewController.h"
 #import "Appirater.h"
+#import "SettingManager.h"
 
 @interface ConfigViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *viewTopSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -32,6 +34,11 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     NSDictionary *textAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self.versionLabel.text = version;
+    
+    self.viewTopSwitch.on = [SettingManager sharedInstance].showStickThread;
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +48,7 @@
 }
 
 - (IBAction)onViewTopValueChange:(id)sender {
-    NSLog(@"onViewTopValueChange");
+    [SettingManager sharedInstance].showStickThread = self.viewTopSwitch.on;
 }
 
 - (IBAction)onDone:(id)sender {

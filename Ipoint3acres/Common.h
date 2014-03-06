@@ -24,3 +24,8 @@
 
 #define kDefaultContentFontSize 16.0f
 #define kDefaultQuoteFontSize 14.0f
+
+#define kCommentSuccessNotification @"PostCommentSuccessNotification"
+#define kBoardReorderNotification   @"BoardConfigReorderNotification"
+
+#define kShowStickThreadKey @"ShowStickThreadKey"

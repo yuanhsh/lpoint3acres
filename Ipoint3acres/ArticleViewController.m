@@ -14,6 +14,7 @@
 #import "SVWebViewController.h"
 #import "CommentViewController.h"
 #import "FXBlurView.h"
+#import "SettingManager.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
@@ -66,6 +67,8 @@
               (commentCount >= kCommentCountPerPage &&  currentCount < kCommentCountPerPage)) {
         [self startRefreshingTableView];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLoadingMoreData) name:kCommentSuccessNotification object:nil];
     [Flurry logEvent:@"Load Article View" withParameters:@{@"Article": self.article.articleID}];
 }
 
@@ -159,7 +162,10 @@
     
     // if all posts are loaded
     if (self.comments.count >= [self.article.commentCount integerValue] + 1) {
-        [self.refreshFooterView removeFromSuperview];
+        if (self.refreshFooterView) {
+            [self.refreshFooterView removeFromSuperview];
+            self.refreshFooterView = nil;
+        }
         self.article.commentCount = @(self.comments.count-1);
     }
     
@@ -187,7 +193,7 @@
 }
 
 - (void)doMoreAction {
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", @"查看楼主", @"回复楼主", nil];
     [action showInView:self.view];
 }
 
@@ -198,6 +204,15 @@
         NSString *url = [[InfoURLMapper sharedInstance] getArticleFullURL:self.article.articleID];
         SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webVC animated:YES];
+    } else if ([buttonTitle isEqualToString:@"回复楼主"]) {
+        CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
+        commentController.comment = self.comments[0];
+        [self presentViewController:commentController animated:YES completion:nil];
+    } else if ([buttonTitle isEqualToString:@"查看楼主"]) {
+        Comment *comment = self.comments[0];
+        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+        profileController.userID = comment.commenterID;
+        [self.navigationController pushViewController:profileController animated:YES];
     }
 }
 
@@ -219,64 +234,16 @@
 
 - (IBAction)makeComment:(id)sender {
     CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
-    
-    [self presentViewController:commentController animated:YES completion:nil];
-//    [self addChildViewController:commentController];
-//    [self.view addSubview:commentController.view];
-//    [commentController didMoveToParentViewController:self];
-//    
-//    commentController.view.frame = CGRectMake(40, 480, 240, 0);
-//    FXBlurView *blurView = (FXBlurView *)commentController.view;
-//    blurView.dynamic = NO;
-//    blurView.tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-//    
-//    [blurView updateAsynchronously:NO completion:^{
-//        blurView.frame = CGRectMake(40, 480, 240, 0);
-//    }];
-//    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        blurView.frame = CGRectMake(40, 0, 240, 300);
-//    }];
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchLocation];
+    if (indexPath) {
+        commentController.comment = self.comments[indexPath.row];
+        [self presentViewController:commentController animated:YES completion:nil];
+    } else {
+        NSLog(@"makeComment indexPath is NULL!");
+    }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
