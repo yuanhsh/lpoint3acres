@@ -5,7 +5,7 @@
 //  Created by YUAN on 14-2-6.
 //  Copyright (c) 2014年 YUAN. All rights reserved.
 //
-
+#import <CoreLocation/CoreLocation.h>
 #import "ArticleViewController.h"
 #import "ContentCell.h"
 #import "FirstFloorContentCell.h"
@@ -15,10 +15,12 @@
 #import "CommentViewController.h"
 #import "FXBlurView.h"
 #import "SettingManager.h"
+#import "GADBannerView.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) GADBannerView *bannerView;
 @end
 
 @implementation ArticleViewController
@@ -39,6 +41,12 @@
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
     [self.tableView setTableFooterView:[UIView new]];
+    
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.bannerView.adUnitID = kGoogleAdmobPubID;
+    self.bannerView.rootViewController = self;
+    [self.view addSubview:self.bannerView];
+    [self.bannerView loadRequest:[self gAdRequest]];
     
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
@@ -69,13 +77,34 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLoadingMoreData) name:kCommentSuccessNotification object:nil];
-    [Flurry logEvent:@"Load Article View" withParameters:@{@"Article": self.article.articleID}];
+    [Flurry logEvent:@"加载文章页面" withParameters:@{@"帖子ID": self.article.articleID}];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (GADRequest *)gAdRequest {
+    GADRequest *request = [GADRequest request];
+    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    @try {
+        [request setLocationWithLatitude:locationManager.location.coordinate.latitude
+                               longitude:locationManager.location.coordinate.longitude
+                                accuracy:locationManager.location.horizontalAccuracy];
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+    
+    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
+    // you want to receive test ads.
+    request.testing = YES;
+    request.testDevices = @[GAD_SIMULATOR_ID];
+    // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
+    // the console when the app is launched.
+    return request;
 }
 
 - (void)loadDataAtPage:(NSInteger)pageNo {

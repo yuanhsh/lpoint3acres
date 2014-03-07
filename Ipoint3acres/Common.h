@@ -30,3 +30,5 @@
 #define kChangeStickNotification   @"ChangeStickNotification"
 
 #define kShowStickThreadKey @"ShowStickThreadKey"
+
+#define kGoogleAdmobPubID    @"a15319907d8f243"

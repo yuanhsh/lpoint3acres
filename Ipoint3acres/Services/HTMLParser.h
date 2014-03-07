@@ -31,4 +31,6 @@ extern const void (^attributedCallBackBlock)(DTHTMLElement *element);
 
 - (Article *)articleWithID:(NSString *)articleID;
 
+- (NSOrderedSet *)parseUnreadNotifsWithData:(NSData *)data;
+
 @end

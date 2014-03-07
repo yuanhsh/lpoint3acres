@@ -39,7 +39,7 @@
 //    self.navigationItem.leftBarButtonItem = closeButton;
     
     [self.username becomeFirstResponder];
-    [Flurry logEvent:@"Load Login View"];
+    [Flurry logEvent:@"加载登录页面"];
 }
 
 //- (void)viewDidDisappear:(BOOL)animated {

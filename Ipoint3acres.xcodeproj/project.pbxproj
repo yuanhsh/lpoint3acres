@@ -10,6 +10,7 @@
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
 		1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */; };
 		1C689E3B18BDE0170069C3C5 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3A18BDE0170069C3C5 /* CommentViewController.m */; };
+		1C7F412018C9B58600456B82 /* SiteNotif.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F411F18C9B58600456B82 /* SiteNotif.m */; };
 		1CA501D4189FA09C00C1810D /* InfoURLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA501D3189FA09C00C1810D /* InfoURLMapper.m */; };
 		1CA670FF18B5CEC700FB91CE /* SiteUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA670FE18B5CEC700FB91CE /* SiteUser.m */; };
 		1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6710118B5CEC800FB91CE /* Favorite.m */; };
@@ -87,6 +88,8 @@
 		1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTextView.m; sourceTree = "<group>"; };
 		1C689E3918BDE0170069C3C5 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		1C689E3A18BDE0170069C3C5 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		1C7F411E18C9B58600456B82 /* SiteNotif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteNotif.h; sourceTree = "<group>"; };
+		1C7F411F18C9B58600456B82 /* SiteNotif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteNotif.m; sourceTree = "<group>"; };
 		1CA501D2189FA09C00C1810D /* InfoURLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoURLMapper.h; sourceTree = "<group>"; };
 		1CA501D3189FA09C00C1810D /* InfoURLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoURLMapper.m; sourceTree = "<group>"; };
 		1CA670FD18B5CEC700FB91CE /* SiteUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteUser.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				1CA6710418B5CEC800FB91CE /* Article.m */,
 				1CB4717918C883B4008F89E1 /* SettingManager.h */,
 				1CB4717A18C883B4008F89E1 /* SettingManager.m */,
+				1C7F411E18C9B58600456B82 /* SiteNotif.h */,
+				1C7F411F18C9B58600456B82 /* SiteNotif.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
 				1CAA558B18C5D2B700F8B1F5 /* BoardConfigController.m in Sources */,
 				1CACBD7318B1DD58004ADAEF /* QuoteContentCell.m in Sources */,
+				1C7F412018C9B58600456B82 /* SiteNotif.m in Sources */,
 				1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */,
 				89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */,
 				89E95127189E069C00CB822B /* FlickTabButton.m in Sources */,

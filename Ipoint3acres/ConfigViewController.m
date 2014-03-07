@@ -39,6 +39,7 @@
     self.versionLabel.text = version;
     
     self.viewTopSwitch.on = [SettingManager sharedInstance].showStickThread;
+    [Flurry logEvent:@"加载设置页面"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +51,7 @@
 - (IBAction)onViewTopValueChange:(id)sender {
     [SettingManager sharedInstance].showStickThread = self.viewTopSwitch.on;
     [[NSNotificationCenter defaultCenter] postNotificationName:kChangeStickNotification object:nil];
+    [Flurry logEvent:@"设置显示置顶文章" withParameters:@{@"ON": @(self.viewTopSwitch.on)}];
 }
 
 - (IBAction)onDone:(id)sender {
@@ -75,6 +77,7 @@
 
 - (void)rateThisApp {
     [Appirater rateApp];
+    [Flurry logEvent:@"给应用评分"];
 }
 
 - (void)writeFeedBack {
@@ -98,6 +101,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Mail Accounts" message:@"Please set up a Mail account in order to send email." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+    [Flurry logEvent:@"反馈意见"];
 }
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error

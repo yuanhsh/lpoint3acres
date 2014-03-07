@@ -11,8 +11,9 @@
 #import "Models.h"
 #import "ServiceClient.h"
 #import "FirstFloorContentCell.h"
+#import "GADBannerViewDelegate.h"
 
-@interface ArticleViewController : RefreshableViewController <UIActionSheetDelegate, WebServiceDelegate, ContentCellDelegate>
+@interface ArticleViewController : RefreshableViewController <UIActionSheetDelegate, WebServiceDelegate, ContentCellDelegate, GADBannerViewDelegate>
 
 @property (nonatomic, strong) Article *article;
 @property (nonatomic, strong) ServiceClient *service;

@@ -381,7 +381,6 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     for (TFHppleElement *field in fields) {
         NSString *name = [field objectForKey:@"name"];
         NSString *value = [field objectForKey:@"value"];
-//        value = [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [formData setValue:value forKey:name];
     }
     return formData;
@@ -409,6 +408,48 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     }
     
     return article;
+}
+
+- (NSOrderedSet *)parseUnreadNotifsWithData:(NSData *)data {
+    NSMutableOrderedSet *unreadNotifs = [NSMutableOrderedSet orderedSet];
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    TFHppleElement *nts = [parser peekAtSearchWithXPathQuery:@"//div[@class='nts']"];
+    if (!nts) {
+        return unreadNotifs;
+    }
+    NSArray *children = [nts childrenWithTagName:@"dl"];
+    for (TFHppleElement *child in children) {
+        NSString *notifID = [child objectForKey:@"notice"];
+        SiteNotif *notif = [self siteNotifWithID:notifID];
+        
+        [unreadNotifs addObject:notif];
+    }
+    
+    return unreadNotifs;
+}
+
+- (SiteNotif *)siteNotifWithID:(NSString *)notifID {
+    SiteNotif *notif = nil;
+    NSManagedObjectContext *context = [DataManager sharedInstance].mainObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteNotif" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"notifID == '%@'", notifID]]];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    for (SiteNotif *item in fetchedObjects) {
+        if ([item.notifID isEqualToString:notifID]) {
+            notif = item;
+            break;
+        }
+    }
+    
+    if (!notif) {
+        // add a new row in database
+        notif = [NSEntityDescription insertNewObjectForEntityForName:@"SiteNotif" inManagedObjectContext:context];
+        notif.notifID = notifID;
+    }
+    
+    return notif;
 }
 
 @end

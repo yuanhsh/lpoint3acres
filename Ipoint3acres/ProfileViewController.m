@@ -121,7 +121,7 @@
     
     [self showLoginViewIfNeeded];
     if(self.userID) {
-        [Flurry logEvent:@"Load Profile View" withParameters:@{@"User": self.userID}];
+        [Flurry logEvent:@"加载用户页面" withParameters:@{@"用户ID": self.userID}];
     }
 }
 

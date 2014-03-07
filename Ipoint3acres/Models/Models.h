@@ -11,4 +11,5 @@
 #import "Comment.h"
 #import "SiteUser.h"
 #import "Favorite.h"
+#import "SiteNotif.h"
 #import "NSString+Date.h"

@@ -43,6 +43,7 @@
     [fetchRequest setSortDescriptors:@[hiddenDescriptor, indexDescriptor]];
     self.boards = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
     [self.tableView reloadData];
+    [Flurry logEvent:@"加载板块设置页面"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -54,6 +55,7 @@
     [[DataManager sharedInstance] save];
     if (self.reordered) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kBoardReorderNotification object:nil];
+        [Flurry logEvent:@"更改板块设置"];
     }
 }
 

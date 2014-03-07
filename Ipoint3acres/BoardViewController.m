@@ -40,7 +40,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
     [self loadLocalData];
     [self triggerRefreshTableView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sortAndReloadArticles) name:kChangeStickNotification object:nil];
-    [Flurry logEvent:@"Load Board View" withParameters:@{@"版块": self.board.name}];
+    [Flurry logEvent:@"加载板块页面" withParameters:@{@"版块": self.board.name}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

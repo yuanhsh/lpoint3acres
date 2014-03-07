@@ -73,6 +73,7 @@
     self.titleLabel.text = @"回复";
     [self.textView becomeFirstResponder];
     [self.client loadReplyFormData:self.comment];
+    [Flurry logEvent:@"加载回复页面"];
 }
 
 - (void)keyboardWillShown:(NSNotification *)notification {
@@ -102,7 +103,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"抱歉，您的帖子大于 50000 个字符的限制" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     } else {
-//        message = [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.formData setValue:message forKey:@"message"];
         [self.client postReplyMessage:self.comment parameters:self.formData];
         [SVProgressHUD showWithStatus:@"正在发布..."];

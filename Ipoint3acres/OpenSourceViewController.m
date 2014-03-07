@@ -37,6 +37,7 @@
             v.hidden = YES;
         }
     }
+    [Flurry logEvent:@"加载开源组件许可页面"];
 }
 
 - (void)didReceiveMemoryWarning
