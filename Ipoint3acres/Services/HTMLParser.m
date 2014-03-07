@@ -417,12 +417,33 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     if (!nts) {
         return unreadNotifs;
     }
+    InfoURLMapper *urlMapper = [InfoURLMapper sharedInstance];
     NSArray *children = [nts childrenWithTagName:@"dl"];
     for (TFHppleElement *child in children) {
-        NSString *notifID = [child objectForKey:@"notice"];
-        SiteNotif *notif = [self siteNotifWithID:notifID];
-        
-        [unreadNotifs addObject:notif];
+        TFHppleElement *ntc_body = [child firstChildWithClassName:@"ntc_body"];
+        NSArray *linkNodes = [ntc_body childrenWithTagName:@"a"];
+        if (linkNodes.count < 3) { // <a>Who</a> replied <a>Subject</a> <a>View</a>
+            continue;
+        }
+        TFHppleElement *userLinkNode = linkNodes[0];
+        NSString *userLink = [userLinkNode objectForKey:@"href"];
+        NSString *userId = [urlMapper getUserIDfromUserLink:userLink];
+        if (userId) {
+            NSString *notifID = [child objectForKey:@"notice"];
+            SiteNotif *notif = [self siteNotifWithID:notifID];
+            notif.userId = userId;
+            notif.username = userLinkNode.text;
+            
+            TFHppleElement *postLinkNode = linkNodes[1];
+            notif.articleTitle = postLinkNode.text;
+            NSString *postLink = [postLinkNode objectForKey:@"href"];
+            notif.articleID = [urlMapper getNotifArticleIDfromURL:postLink];
+            notif.postID = [urlMapper getNotifPostIDfromURL:postLink];
+            
+            NSString *notifContent = [ntc_body.raw stringByReplacingOccurrencesOfString:@"查看" withString:@""];
+            notif.notifContent = notifContent;
+            [unreadNotifs addObject:notif];
+        }
     }
     
     return unreadNotifs;

@@ -43,6 +43,8 @@
 - (void)loadReplyFormData:(Comment *)comment;
 - (void)postReplyMessage:(Comment *)comment parameters:(NSDictionary *)params;
 
+- (void)loadUnreadNotifs;
+
 @end
 
 @protocol WebServiceDelegate <NSObject>
@@ -62,6 +64,8 @@
 
 - (void)didLoadReplyFormData:(NSMutableDictionary *)data;
 - (void)didPostReplyMessage:(BOOL)successed;
+
+- (void)didLoadUnreadNotifs:(NSOrderedSet *)notifs;
 
 - (void)requestTimedOut;
 - (void)requestError;

@@ -252,4 +252,16 @@
     }];
 }
 
+- (void)loadUnreadNotifs {
+    [self GET:kUnreadNotifURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            NSOrderedSet *notifs = [parser parseUnreadNotifsWithData:operation.responseData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didLoadUnreadNotifs:notifs];
+            });
+        });
+    }];
+}
+
 @end

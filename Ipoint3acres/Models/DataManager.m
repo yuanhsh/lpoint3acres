@@ -123,18 +123,23 @@ NSString * const kDataManagerSQLiteName = @"BBSData.sqlite";
 }
 
 - (BOOL)save {
-	if (![self.mainObjectContext hasChanges])
-		return YES;
-    
-	NSError *error = nil;
-	if (![self.mainObjectContext save:&error]) {
-		NSLog(@"Error while saving: %@\n%@", [error localizedDescription], [error userInfo]);
-		[[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveFailedNotification
-                                                            object:error];
-		return NO;
-	}
-    
-	[[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveNotification object:nil];
+    @try {
+        if (![self.mainObjectContext hasChanges])
+            return YES;
+        
+        NSError *error = nil;
+        if (![self.mainObjectContext save:&error]) {
+            NSLog(@"Error while saving: %@\n%@", [error localizedDescription], [error userInfo]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveFailedNotification object:error];
+            return NO;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveNotification object:nil];
+        
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+	
 	return YES;
 }
 

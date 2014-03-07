@@ -14,6 +14,8 @@
 @interface HomeViewController ()
 @property (nonatomic, strong) NSArray *boardControllers;
 @property (nonatomic, strong) Board *openingBoard;
+@property (nonatomic, strong) ServiceClient *service;
+@property (nonatomic, strong) NSTimer *notifTimer;
 @end
 
 @implementation HomeViewController
@@ -21,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.service = [[ServiceClient alloc] initWithDelegate:self];
     self.boardControllers = [self getBoardControllers];
 	
     self.flickTabView = [[FlickTabView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, TAB_HEIGHT)];
@@ -48,20 +51,29 @@
     [self.pageViewController.view.subviews[0] setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reorderBoards) name:kBoardReorderNotification object:nil];
+    [self checkUserSiteNotifs];
 //    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
+    
+    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     BoardViewController *openingController = self.pageViewController.viewControllers[0];
     self.openingBoard = openingController.board;
-//    NSLog(@"opeingboard : %@", self.openingBoard.name);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)checkUserSiteNotifs {
+    if (self.service.loginedUserId) {
+        [self.service loadUnreadNotifs];
+        NSLog(@"Start Checking Unread Notifications");
+    }
 }
 
 - (void)reorderBoards {
@@ -193,6 +205,16 @@
         
     } else if (offsetX < 320) { // going to prev page
         
+    }
+}
+
+#pragma mark - WebServiceDelegate Method
+
+- (void)didLoadUnreadNotifs:(NSOrderedSet *)notifs {
+    if (notifs && notifs.count != 0) {
+        NSLog(@"New Notifications from Site!");
+    } else {
+        NSLog(@"No Notifications from Site.");
     }
 }
 

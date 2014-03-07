@@ -32,3 +32,5 @@
 #define kShowStickThreadKey @"ShowStickThreadKey"
 
 #define kGoogleAdmobPubID    @"a15319907d8f243"
+
+#define kCheckSiteNotifsInterval    (60*5)  //seconds

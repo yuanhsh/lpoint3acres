@@ -64,4 +64,8 @@
 
 - (NSString *)getReplyPostURLForComment:(Comment *)comment;
 
+- (NSString *)getNotifArticleIDfromURL:(NSString *)link;
+
+- (NSString *)getNotifPostIDfromURL:(NSString *)link;
+
 @end

@@ -84,4 +84,24 @@
     return [NSString stringWithFormat:kReplyPostURL, comment.article.board.boardID, comment.article.articleID];
 }
 
+- (NSString *)getNotifArticleIDfromURL:(NSString *)link {
+    NSString *regEx = @"ptid=[0-9]+";
+    NSString *match = [link stringByMatching:regEx];
+    if ([match isEqual:@""] == NO) {
+        match = [match stringByReplacingOccurrencesOfString:@"ptid=" withString:@""];
+        return match;
+    }
+    return nil;
+}
+
+- (NSString *)getNotifPostIDfromURL:(NSString *)link {
+    NSString *regEx = @"pid=[0-9]+";
+    NSString *match = [link stringByMatching:regEx];
+    if ([match isEqual:@""] == NO) {
+        match = [match stringByReplacingOccurrencesOfString:@"pid=" withString:@""];
+        return match;
+    }
+    return nil;
+}
+
 @end
