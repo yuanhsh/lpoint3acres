@@ -22,7 +22,7 @@
 #endif
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
-    [Appirater setAppId:@"770699556"];
+    [Appirater setAppId:@"840772542"];
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:3];
     [Appirater setSignificantEventsUntilPrompt:-1];

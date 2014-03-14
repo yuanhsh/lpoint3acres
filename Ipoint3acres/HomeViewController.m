@@ -54,7 +54,7 @@
     [self checkUserSiteNotifs];
 //    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
     
-    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
+//    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -22,10 +22,10 @@ PODS:
     - DTFoundation/Core (~> 1.6.1)
     - DTFoundation/DTHTMLParser (~> 1.6.1)
     - DTFoundation/UIKit (~> 1.6.1)
-  - DTFoundation/Core (1.6.1)
-  - DTFoundation/DTHTMLParser (1.6.1):
+  - DTFoundation/Core (1.6.2)
+  - DTFoundation/DTHTMLParser (1.6.2):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.6.1):
+  - DTFoundation/UIKit (1.6.2):
     - DTFoundation/Core
   - FlurrySDK (4.3.2):
     - FlurrySDK/FlurrySDK
@@ -59,7 +59,7 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Appirater: 32fb9089615b5e542c7ad7b5749741a8aed55290
   DTCoreText: 39e316024954ef7e86c7fbfb5f0eee991f7211f1
-  DTFoundation: 23d39b258d481221167cd4bf3df86ff3f22b1f55
+  DTFoundation: 7c69990fa3cb7655cafa95ab59c3fcea014460f0
   FlurrySDK: 0ba42379fd272d69246ae06386a2c5688516ffd8
   FXBlurView: 8d662dd5b4ba15a1a0e97235501326fbdfb2b755
   Google-AdMob-Ads-SDK: 21f95435d06b4f70c1806aaabb5e4281b22a8282

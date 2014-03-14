@@ -42,11 +42,11 @@
     self.service.delegate = self;
     [self.tableView setTableFooterView:[UIView new]];
     
-    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    self.bannerView.adUnitID = kGoogleAdmobPubID;
-    self.bannerView.rootViewController = self;
-    [self.view addSubview:self.bannerView];
-    [self.bannerView loadRequest:[self gAdRequest]];
+//    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//    self.bannerView.adUnitID = kGoogleAdmobPubID;
+//    self.bannerView.rootViewController = self;
+//    [self.view addSubview:self.bannerView];
+//    [self.bannerView loadRequest:[self gAdRequest]];
     
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
