@@ -16,10 +16,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#if !TARGET_IPHONE_SIMULATOR
+//#if !TARGET_IPHONE_SIMULATOR
     [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
-    [Flurry startSession:@"MT7SZ9P4YSKW2YCHJHSY"];
-#endif
+    [Flurry startSession:@"JPR4T5DXMX2V3TQG2X49"];
+//#endif
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
     [Appirater setAppId:@"840772542"];

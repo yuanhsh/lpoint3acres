@@ -89,8 +89,8 @@
 - (GADRequest *)gAdRequest {
     GADRequest *request = [GADRequest request];
     
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     @try {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
         [request setLocationWithLatitude:locationManager.location.coordinate.latitude
                                longitude:locationManager.location.coordinate.longitude
                                 accuracy:locationManager.location.horizontalAccuracy];
@@ -100,8 +100,10 @@
     
     // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
     // you want to receive test ads.
+#ifdef DEBUG
     request.testing = YES;
     request.testDevices = @[GAD_SIMULATOR_ID];
+#endif
     // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
     // the console when the app is launched.
     return request;

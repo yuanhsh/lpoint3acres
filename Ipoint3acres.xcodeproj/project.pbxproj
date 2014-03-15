@@ -520,6 +520,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Kickmogu;
 				TargetAttributes = {
+					1CA6CD47189A0A5300BC8045 = {
+						DevelopmentTeam = 323822N9PU;
+					};
 					1CA6CD6B189A0A5300BC8045 = {
 						TestTargetID = 1CA6CD47189A0A5300BC8045;
 					};
@@ -782,7 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHI LEI (8W5UKYJH29)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: HAISHENG YUAN (4J36862775)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/yuan/Documents/apps/lpoint3acres,
@@ -791,9 +794,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ipoint3acres/Ipoint3acres-Prefix.pch";
 				INFOPLIST_FILE = "Ipoint3acres/Ipoint3acres-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F172820E-AB9B-4B1B-BB32-3EAC7997DD89";
+				PROVISIONING_PROFILE = "4CA21569-2D9D-4234-8B47-BE1E12F28B78";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -804,7 +808,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHI LEI (8W5UKYJH29)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HAISHENG YUAN (323822N9PU)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/yuan/Documents/apps/lpoint3acres,
@@ -813,9 +817,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ipoint3acres/Ipoint3acres-Prefix.pch";
 				INFOPLIST_FILE = "Ipoint3acres/Ipoint3acres-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F172820E-AB9B-4B1B-BB32-3EAC7997DD89";
+				PROVISIONING_PROFILE = "F8EE660A-CDEC-47CF-8C41-52FBC40CD454";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
