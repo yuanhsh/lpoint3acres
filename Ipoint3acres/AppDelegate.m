@@ -16,13 +16,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//#if !TARGET_IPHONE_SIMULATOR
+#if !TARGET_IPHONE_SIMULATOR
+#ifdef FREE_VERSION
+    [Flurry startSession:@"CPGPZN73YMQBWGZSSWNV"];
+#else
     [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
     [Flurry startSession:@"JPR4T5DXMX2V3TQG2X49"];
-//#endif
+    [Appirater setAppId:@"840772542"];
+#endif
+#endif
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
-    [Appirater setAppId:@"840772542"];
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:3];
     [Appirater setSignificantEventsUntilPrompt:-1];

@@ -6,16 +6,19 @@
 //  Copyright (c) 2014年 YUAN. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
 #import "DataManager.h"
+#import "GADBannerView.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) NSArray *boardControllers;
 @property (nonatomic, strong) Board *openingBoard;
 @property (nonatomic, strong) ServiceClient *service;
 @property (nonatomic, strong) NSTimer *notifTimer;
+@property (nonatomic, strong) GADBannerView *bannerView;
 @end
 
 @implementation HomeViewController
@@ -54,6 +57,15 @@
     [self checkUserSiteNotifs];
 //    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
     
+//#ifdef FREE_VERSION
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.bannerView.frame = CGRectMake(0, self.view.frame.size.height - GAD_SIZE_320x50.height, self.view.frame.size.width, GAD_SIZE_320x50.height);
+    self.bannerView.adUnitID = @"a15319907d8f243";
+    self.bannerView.rootViewController = self;
+    [self.view addSubview:self.bannerView];
+    [self.bannerView loadRequest:[self gAdRequest]];
+//#endif
+    
 //    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }
 
@@ -67,6 +79,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (GADRequest *)gAdRequest {
+    GADRequest *request = [GADRequest request];
+    
+    @try {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        [request setLocationWithLatitude:locationManager.location.coordinate.latitude
+                               longitude:locationManager.location.coordinate.longitude
+                                accuracy:locationManager.location.horizontalAccuracy];
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+    
+    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
+    // you want to receive test ads.
+    //#ifdef DEBUG
+    request.testing = YES;
+    request.testDevices = @[GAD_SIMULATOR_ID];
+    //#endif
+    
+    // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
+    // the console when the app is launched.
+    return request;
 }
 
 - (void)checkUserSiteNotifs {

@@ -42,11 +42,13 @@
     self.service.delegate = self;
     [self.tableView setTableFooterView:[UIView new]];
     
-//    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-//    self.bannerView.adUnitID = kGoogleAdmobPubID;
-//    self.bannerView.rootViewController = self;
-//    [self.view addSubview:self.bannerView];
-//    [self.bannerView loadRequest:[self gAdRequest]];
+#ifdef FREE_VERSION
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.bannerView.adUnitID = @"a15319907d8f243";
+    self.bannerView.rootViewController = self;
+    [self.view addSubview:self.bannerView];
+    [self.bannerView loadRequest:[self gAdRequest]];
+#endif
     
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
@@ -100,10 +102,11 @@
     
     // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
     // you want to receive test ads.
-#ifdef DEBUG
+//#ifdef DEBUG
     request.testing = YES;
     request.testDevices = @[GAD_SIMULATOR_ID];
-#endif
+//#endif
+
     // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
     // the console when the app is launched.
     return request;

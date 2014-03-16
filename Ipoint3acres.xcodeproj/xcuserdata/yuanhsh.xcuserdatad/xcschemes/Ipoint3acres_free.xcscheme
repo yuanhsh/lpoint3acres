@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1CA6CD47189A0A5300BC8045"
-               BuildableName = "Ipoint3acres.app"
-               BlueprintName = "Ipoint3acres"
+               BlueprintIdentifier = "89550D7518D4AB1E00CF5CB0"
+               BuildableName = "Ipoint3acres_free.app"
+               BlueprintName = "Ipoint3acres_free"
                ReferencedContainer = "container:Ipoint3acres.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,33 +28,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1CA6CD6B189A0A5300BC8045"
-               BuildableName = "Ipoint3acresTests.xctest"
-               BlueprintName = "Ipoint3acresTests"
-               ReferencedContainer = "container:Ipoint3acres.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "89550D1718D49E5000CF5CB0"
-               BuildableName = "lpoint3acresfreeTests.xctest"
-               BlueprintName = "lpoint3acresfreeTests"
-               ReferencedContainer = "container:Ipoint3acres.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1CA6CD47189A0A5300BC8045"
-            BuildableName = "Ipoint3acres.app"
-            BlueprintName = "Ipoint3acres"
+            BlueprintIdentifier = "89550D7518D4AB1E00CF5CB0"
+            BuildableName = "Ipoint3acres_free.app"
+            BlueprintName = "Ipoint3acres_free"
             ReferencedContainer = "container:Ipoint3acres.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1CA6CD47189A0A5300BC8045"
-            BuildableName = "Ipoint3acres.app"
-            BlueprintName = "Ipoint3acres"
+            BlueprintIdentifier = "89550D7518D4AB1E00CF5CB0"
+            BuildableName = "Ipoint3acres_free.app"
+            BlueprintName = "Ipoint3acres_free"
             ReferencedContainer = "container:Ipoint3acres.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -89,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1CA6CD47189A0A5300BC8045"
-            BuildableName = "Ipoint3acres.app"
-            BlueprintName = "Ipoint3acres"
+            BlueprintIdentifier = "89550D7518D4AB1E00CF5CB0"
+            BuildableName = "Ipoint3acres_free.app"
+            BlueprintName = "Ipoint3acres_free"
             ReferencedContainer = "container:Ipoint3acres.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
