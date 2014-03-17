@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1516E3976225467BBC63A4D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BCE22A507F426AA9B696EC /* libPods.a */; };
-		1C08674D18D70B4D00A5B548 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C08674C18D70B4D00A5B548 /* ThreadViewController.m */; };
+		1C08674D18D70B4D00A5B548 /* ArticleContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */; };
 		1C689E3818BDCBA90069C3C5 /* PSPDFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */; };
 		1C689E3B18BDE0170069C3C5 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C689E3A18BDE0170069C3C5 /* CommentViewController.m */; };
 		1C7F412018C9B58600456B82 /* SiteNotif.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F411F18C9B58600456B82 /* SiteNotif.m */; };
@@ -115,6 +115,7 @@
 		89550DB418D4AB1E00CF5CB0 /* profile_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0450918B33868006A469A /* profile_bg@2x.jpg */; };
 		89550DB518D4AB1E00CF5CB0 /* DefaultBoards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAE479518A321DB004F9EDC /* DefaultBoards.plist */; };
 		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
+		898A448B18D73FB10060EBD7 /* ArticleContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
 		89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6F0B518B24D600062BFD4 /* LoginViewController.m */; };
 		89E95127189E069C00CB822B /* FlickTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E9511F189E069C00CB822B /* FlickTabButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -132,8 +133,8 @@
 
 /* Begin PBXFileReference section */
 		04035B949A344430AFC41000 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		1C08674B18D70B4D00A5B548 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
-		1C08674C18D70B4D00A5B548 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
+		1C08674B18D70B4D00A5B548 /* ArticleContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleContainerController.h; sourceTree = "<group>"; };
+		1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleContainerController.m; sourceTree = "<group>"; };
 		1C689E3618BDCBA90069C3C5 /* PSPDFTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFTextView.h; sourceTree = "<group>"; };
 		1C689E3718BDCBA90069C3C5 /* PSPDFTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTextView.m; sourceTree = "<group>"; };
 		1C689E3918BDE0170069C3C5 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
@@ -309,8 +310,8 @@
 				89E9512E189E56A900CB822B /* BoardViewController.m */,
 				896A2C0918A3C376006BBB6A /* ArticleViewController.h */,
 				896A2C0A18A3C376006BBB6A /* ArticleViewController.m */,
-				1C08674B18D70B4D00A5B548 /* ThreadViewController.h */,
-				1C08674C18D70B4D00A5B548 /* ThreadViewController.m */,
+				1C08674B18D70B4D00A5B548 /* ArticleContainerController.h */,
+				1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */,
 				89D6F0B418B24D600062BFD4 /* LoginViewController.h */,
 				89D6F0B518B24D600062BFD4 /* LoginViewController.m */,
 				1CD0450B18B34A04006A469A /* ProfileViewController.h */,
@@ -763,7 +764,7 @@
 				1CA6B4DA18A4E9DA0072EE8D /* MJRefreshHeaderView.m in Sources */,
 				89E9514F189E869800CB822B /* BBSData.xcdatamodeld in Sources */,
 				8940B84B18AA46140035A228 /* ContentCell.m in Sources */,
-				1C08674D18D70B4D00A5B548 /* ThreadViewController.m in Sources */,
+				1C08674D18D70B4D00A5B548 /* ArticleContainerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +808,7 @@
 				89550D9918D4AB1E00CF5CB0 /* SiteNotif.m in Sources */,
 				89550D9A18D4AB1E00CF5CB0 /* PSPDFTextView.m in Sources */,
 				89550D9B18D4AB1E00CF5CB0 /* LoginViewController.m in Sources */,
+				898A448B18D73FB10060EBD7 /* ArticleContainerController.m in Sources */,
 				89550D9C18D4AB1E00CF5CB0 /* FlickTabButton.m in Sources */,
 				89550D9D18D4AB1E00CF5CB0 /* TWTSideMenuViewController.m in Sources */,
 				89550D9E18D4AB1E00CF5CB0 /* CircleView.m in Sources */,

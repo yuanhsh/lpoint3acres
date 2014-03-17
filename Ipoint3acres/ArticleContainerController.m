@@ -6,14 +6,15 @@
 //  Copyright (c) 2014年 Haisheng Yuan. All rights reserved.
 //
 
-#import "ThreadViewController.h"
+#import "ArticleContainerController.h"
 #import "ArticleViewController.h"
+#import "GADBannerView.h"
 
-@interface ThreadViewController ()
+@interface ArticleContainerController ()
 
 @end
 
-@implementation ThreadViewController
+@implementation ArticleContainerController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,11 @@
 	[self addChildViewController:articleController];
     [self.view addSubview:articleController.view];
     [articleController didMoveToParentViewController:self];
+    CGFloat pageHeight = self.view.bounds.size.height;
+    if ([self shouldDisplayAds]) {
+        pageHeight -= GAD_SIZE_320x50.height;
+    }
+    articleController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, pageHeight);
 }
 
 - (void)didReceiveMemoryWarning

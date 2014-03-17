@@ -9,7 +9,7 @@
 #import "BoardViewController.h"
 #import "ArticleViewController.h"
 #import "ProfileViewController.h"
-#import "ThreadViewController.h"
+#import "ArticleContainerController.h"
 #import "ArticleTitleCell.h"
 #import "SettingManager.h"
 
@@ -161,7 +161,7 @@ static NSString *CellIdentifier = @"ArticleTitleCell";
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    ThreadViewController *controller = (ThreadViewController *)[segue destinationViewController];
+    ArticleContainerController *controller = [segue destinationViewController];
     ArticleTitleCell *cell = (ArticleTitleCell *)sender;
     cell.isViewed = YES;
     controller.article = cell.article;

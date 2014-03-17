@@ -10,7 +10,7 @@
 #import "TOLAdViewController.h"
 #import "Article.h"
 
-@interface ThreadViewController : TOLAdViewController
+@interface ArticleContainerController : TOLAdViewController
 
 @property (nonatomic, weak) Article *article;
 

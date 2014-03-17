@@ -42,6 +42,7 @@
     
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
+    self.parentViewController.navigationItem.rightBarButtonItem = actionButton;
     
     if (!self.article && self.articleID) {
         self.article = [[HTMLParser sharedInstance] articleWithID:self.articleID];
@@ -56,6 +57,8 @@
     self.titleLabel = titlelabel;
     self.navigationItem.titleView = titlelabel;
     self.navigationItem.title = @"";
+    self.parentViewController.navigationItem.titleView = titlelabel;
+    self.parentViewController.navigationItem.title = @"";
     self.article.isViewed = @YES;
 
     [self didReceiveComments:self.article.comments forArticle:self.article];
