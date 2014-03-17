@@ -18,7 +18,6 @@
 @property (nonatomic, strong) Board *openingBoard;
 @property (nonatomic, strong) ServiceClient *service;
 @property (nonatomic, strong) NSTimer *notifTimer;
-@property (nonatomic, strong) GADBannerView *bannerView;
 @end
 
 @implementation HomeViewController
@@ -49,22 +48,17 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     CGFloat offsetY = 0.0f + TAB_HEIGHT;
-    self.pageViewController.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, self.view.bounds.size.height-offsetY);
+    CGFloat pageHeight = self.view.bounds.size.height-offsetY;
+    if ([self shouldDisplayAds]) {
+        pageHeight -= GAD_SIZE_320x50.height;
+    }
+    self.pageViewController.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, pageHeight);
     
     [self.pageViewController.view.subviews[0] setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reorderBoards) name:kBoardReorderNotification object:nil];
     [self checkUserSiteNotifs];
 //    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
-    
-//#ifdef FREE_VERSION
-    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    self.bannerView.frame = CGRectMake(0, self.view.frame.size.height - GAD_SIZE_320x50.height, self.view.frame.size.width, GAD_SIZE_320x50.height);
-    self.bannerView.adUnitID = @"a15319907d8f243";
-    self.bannerView.rootViewController = self;
-    [self.view addSubview:self.bannerView];
-    [self.bannerView loadRequest:[self gAdRequest]];
-//#endif
     
 //    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }
@@ -81,28 +75,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (GADRequest *)gAdRequest {
-    GADRequest *request = [GADRequest request];
-    
-    @try {
-        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-        [request setLocationWithLatitude:locationManager.location.coordinate.latitude
-                               longitude:locationManager.location.coordinate.longitude
-                                accuracy:locationManager.location.horizontalAccuracy];
-    }
-    @catch (NSException *exception) {}
-    @finally {}
-    
-    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
-    // you want to receive test ads.
-    //#ifdef DEBUG
-    request.testing = YES;
-    request.testDevices = @[GAD_SIMULATOR_ID];
-    //#endif
-    
-    // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
-    // the console when the app is launched.
-    return request;
+- (BOOL)shouldDisplayAds {
+#ifdef FREE_VERSION
+    return YES;
+#else
+    return NO;
+#endif
 }
 
 - (void)checkUserSiteNotifs {

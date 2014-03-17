@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bjG-f5-IeF">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -385,6 +385,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXx-Gi-oV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-74" y="56"/>
+        </scene>
+        <!--Thread View Controller-->
+        <scene sceneID="Upz-oD-WKf">
+            <objects>
+                <viewController storyboardIdentifier="threadController" id="2MY-EW-NIA" customClass="ThreadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2n9-Z0-eIp"/>
+                        <viewControllerLayoutGuide type="bottom" id="yG1-54-HW4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ajg-2q-bDh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qkG-GF-B3X"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7YW-p3-rz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="683" y="-621"/>
         </scene>
         <!--Article View Controller-->
         <scene sceneID="ghW-Bf-6Mc">
@@ -844,7 +863,7 @@
                                     <outlet property="lastCommenter" destination="Zu9-Wp-CM5" id="h27-Eo-bUA"/>
                                     <outlet property="titleLabel" destination="tUY-RE-POu" id="o4a-LT-kdb"/>
                                     <outlet property="viewCount" destination="qS7-V2-oAf" id="z8V-SC-exm"/>
-                                    <segue destination="krd-Fb-UEe" kind="push" id="hyT-K5-plw"/>
+                                    <segue destination="2MY-EW-NIA" kind="push" id="ykd-Nh-Zdj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

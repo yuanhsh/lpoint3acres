@@ -15,12 +15,10 @@
 #import "CommentViewController.h"
 #import "FXBlurView.h"
 #import "SettingManager.h"
-#import "GADBannerView.h"
 
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) GADBannerView *bannerView;
 @end
 
 @implementation ArticleViewController
@@ -41,14 +39,6 @@
     self.service = [[ServiceClient alloc] init];
     self.service.delegate = self;
     [self.tableView setTableFooterView:[UIView new]];
-    
-#ifdef FREE_VERSION
-    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    self.bannerView.adUnitID = @"a15319907d8f243";
-    self.bannerView.rootViewController = self;
-    [self.view addSubview:self.bannerView];
-    [self.bannerView loadRequest:[self gAdRequest]];
-#endif
     
     UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more.png"] style:UIBarButtonItemStylePlain target:self action:@selector(doMoreAction)];
     self.navigationItem.rightBarButtonItem = actionButton;
@@ -86,30 +76,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (GADRequest *)gAdRequest {
-    GADRequest *request = [GADRequest request];
-    
-    @try {
-        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-        [request setLocationWithLatitude:locationManager.location.coordinate.latitude
-                               longitude:locationManager.location.coordinate.longitude
-                                accuracy:locationManager.location.horizontalAccuracy];
-    }
-    @catch (NSException *exception) {}
-    @finally {}
-    
-    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
-    // you want to receive test ads.
-//#ifdef DEBUG
-    request.testing = YES;
-    request.testDevices = @[GAD_SIMULATOR_ID];
-//#endif
-
-    // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
-    // the console when the app is launched.
-    return request;
 }
 
 - (void)loadDataAtPage:(NSInteger)pageNo {

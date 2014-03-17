@@ -11,20 +11,23 @@
 #import "Common.h"
 #import <Crashlytics/Crashlytics.h>
 #import "Appirater.h"
+#import "LARSAdController.h"
+#import "TOLAdAdapterGoogleAds.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#if !TARGET_IPHONE_SIMULATOR
+//#if !TARGET_IPHONE_SIMULATOR
 #ifdef FREE_VERSION
-    [Flurry startSession:@"CPGPZN73YMQBWGZSSWNV"];
+//    [Flurry startSession:@"CPGPZN73YMQBWGZSSWNV"];
+    [[LARSAdController sharedManager] registerAdClass:[TOLAdAdapterGoogleAds class] withPublisherId:@"a15319907d8f243"];
 #else
     [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
     [Flurry startSession:@"JPR4T5DXMX2V3TQG2X49"];
     [Appirater setAppId:@"840772542"];
 #endif
-#endif
+//#endif
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
     [Appirater setDaysUntilPrompt:2];

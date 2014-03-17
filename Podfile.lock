@@ -31,8 +31,12 @@ PODS:
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.3.2)
   - FXBlurView (1.5.3)
-  - Google-AdMob-Ads-SDK (6.8.0)
+  - Google-Mobile-Ads-SDK (6.8.0)
   - hpple (0.2.0)
+  - LARSAdController/Core (3.0.4)
+  - LARSAdController/GoogleAds (3.0.4):
+    - Google-Mobile-Ads-SDK
+    - LARSAdController/Core
   - NSDate+TimeAgo (1.0.2)
   - RegexKitLite (4.0)
   - SDWebImage (3.5.2):
@@ -47,8 +51,8 @@ DEPENDENCIES:
   - DTCoreText (~> 1.6.10)
   - FlurrySDK (~> 4.3.2)
   - FXBlurView (~> 1.5.3)
-  - Google-AdMob-Ads-SDK (~> 6.8.0)
   - hpple (~> 0.2.0)
+  - LARSAdController/GoogleAds (~> 3.0)
   - NSDate+TimeAgo (~> 1.0.2)
   - RegexKitLite (~> 4.0)
   - SDWebImage (~> 3.5.2)
@@ -62,8 +66,9 @@ SPEC CHECKSUMS:
   DTFoundation: 7c69990fa3cb7655cafa95ab59c3fcea014460f0
   FlurrySDK: 0ba42379fd272d69246ae06386a2c5688516ffd8
   FXBlurView: 8d662dd5b4ba15a1a0e97235501326fbdfb2b755
-  Google-AdMob-Ads-SDK: 21f95435d06b4f70c1806aaabb5e4281b22a8282
+  Google-Mobile-Ads-SDK: 0046ccf75440cf7cac163430e7c2ae9613b79a0c
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
+  LARSAdController: bd95ecc48f6bf3599c2678999247ae41582ade4c
   NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
   RegexKitLite: f7af7b4d2b675cd2ec9a4abab6aad6ae1f6499c0
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e

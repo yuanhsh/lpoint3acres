@@ -10,8 +10,9 @@
 #import "FlickTabView.h"
 #import "BoardViewController.h"
 #import "ServiceClient.h"
+#import "TOLAdViewController.h"
 
-@interface HomeViewController : UIViewController <UIPageViewControllerDelegate,UIPageViewControllerDataSource,FlickTabViewDataSource,FlickTabViewDelegate,UIScrollViewDelegate,WebServiceDelegate>
+@interface HomeViewController : TOLAdViewController <UIPageViewControllerDelegate,UIPageViewControllerDataSource,FlickTabViewDataSource,FlickTabViewDelegate,UIScrollViewDelegate,WebServiceDelegate>
 
 @property (nonatomic, strong) FlickTabView *flickTabView;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
