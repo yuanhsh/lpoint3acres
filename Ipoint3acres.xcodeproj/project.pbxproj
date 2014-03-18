@@ -678,7 +678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"";
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n./Crashlytics.framework/run ee4a474b359556a7b49c6ece60bcc4d954b89063 bb7663cd05b14590a6be5acf73029cb64d62595e459641bb49a2722381d5063d";
 			showEnvVarsInLog = 0;
 		};
 		D214291428934586BC2472C4 /* Check Pods Manifest.lock */ = {
@@ -1056,7 +1056,7 @@
 					"\"-isystem${PODS_ROOT}/Headers/hpple\"",
 				);
 				PRODUCT_NAME = Ipoint3acres_free;
-				PROVISIONING_PROFILE = "F8EE660A-CDEC-47CF-8C41-52FBC40CD454";
+				PROVISIONING_PROFILE = "83278E5D-D0A6-41CE-A5B5-2E1DA7E2FB11";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

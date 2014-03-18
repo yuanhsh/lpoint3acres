@@ -20,7 +20,7 @@
 {
 //#if !TARGET_IPHONE_SIMULATOR
 #ifdef FREE_VERSION
-//    [Crashlytics startWithAPIKey:@""];
+    [Crashlytics startWithAPIKey:@"ee4a474b359556a7b49c6ece60bcc4d954b89063"];
     [Flurry startSession:@"CPGPZN73YMQBWGZSSWNV"];
     [[LARSAdController sharedManager] registerAdClass:[TOLAdAdapterGoogleAds class] withPublisherId:@"a15319907d8f243"];
     [Appirater setAppId:@"842318107"];

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ServiceClient.h"
 #import "SVProgressHUD.h"
+#import "TOLAdViewController.h"
 
-@interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, WebServiceDelegate>
+@interface ProfileViewController : TOLAdViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, WebServiceDelegate>
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UITableView *tableView;
 

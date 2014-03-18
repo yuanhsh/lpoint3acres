@@ -8,11 +8,13 @@
 
 #import "ProfileViewController.h"
 #import "ArticleViewController.h"
+#import "ArticleContainerController.h"
 #import "LoginViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "InfoURLMapper.h"
 #import "DataManager.h"
 #import "SVWebViewController.h"
+#import "GADBannerView.h"
 
 @interface ProfileViewController () {
     CGFloat defaultY;
@@ -71,11 +73,15 @@
     
     self.imageView = [[UIImageView alloc] initWithImage:image];
     CGRect frame = self.imageView.frame;
-    frame.origin.y -= 170;
+    frame.origin.y -= (170 + 10 + 44);
     defaultY = frame.origin.y;
     self.imageView.frame = frame;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-64)];
+    CGFloat tableHeight = [UIScreen mainScreen].bounds.size.height-64;
+    if ([self shouldDisplayAds]) {
+        tableHeight -= GAD_SIZE_320x50.height;
+    }
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, tableHeight)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -294,7 +300,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Article *article = self.userPosts[indexPath.item];
-    ArticleViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"articleController"];
+//    ArticleViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"articleController"];
+    ArticleContainerController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"containerController"];
     controller.article = article;
     
     [self.navigationController pushViewController:controller animated:YES];
@@ -317,7 +324,8 @@
         logoutTitle = @"退出当前账号";
     }
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:logoutTitle otherButtonTitles:@"查看网页", nil];
-    [action showInView:self.view];
+//    [action showInView:self.view];
+    [action showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -331,6 +339,10 @@
         SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webVC animated:YES];
     }
+}
+
+- (BOOL)shouldDisplayAds{
+    return kShowGoogleAds;
 }
 
 @end

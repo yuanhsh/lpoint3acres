@@ -34,3 +34,10 @@
 #define kGoogleAdmobPubID    @"a15319907d8f243"
 
 #define kCheckSiteNotifsInterval    (60*5)  //seconds
+
+
+#ifdef FREE_VERSION
+#define kShowGoogleAds  YES
+#else
+#define kShowGoogleAds  NO
+#endif

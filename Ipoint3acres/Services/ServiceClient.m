@@ -44,7 +44,7 @@
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
-    [request setTimeoutInterval:30];
+    [request setTimeoutInterval:60];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
     operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [self.operationQueue addOperation:operation];

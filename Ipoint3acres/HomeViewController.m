@@ -57,8 +57,7 @@
     [self.pageViewController.view.subviews[0] setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reorderBoards) name:kBoardReorderNotification object:nil];
-    [self checkUserSiteNotifs];
-//    NSLog(@"DocumentsDirectory: %@", DocumentsDirectory);
+//    [self checkUserSiteNotifs];
     
 //    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }

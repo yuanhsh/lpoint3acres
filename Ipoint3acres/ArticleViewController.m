@@ -197,7 +197,8 @@
 
 - (void)doMoreAction {
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", @"查看楼主", @"回复楼主", nil];
-    [action showInView:self.view];
+//    [action showInView:self.view];
+    [action showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

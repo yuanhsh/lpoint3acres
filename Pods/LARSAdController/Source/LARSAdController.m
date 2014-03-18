@@ -149,12 +149,12 @@ CGFloat const kLARSAdContainerHeightPod = 50.0f;
         _containerView.backgroundColor = [UIColor clearColor];
         _containerView.clipsToBounds = NO;
         
-        _containerView.layer.shadowRadius = 10.f;
-        _containerView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _containerView.layer.shadowOpacity = 0.6f;
-        _containerView.layer.shadowOffset = CGSizeMake(0.f, 0.f);
-        _containerView.layer.shouldRasterize = YES;
-        _containerView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//        _containerView.layer.shadowRadius = 10.f;
+//        _containerView.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _containerView.layer.shadowOpacity = 0.6f;
+//        _containerView.layer.shadowOffset = CGSizeMake(0.f, 0.f);
+//        _containerView.layer.shouldRasterize = YES;
+//        _containerView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         
         _clippingContainer = [[LARSAdContainer alloc] initWithFrame:_containerView.bounds];
         self.clippingContainer.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;

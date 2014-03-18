@@ -48,11 +48,7 @@
 }
 
 - (BOOL)shouldDisplayAds{
-#ifdef FREE_VERSION
-    return YES;
-#else
-    return NO;
-#endif
+    return kShowGoogleAds;
 }
 
 @end
