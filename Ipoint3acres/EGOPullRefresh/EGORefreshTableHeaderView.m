@@ -167,7 +167,7 @@
             //Do a series of 5 quarter turns for a total of a 1.25 turns
             //(2PI is a full turn, so pi/2 is a quarter turn)
             [rotate setToValue: [NSNumber numberWithFloat: M_PI / 2]];
-            rotate.repeatCount = 11;
+            rotate.repeatCount = HUGE_VALF;
             
             rotate.duration = 0.25;
 //            rotate.beginTime = start;
