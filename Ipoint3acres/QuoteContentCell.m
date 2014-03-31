@@ -61,10 +61,11 @@
     self.quoteView.text = comment.quoteContent;
     
     self.postContentView.scrollsToTop = NO;
+    self.postContentView.scrollEnabled = NO;
     self.quoteView.scrollsToTop = NO;
+    self.quoteView.scrollEnabled = NO;
     
     [self  setNeedsLayout];
-    
 }
 
 + (CGFloat)heightForComment:(Comment *)comment {
@@ -84,7 +85,7 @@
     textView.text = comment.quoteContent;
     CGSize quoteSize = [textView sizeThatFits:CGSizeMake(300, FLT_MAX)];
     
-    CGFloat height = 50.0f + commentSize.height + quoteSize.height - 20.0f;
+    CGFloat height = 55.0f + commentSize.height + quoteSize.height - 33.0f;
     
     return height;
 }

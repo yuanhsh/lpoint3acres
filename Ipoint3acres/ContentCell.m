@@ -58,6 +58,7 @@
         self.postContentView.text = comment.content;
     }
     self.postContentView.scrollsToTop = NO;
+    self.postContentView.scrollEnabled = NO;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {

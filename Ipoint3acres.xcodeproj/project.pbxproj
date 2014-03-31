@@ -36,7 +36,6 @@
 		1CA6CD62189A0A5300BC8045 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CA6CD60189A0A5300BC8045 /* Main_iPad.storyboard */; };
 		1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6CD64189A0A5300BC8045 /* HomeViewController.m */; };
 		1CA6CD67189A0A5300BC8045 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CA6CD66189A0A5300BC8045 /* Images.xcassets */; };
-		1CA704EB18AB08930054FCE2 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704EA18AB08930054FCE2 /* AUIAutoGrowingTextView.m */; };
 		1CA704ED18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */; };
 		1CA704F118AB2E700054FCE2 /* TWTSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */; };
 		1CA704F518AB5E170054FCE2 /* FirstFloorContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */; };
@@ -81,7 +80,6 @@
 		89550D9018D4AB1E00CF5CB0 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B4BE18A4BB9D0072EE8D /* EGORefreshTableHeaderView.m */; };
 		89550D9118D4AB1E00CF5CB0 /* UIColor+iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */; };
 		89550D9218D4AB1E00CF5CB0 /* FirstFloorContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704F418AB5E170054FCE2 /* FirstFloorContentCell.m */; };
-		89550D9318D4AB1E00CF5CB0 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA704EA18AB08930054FCE2 /* AUIAutoGrowingTextView.m */; };
 		89550D9418D4AB1E00CF5CB0 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F8392218AF3B2F0076C0E0 /* NSString+Date.m */; };
 		89550D9518D4AB1E00CF5CB0 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
 		89550D9618D4AB1E00CF5CB0 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE479E18A32724004F9EDC /* Board.m */; };
@@ -184,8 +182,6 @@
 		1CA6CD64189A0A5300BC8045 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		1CA6CD66189A0A5300BC8045 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1CA6CD6D189A0A5300BC8045 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		1CA704E918AB08930054FCE2 /* AUIAutoGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUIAutoGrowingTextView.h; sourceTree = "<group>"; };
-		1CA704EA18AB08930054FCE2 /* AUIAutoGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUIAutoGrowingTextView.m; sourceTree = "<group>"; };
 		1CA704EC18AB2E2F0054FCE2 /* sidebar_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sidebar_bg@2x.jpg"; sourceTree = "<group>"; };
 		1CA704EF18AB2E700054FCE2 /* TWTSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSideMenuViewController.h; sourceTree = "<group>"; };
 		1CA704F018AB2E700054FCE2 /* TWTSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSideMenuViewController.m; sourceTree = "<group>"; };
@@ -408,15 +404,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1CA704E818AB08930054FCE2 /* AutoGrowingTextView */ = {
-			isa = PBXGroup;
-			children = (
-				1CA704E918AB08930054FCE2 /* AUIAutoGrowingTextView.h */,
-				1CA704EA18AB08930054FCE2 /* AUIAutoGrowingTextView.m */,
-			);
-			path = AutoGrowingTextView;
-			sourceTree = "<group>";
-		};
 		1CA704EE18AB2E700054FCE2 /* TWTSideMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,7 +418,6 @@
 			children = (
 				1C689E3518BDCBA90069C3C5 /* PSPDFTextView */,
 				1CA704EE18AB2E700054FCE2 /* TWTSideMenuViewController */,
-				1CA704E818AB08930054FCE2 /* AutoGrowingTextView */,
 				1CA6B4CB18A4E9DA0072EE8D /* MJRefresh */,
 				1CA6B4BA18A4BB9D0072EE8D /* EGOPullRefresh */,
 				89E9511D189E069C00CB822B /* FlickTab */,
@@ -745,7 +731,6 @@
 				1CA6B4C018A4BB9D0072EE8D /* EGORefreshTableHeaderView.m in Sources */,
 				1CACBD7618B20A89004ADAEF /* UIColor+iOS7.m in Sources */,
 				1CA704F518AB5E170054FCE2 /* FirstFloorContentCell.m in Sources */,
-				1CA704EB18AB08930054FCE2 /* AUIAutoGrowingTextView.m in Sources */,
 				89F8392318AF3B2F0076C0E0 /* NSString+Date.m in Sources */,
 				89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */,
 				1CAE479F18A32724004F9EDC /* Board.m in Sources */,
@@ -799,7 +784,6 @@
 				89550D9018D4AB1E00CF5CB0 /* EGORefreshTableHeaderView.m in Sources */,
 				89550D9118D4AB1E00CF5CB0 /* UIColor+iOS7.m in Sources */,
 				89550D9218D4AB1E00CF5CB0 /* FirstFloorContentCell.m in Sources */,
-				89550D9318D4AB1E00CF5CB0 /* AUIAutoGrowingTextView.m in Sources */,
 				89550D9418D4AB1E00CF5CB0 /* NSString+Date.m in Sources */,
 				89550D9518D4AB1E00CF5CB0 /* HTMLParser.m in Sources */,
 				89550D9618D4AB1E00CF5CB0 /* Board.m in Sources */,

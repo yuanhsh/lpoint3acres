@@ -470,13 +470,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vse-Di-1wk" customClass="AUIAutoGrowingTextView">
-                                            <rect key="frame" x="10" y="45" width="300" height="20"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vse-Di-1wk">
+                                            <rect key="frame" x="10" y="50" width="300" height="303"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="300" id="bRi-Sr-Dke"/>
-                                                <constraint firstAttribute="height" constant="20" id="mJ6-yr-bn2"/>
+                                                <constraint firstAttribute="height" priority="500" constant="20" id="mJ6-yr-bn2"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -559,12 +559,12 @@
                                                 <outletCollection property="gestureRecognizers" destination="dfb-rx-NwX" appends="YES" id="iSO-FO-pHn"/>
                                             </connections>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-Sd-T2w" customClass="AUIAutoGrowingTextView">
-                                            <rect key="frame" x="10" y="90" width="300" height="20"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-Sd-T2w">
+                                            <rect key="frame" x="10" y="90" width="300" height="303"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="45z-Yz-o5A"/>
+                                                <constraint firstAttribute="height" priority="500" constant="20" id="45z-Yz-o5A"/>
                                                 <constraint firstAttribute="width" constant="300" id="zg0-H5-mxc"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -572,12 +572,12 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1e-gr-ePK" customClass="AUIAutoGrowingTextView">
-                                            <rect key="frame" x="10" y="55" width="300" height="20"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1e-gr-ePK">
+                                            <rect key="frame" x="10" y="55" width="300" height="234"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.96580038265306123" green="0.96580038265306123" blue="0.96580038265306123" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="kGI-GR-cTr"/>
+                                                <constraint firstAttribute="height" priority="500" constant="20" id="kGI-GR-cTr"/>
                                                 <constraint firstAttribute="width" constant="300" id="w22-TJ-4mw"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -628,7 +628,7 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="6dw-Sd-T2w" secondAttribute="bottom" priority="500" constant="-20" id="JYL-Kh-0rx"/>
+                                        <constraint firstAttribute="bottom" secondItem="6dw-Sd-T2w" secondAttribute="bottom" priority="500" constant="-15" id="JYL-Kh-0rx"/>
                                         <constraint firstAttribute="bottom" secondItem="EyT-XV-7bS" secondAttribute="bottom" id="RNH-gp-FHD"/>
                                         <constraint firstItem="N1e-gr-ePK" firstAttribute="leading" secondItem="6Vx-6y-rNu" secondAttribute="leading" constant="10" id="gIn-ak-YdU"/>
                                         <constraint firstItem="6dw-Sd-T2w" firstAttribute="leading" secondItem="6Vx-6y-rNu" secondAttribute="leading" constant="10" id="hIj-On-k2F"/>
