@@ -341,7 +341,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vpc-oJ-coR">
             <objects>
-                <navigationController definesPresentationContext="YES" id="si4-51-EZ9" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="si4-51-EZ9" customClass="KKNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHO-kU-AGa">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -473,7 +473,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vse-Di-1wk">
                                             <rect key="frame" x="10" y="50" width="300" height="303"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="300" id="bRi-Sr-Dke"/>
                                                 <constraint firstAttribute="height" priority="500" constant="20" id="mJ6-yr-bn2"/>
@@ -562,7 +562,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-Sd-T2w">
                                             <rect key="frame" x="10" y="90" width="300" height="303"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="500" constant="20" id="45z-Yz-o5A"/>
                                                 <constraint firstAttribute="width" constant="300" id="zg0-H5-mxc"/>
@@ -866,7 +866,7 @@
         <!--Navigation Controller-->
         <scene sceneID="WoP-uD-FpC">
             <objects>
-                <navigationController definesPresentationContext="YES" id="bjG-f5-IeF" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="bjG-f5-IeF" customClass="KKNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ard-qe-Urt">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

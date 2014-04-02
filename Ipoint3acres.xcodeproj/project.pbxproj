@@ -112,6 +112,8 @@
 		89550DB318D4AB1E00CF5CB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CA6CD54189A0A5300BC8045 /* InfoPlist.strings */; };
 		89550DB418D4AB1E00CF5CB0 /* profile_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0450918B33868006A469A /* profile_bg@2x.jpg */; };
 		89550DB518D4AB1E00CF5CB0 /* DefaultBoards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAE479518A321DB004F9EDC /* DefaultBoards.plist */; };
+		895C59F018EC3E8C00091466 /* KKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 895C59EF18EC3E8C00091466 /* KKNavigationController.m */; };
+		895C59F118EC3E8C00091466 /* KKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 895C59EF18EC3E8C00091466 /* KKNavigationController.m */; };
 		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
 		898A448B18D73FB10060EBD7 /* ArticleContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
@@ -216,6 +218,8 @@
 		89550CF818D49E5000CF5CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		89550DBA18D4AB1E00CF5CB0 /* Ipoint3acres_free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ipoint3acres_free.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89550DBB18D4AB1E00CF5CB0 /* Ipoint3acres_free-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Ipoint3acres_free-Info.plist"; path = "/Users/yuanhsh/Documents/Workspace/lpoint3acres/Ipoint3acres_free-Info.plist"; sourceTree = "<absolute>"; };
+		895C59EE18EC3E8C00091466 /* KKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKNavigationController.h; sourceTree = "<group>"; };
+		895C59EF18EC3E8C00091466 /* KKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKNavigationController.m; sourceTree = "<group>"; };
 		896A2C0918A3C376006BBB6A /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
 		896A2C0A18A3C376006BBB6A /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
 		89926D8A189FCD69007BB20D /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 		1CA704F218AB2E8A0054FCE2 /* ThirdParties */ = {
 			isa = PBXGroup;
 			children = (
+				895C59ED18EC3E8C00091466 /* KKNavigationController */,
 				1C689E3518BDCBA90069C3C5 /* PSPDFTextView */,
 				1CA704EE18AB2E700054FCE2 /* TWTSideMenuViewController */,
 				1CA6B4CB18A4E9DA0072EE8D /* MJRefresh */,
@@ -455,6 +460,15 @@
 				1CAE479518A321DB004F9EDC /* DefaultBoards.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		895C59ED18EC3E8C00091466 /* KKNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				895C59EE18EC3E8C00091466 /* KKNavigationController.h */,
+				895C59EF18EC3E8C00091466 /* KKNavigationController.m */,
+			);
+			path = KKNavigationController;
 			sourceTree = "<group>";
 		};
 		89E9511D189E069C00CB822B /* FlickTab */ = {
@@ -716,6 +730,7 @@
 				1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */,
 				1CB4717B18C883B4008F89E1 /* SettingManager.m in Sources */,
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,
+				895C59F018EC3E8C00091466 /* KKNavigationController.m in Sources */,
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
 				1CA6B4D818A4E9DA0072EE8D /* MJRefreshConst.m in Sources */,
@@ -769,6 +784,7 @@
 				89550D8118D4AB1E00CF5CB0 /* Favorite.m in Sources */,
 				89550D8218D4AB1E00CF5CB0 /* SettingManager.m in Sources */,
 				89550D8318D4AB1E00CF5CB0 /* HomeViewController.m in Sources */,
+				895C59F118EC3E8C00091466 /* KKNavigationController.m in Sources */,
 				89550D8418D4AB1E00CF5CB0 /* AppDelegate.m in Sources */,
 				89550D8518D4AB1E00CF5CB0 /* ServiceClient.m in Sources */,
 				89550D8618D4AB1E00CF5CB0 /* MJRefreshConst.m in Sources */,
