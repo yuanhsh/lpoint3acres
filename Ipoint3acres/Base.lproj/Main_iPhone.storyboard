@@ -341,7 +341,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vpc-oJ-coR">
             <objects>
-                <navigationController definesPresentationContext="YES" id="si4-51-EZ9" customClass="KKNavigationController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="si4-51-EZ9" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHO-kU-AGa">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
