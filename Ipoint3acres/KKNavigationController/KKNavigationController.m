@@ -34,10 +34,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        self.screenShotsList = [[NSMutableArray alloc] initWithCapacity:2];
-        self.canDragBack = YES;
-        
+        [self setup];
     }
     return self;
 }
@@ -54,9 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.screenShotsList = [[NSMutableArray alloc] initWithCapacity:2];
-    self.canDragBack = YES;
+    [self setup];
 
     UIImageView *shadowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"leftside_shadow_bg"]];
     shadowImageView.frame = CGRectMake(-10, 0, 10, self.view.frame.size.height);
@@ -66,6 +61,11 @@
                                                                                 action:@selector(paningGestureReceive:)];
     [recognizer delaysTouchesBegan];
     [self.view addGestureRecognizer:recognizer];
+}
+
+- (void)setup {
+    self.screenShotsList = [[NSMutableArray alloc] initWithCapacity:2];
+    self.canDragBack = NO;
 }
 
 - (void)didReceiveMemoryWarning

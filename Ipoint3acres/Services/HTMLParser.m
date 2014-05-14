@@ -125,7 +125,7 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         if (!commentDate || [commentDate isEqualToString:@""]) {
             commentDate = [commenterDateInfo firstTextChild].content;
         }
-        if ([commentDate length] == 16) { // "yyyy-MM-dd HH:mm" -> "yyyy-MM-dd HH:mm:ss"
+        if ([commentDate length] <= 16) { // "yyyy-MM-dd HH:mm" -> "yyyy-MM-dd HH:mm:ss"
             commentDate = [NSString stringWithFormat:@"%@:00", commentDate];
         }
         article.lastCommentDate = commentDate;
@@ -177,10 +177,6 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         }
     }
     
-//    NSArray *titleNodes = [parser searchWithXPathQuery:@"//meta[@name='keywords']"];
-//    if (titleNodes.count >= 1) {
-//        article.shortTitle = [(TFHppleElement *)titleNodes[0] objectForKey:@"content"];
-//    }
     if (!article.shortTitle || [article.shortTitle isEqualToString:@""]) {
         NSArray *titleNodes = [parser searchWithXPathQuery:@"//title"];
         NSString *shortTitle = [(TFHppleElement *)titleNodes[0] firstTextChild].content;
@@ -210,8 +206,11 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             NSString *quoteContent = nil;
             NSString *content = [[divPct firstChildWithTagName:@"div"] firstChildWithTagName:@"div"].raw;
             content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">" withString:@"<div style=\"display:none\">"];
-            if (![[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
+            NSString *floorName = [postIDNode firstTextChild].content;
+            if ([floorName rangeOfString:@"垅头"].location == NSNotFound) {
                 // comment in this article
+                content = [content stringByReplacingOccurrencesOfRegex:@"<font class=\"jammer\">.*?</font>" withString:@""];
+                content = [content stringByReplacingOccurrencesOfRegex:@"<span style=\"display:none\">.*?</span>" withString:@""];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
                 NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
                 NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
@@ -222,7 +221,9 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
                 NSArray *quoteNodes = [quoteParser searchWithXPathQuery:[NSString stringWithFormat:@"//blockquote"]];
                 if (quoteNodes.count >= 1) {
                     TFHppleElement *quoteElement = quoteNodes[0];
-                    NSString *quoteString = [quoteElement.raw stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
+                    NSString *quoteString = [quoteElement.raw stringByReplacingOccurrencesOfRegex:@"<font class=\"jammer\">.*?</font>" withString:@""];
+                    quoteString = [quoteString stringByReplacingOccurrencesOfRegex:@"<span style=\"display:none\">.*?</span>" withString:@""];
+                    quoteString = [quoteString stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
                     NSData *quoteData = [quoteString dataUsingEncoding:NSUTF8StringEncoding];
                     NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
                     quoteContent = attributedQuote.string;
@@ -230,11 +231,16 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             } else {
                 comment.floorNo = @1;
                 content = [divPct firstChildWithClassName:@"pcb"].raw;
+                content = [content stringByReplacingOccurrencesOfRegex:@"<font class=\"jammer\">.*?</font>" withString:@""];
+                content = [content stringByReplacingOccurrencesOfRegex:@"<span style=\"display:none\">.*?</span>" withString:@""];
+                content = [content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"ptg mbm mtn\"" withString:@"style=\"display:none\""];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"fullvfastpost\"" withString:@"style=\"display:none\""];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"psth xs1\"" withString:@"style=\"display:none\""];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"rate\"" withString:@"style=\"display:none\""];
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"modact\"" withString:@"style=\"display:none\""];
                 content = [content stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
+                
             }
             comment.quoteContent = quoteContent;
             comment.content = content;

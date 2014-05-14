@@ -10,7 +10,8 @@
 #import "Models.h"
 #import "RegexKitLite.h"
 
-#define kBaseAPIURL         @"http://www.1point3acres.com/"
+#define kBaseAPIURL @"http://www.1point3acres.com/"
+#define kForumURL   @"http://www.1point3acres.com/bbs/"
 
 #define kLoginURL   @"/bbs/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1"
 #define kLogoutURL  @"/bbs/member.php?mod=logging&action=logout"

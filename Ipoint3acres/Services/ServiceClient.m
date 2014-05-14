@@ -149,7 +149,9 @@
         resString = [resString stringByReplacingOccurrencesOfString:@" " withString:@""];
         
         if ( !resString || [resString isEqualToString:@""]) {
-            [self.delegate loginFailed];
+            if ([self.delegate respondsToSelector:@selector(loginFailed)]) {
+                [self.delegate loginFailed];
+            }
         } else {
 //            NSString *usernameMatch = [resString stringByMatching:@"'username':'.*?'"];
             NSString *uidMatch = [resString stringByMatching:@"'uid':'.+?'"];
@@ -157,9 +159,13 @@
             NSArray *userIdArray = [uidMatch componentsSeparatedByString:@":"];
             if (userIdArray.count == 2) {
                 self.loginedUserId = userIdArray[1];
-                [self.delegate loginSuccessedWithUserId:self.loginedUserId];
+                if ([self.delegate respondsToSelector:@selector(loginSuccessedWithUserId:)]) {
+                    [self.delegate loginSuccessedWithUserId:self.loginedUserId];
+                }
             } else {
-                [self.delegate loginFailed];
+                if ([self.delegate respondsToSelector:@selector(loginFailed)]) {
+                    [self.delegate loginFailed];
+                }
             }
         }
     }];

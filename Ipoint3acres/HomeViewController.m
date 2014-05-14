@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
+#import "SVWebViewController.h"
 #import "DataManager.h"
 #import "GADBannerView.h"
 
@@ -58,7 +59,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reorderBoards) name:kBoardReorderNotification object:nil];
 //    [self checkUserSiteNotifs];
-    
+    [self.service loginWithUsername:@"bitware" password:@"Passw0rd"];
 //    self.notifTimer = [NSTimer scheduledTimerWithTimeInterval:kCheckSiteNotifsInterval target:self selector:@selector(checkUserSiteNotifs) userInfo:nil repeats:YES];
 }
 
@@ -145,20 +146,13 @@
 }
 
 - (IBAction)showUserProfile:(id)sender {
-    ServiceClient *client = [[ServiceClient alloc] init];
-//    if (client.loginedUserId) {//profileController
-        ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
-        profileController.userID = client.loginedUserId;
-        profileController.viewSelf = YES;
-        [self.navigationController pushViewController:profileController animated:YES];
-//    } else {
-//        static NSString *userLoginNotification = @"UserLoginNotification";
-//        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginController"];
-//        loginController.notificationName = userLoginNotification;
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUserProfile:) name:userLoginNotification object:nil];
-//        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:loginController];
-//        [self presentViewController:controller animated:YES completion:nil];
-//    }
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:kForumURL];
+    [self.navigationController pushViewController:webViewController animated:YES];
+//    ServiceClient *client = [[ServiceClient alloc] init];
+//    ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
+//    profileController.userID = client.loginedUserId;
+//    profileController.viewSelf = YES;
+//    [self.navigationController pushViewController:profileController animated:YES];
 }
 
 #pragma mark -
