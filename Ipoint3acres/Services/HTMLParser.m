@@ -77,6 +77,8 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
                                                  withString:@"span>"];
         title = [title stringByReplacingOccurrencesOfString:@"class=\"xi1\">New</a>"
                                                  withString:@"class=\"xi1\"></a>"];
+        title = [title stringByReplacingOccurrencesOfString:@"隐藏置顶帖"
+                                                 withString:@""];
         
         NSData *titleData = [title dataUsingEncoding:NSUTF8StringEncoding];
         NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithHTMLData:titleData options:self.attributedTitleOptions documentAttributes:nil];
@@ -94,6 +96,12 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         NSString *authorLink = [authorInfo objectForKey:@"href"];
         NSString *authorName = [[authorInfo firstTextChild] content];
         NSString *createDate = [[createDateInfo firstTextChild] content];
+        if (!createDate || [createDate isEqualToString:@""]) {
+            TFHppleElement *subCreateDateInfo = [createDateInfo firstChildWithTagName:@"span"];
+            if (subCreateDateInfo) {
+                createDate = [subCreateDateInfo objectForKey:@"title"];
+            }
+        }
         article.authorID = [mapper getUserIDfromUserLink:authorLink];
         article.authorName = authorName;
         article.createDate = createDate;
@@ -116,6 +124,9 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         NSString *commentDate = [[commenterDateInfo firstChildWithTagName:@"span"] objectForKey:@"title"];
         if (!commentDate || [commentDate isEqualToString:@""]) {
             commentDate = [commenterDateInfo firstTextChild].content;
+        }
+        if ([commentDate length] == 16) { // "yyyy-MM-dd HH:mm" -> "yyyy-MM-dd HH:mm:ss"
+            commentDate = [NSString stringWithFormat:@"%@:00", commentDate];
         }
         article.lastCommentDate = commentDate;
         
@@ -198,10 +209,10 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
             // get post content
             NSString *quoteContent = nil;
             NSString *content = [[divPct firstChildWithTagName:@"div"] firstChildWithTagName:@"div"].raw;
-            content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">"
-                                                     withString:@"<div style=\"display:none\">"];
+            content = [content stringByReplacingOccurrencesOfString:@"<div class=\"quote\">" withString:@"<div style=\"display:none\">"];
             if (![[postIDNode firstTextChild].content isEqualToString:@"垅头"]) {
                 // comment in this article
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
                 NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
                 NSAttributedString *attributedContent = [[NSAttributedString alloc] initWithHTMLData:contentData options:self.attributedTitleOptions documentAttributes:nil];
                 content = attributedContent.string;
@@ -211,12 +222,19 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
                 NSArray *quoteNodes = [quoteParser searchWithXPathQuery:[NSString stringWithFormat:@"//blockquote"]];
                 if (quoteNodes.count >= 1) {
                     TFHppleElement *quoteElement = quoteNodes[0];
-                    NSData *quoteData = [quoteElement.raw dataUsingEncoding:NSUTF8StringEncoding];
+                    NSString *quoteString = [quoteElement.raw stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
+                    NSData *quoteData = [quoteString dataUsingEncoding:NSUTF8StringEncoding];
                     NSAttributedString *attributedQuote = [[NSAttributedString alloc] initWithHTMLData:quoteData options:self.attributedTitleOptions documentAttributes:nil];
                     quoteContent = attributedQuote.string;
                 }
             } else {
                 comment.floorNo = @1;
+                content = [divPct firstChildWithClassName:@"pcb"].raw;
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"ptg mbm mtn\"" withString:@"style=\"display:none\""];
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"fullvfastpost\"" withString:@"style=\"display:none\""];
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"psth xs1\"" withString:@"style=\"display:none\""];
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"rate\"" withString:@"style=\"display:none\""];
+                content = [content stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
             }
             comment.quoteContent = quoteContent;
             comment.content = content;
@@ -277,11 +295,11 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         TFHppleElement *profileNode = nodes[0];
         
         NSArray *ulNodes = [profileNode childrenWithTagName:@"ul"];
-        if (ulNodes.count >= 2) {
-            NSArray *signatureNodes = [(TFHppleElement *)ulNodes[0] childrenWithTagName:@"li"];
+        if (ulNodes.count >= 4) {
+            NSArray *signatureNodes = [(TFHppleElement *)ulNodes[1] childrenWithTagName:@"li"];
             for (TFHppleElement *item in signatureNodes) {
                 NSString *sign = [[item firstChildWithTagName:@"em"] firstTextChild].content;
-                if ([@"个人签名" isEqualToString:sign]) {
+                if ([sign hasPrefix:@"个人签名"]) {
                     NSString *rawSignHtml = [item firstChildWithTagName:@"table"].raw;
                     NSData *signData = [rawSignHtml dataUsingEncoding:NSUTF8StringEncoding];
                     NSAttributedString *attributedSign = [[NSAttributedString alloc] initWithHTMLData:signData options:self.attributedTitleOptions documentAttributes:nil];
@@ -290,14 +308,16 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
                 }
             }
             
-            NSArray *infoNodes = [(TFHppleElement *)ulNodes[1] childrenWithTagName:@"li"];
+            NSArray *infoNodes = [(TFHppleElement *)ulNodes[3] childrenWithTagName:@"li"];
             for (TFHppleElement *item in infoNodes) {
                 NSString *itemName = [[item firstChildWithTagName:@"em"] firstTextChild].content;
                 itemName = [itemName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 NSString *itemValue = [item firstTextChild].content;
                 itemValue = [itemValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 if ([@"性别" isEqualToString:itemName]) {
-                    user.gender = itemValue;
+                    if (![itemValue hasPrefix:@"保密"]) {
+                        user.gender = itemValue;
+                    }
                     continue;
                 } else if([@"生日" isEqualToString:itemName]) {
                     if (![itemValue isEqualToString:@"-"] && ![itemValue isEqualToString:@""]) {

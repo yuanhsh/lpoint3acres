@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kDefaultStickThread NO
+
 @interface SettingManager : NSObject
 
 @property (nonatomic, assign) BOOL showStickThread;

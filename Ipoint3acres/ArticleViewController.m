@@ -196,8 +196,7 @@
 }
 
 - (void)doMoreAction {
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", @"查看楼主", @"回复楼主", nil];
-//    [action showInView:self.view];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看网页", @"查看楼主", /*@"回复楼主", */nil];
     [action showInView:[UIApplication sharedApplication].keyWindow];
 }
 
@@ -208,10 +207,10 @@
         NSString *url = [[InfoURLMapper sharedInstance] getArticleFullURL:self.article.articleID];
         SVWebViewController *webVC = [[SVWebViewController alloc] initWithAddress:url];
         [self.navigationController pushViewController:webVC animated:YES];
-    } else if ([buttonTitle isEqualToString:@"回复楼主"]) {
-        CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
-        commentController.comment = self.comments[0];
-        [self presentViewController:commentController animated:YES completion:nil];
+//    } else if ([buttonTitle isEqualToString:@"回复楼主"]) {
+//        CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
+//        commentController.comment = self.comments[0];
+//        [self presentViewController:commentController animated:YES completion:nil];
     } else if ([buttonTitle isEqualToString:@"查看楼主"]) {
         Comment *comment = self.comments[0];
         ProfileViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileController"];
@@ -237,6 +236,8 @@
 }
 
 - (IBAction)makeComment:(id)sender {
+    return;
+    
     CommentViewController *commentController = [self.storyboard instantiateViewControllerWithIdentifier:@"commentController"];
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];

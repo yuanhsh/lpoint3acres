@@ -34,8 +34,7 @@
         if (self.showStickDefault) {
             _showStickThread = [self.showStickDefault boolValue];
         } else {
-            _showStickThread = YES;
-            [self setShowStickThread:YES];
+            [self setShowStickThread:kDefaultStickThread];
         }
     }
     return _showStickThread;
