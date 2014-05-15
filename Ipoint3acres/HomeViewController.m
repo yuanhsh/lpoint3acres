@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = nil;
     self.service = [[ServiceClient alloc] initWithDelegate:self];
     self.boardControllers = [self getBoardControllers];
 	

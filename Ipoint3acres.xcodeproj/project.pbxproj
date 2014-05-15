@@ -117,6 +117,8 @@
 		896A2C0B18A3C376006BBB6A /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896A2C0A18A3C376006BBB6A /* ArticleViewController.m */; };
 		898A448B18D73FB10060EBD7 /* ArticleContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C08674C18D70B4D00A5B548 /* ArticleContainerController.m */; };
 		89926D8F189FD55F007BB20D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89926D8E189FD55F007BB20D /* HTMLParser.m */; };
+		89AA73831924F077007B9A93 /* NSData+IllegalChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AA73821924F077007B9A93 /* NSData+IllegalChar.m */; };
+		89AA73841924F077007B9A93 /* NSData+IllegalChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AA73821924F077007B9A93 /* NSData+IllegalChar.m */; };
 		89D6F0B618B24D600062BFD4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6F0B518B24D600062BFD4 /* LoginViewController.m */; };
 		89E95127189E069C00CB822B /* FlickTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E9511F189E069C00CB822B /* FlickTabButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		89E95129189E069C00CB822B /* FlickTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E95124189E069C00CB822B /* FlickTabView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -225,6 +227,8 @@
 		89926D8A189FCD69007BB20D /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		89926D8D189FD55F007BB20D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		89926D8E189FD55F007BB20D /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		89AA73811924F077007B9A93 /* NSData+IllegalChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+IllegalChar.h"; sourceTree = "<group>"; };
+		89AA73821924F077007B9A93 /* NSData+IllegalChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+IllegalChar.m"; sourceTree = "<group>"; };
 		89D6F0B418B24D600062BFD4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		89D6F0B518B24D600062BFD4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		89E9511E189E069C00CB822B /* FlickTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickTabButton.h; sourceTree = "<group>"; };
@@ -534,6 +538,8 @@
 				89F8392218AF3B2F0076C0E0 /* NSString+Date.m */,
 				1CACBD7418B20A89004ADAEF /* UIColor+iOS7.h */,
 				1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */,
+				89AA73811924F077007B9A93 /* NSData+IllegalChar.h */,
+				89AA73821924F077007B9A93 /* NSData+IllegalChar.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				89E95132189E637700CB822B /* ArticleTitleCell.m in Sources */,
 				1CA6B4DA18A4E9DA0072EE8D /* MJRefreshHeaderView.m in Sources */,
 				89E9514F189E869800CB822B /* BBSData.xcdatamodeld in Sources */,
+				89AA73831924F077007B9A93 /* NSData+IllegalChar.m in Sources */,
 				8940B84B18AA46140035A228 /* ContentCell.m in Sources */,
 				1C08674D18D70B4D00A5B548 /* ArticleContainerController.m in Sources */,
 			);
@@ -817,6 +824,7 @@
 				89550DA118D4AB1E00CF5CB0 /* CommonBaseCell.m in Sources */,
 				89550DA218D4AB1E00CF5CB0 /* ArticleTitleCell.m in Sources */,
 				89550DA318D4AB1E00CF5CB0 /* MJRefreshHeaderView.m in Sources */,
+				89AA73841924F077007B9A93 /* NSData+IllegalChar.m in Sources */,
 				89550DA418D4AB1E00CF5CB0 /* BBSData.xcdatamodeld in Sources */,
 				89550DA518D4AB1E00CF5CB0 /* ContentCell.m in Sources */,
 			);

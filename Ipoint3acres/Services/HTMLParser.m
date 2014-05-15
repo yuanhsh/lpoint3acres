@@ -10,6 +10,7 @@
 #import "HTMLParser.h"
 #import "TFHpple.h"
 #import "InfoURLMapper.h"
+#import "NSData+IllegalChar.h"
 
 const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
     // the block is being called for an entire paragraph, so we check the individual elements
