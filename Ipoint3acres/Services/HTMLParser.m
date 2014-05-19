@@ -169,9 +169,9 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 
 - (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-    
+
     //update view count and comment count of the article
-    NSArray *countNodes = [parser searchWithXPathQuery:@"//td[@class='pls ptm pbm']"];
+    NSArray *countNodes = [parser searchWithXPathQuery:@"//td[@class='pls ptn pbn']"];
     if (countNodes.count >= 1) {
         NSArray *countElements = [[(TFHppleElement *)countNodes[0] firstChildWithTagName:@"div"] childrenWithClassName:@"xi1"];
         if (countElements.count == 2) {
@@ -187,13 +187,10 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     }
     
     if (!article.shortTitle || [article.shortTitle isEqualToString:@""]) {
-        NSArray *titleNodes = [parser searchWithXPathQuery:@"//title"];
-        NSString *shortTitle = [(TFHppleElement *)titleNodes[0] firstTextChild].content;
-        NSRange range = [shortTitle rangeOfString:@"【" options:NSBackwardsSearch];
-        if(range.location != NSNotFound) {
-            shortTitle = [shortTitle substringToIndex:range.location];
+        TFHppleElement *subjectElement = [parser peekAtSearchWithXPathQuery:@"//span[@id='thread_subject']"];
+        if (subjectElement) {
+            article.shortTitle = subjectElement.text;
         }
-        article.shortTitle = shortTitle;
     }
     
     NSString *queryString = [NSString stringWithFormat:@"//td[@class='plc']"];

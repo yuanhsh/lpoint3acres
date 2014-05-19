@@ -32,6 +32,7 @@
 
 - (void)fetchArticlesForBoard:(Board *)board atPage:(NSInteger)pageNo;
 - (void)fetchCommentsForArticle:(Article *)article atPage:(NSInteger)pageNo;
+- (void)fetchCommentsForArticle:(Article *)article atURL:(NSString *)commentURL;
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
 - (void)logout;

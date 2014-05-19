@@ -12,7 +12,7 @@
 #import "ServiceClient.h"
 #import "FirstFloorContentCell.h"
 
-@interface ArticleViewController : RefreshableViewController <UIActionSheetDelegate, WebServiceDelegate, ContentCellDelegate>
+@interface ArticleViewController : RefreshableViewController <UIActionSheetDelegate, UIWebViewDelegate, WebServiceDelegate, ContentCellDelegate>
 
 @property (nonatomic, strong) Article *article;
 @property (nonatomic, strong) ServiceClient *service;

@@ -21,6 +21,7 @@
 
 #define kArticleURL     @"/bbs/thread-%@-1-1.html"
 #define kCommentURL     @"/bbs/thread-%@-%ld-1.html"
+#define kFullCommentURL @"http://www.1point3acres.com/bbs/thread-%@-%ld-1.html"
 
 #define kUserProfileURL @"/bbs/home.php?mod=space&uid=%@&do=profile"
 #define kUserFavoritesURL   @"/bbs/home.php?mod=space&do=favorite&type=thread"
@@ -44,6 +45,8 @@
 - (NSString *)urlForBoard:(Board *)board atPage:(NSInteger)pageNo;
 
 - (NSString *)commentURLForArticle:(Article *)article atPage:(NSInteger)pageNo;
+
+- (NSString *)fullCommentURLForArticle:(Article *)article atPage:(NSInteger)pageNo;
 
 - (NSString *)getUserIDfromUserLink:(NSString *)link;
 

@@ -141,6 +141,21 @@
     }];
 }
 
+- (void)fetchCommentsForArticle:(Article *)article atURL:(NSString *)commentURL {
+    [self GET:commentURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            HTMLParser *parser = [HTMLParser sharedInstance];
+            NSOrderedSet *comments = [parser parseCommentsForArticle:article withData:operation.responseData];
+            [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didReceiveComments:comments forArticle:article];
+            });
+        });
+        
+    }];
+}
+
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password {
     NSDictionary *parameters = @{@"username": username, @"password": password, @"cookietime": @"2592000", @"quickforward": @"yes", @"handlekey": @"ls"};
     

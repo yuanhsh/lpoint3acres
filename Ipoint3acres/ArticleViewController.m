@@ -19,6 +19,7 @@
 @interface ArticleViewController ()
 @property (nonatomic, assign) NSInteger pageNo;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation ArticleViewController
@@ -60,6 +61,11 @@
     self.parentViewController.navigationItem.titleView = titlelabel;
     self.parentViewController.navigationItem.title = @"";
     self.article.isViewed = @YES;
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    self.webView.hidden = YES;
+    self.webView.delegate = self;
+    [self.view addSubview:self.webView];
 
     [self didReceiveComments:self.article.comments forArticle:self.article];
     NSInteger currentCount = self.article.comments.count;
@@ -84,6 +90,17 @@
 - (void)loadDataAtPage:(NSInteger)pageNo {
     self.pageNo = pageNo;
     [self.service fetchCommentsForArticle:self.article atPage:pageNo];
+//    NSString *commentURL = [[InfoURLMapper sharedInstance] fullCommentURLForArticle:self.article atPage:pageNo];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:commentURL]]];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSString *commentURL = [request.URL absoluteString];
+    if ([commentURL rangeOfString:@"dsign"].location != NSNotFound) {
+        [self.service fetchCommentsForArticle:self.article atURL:commentURL];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)startRefreshingTableView {
