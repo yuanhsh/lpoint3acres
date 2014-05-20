@@ -11,6 +11,7 @@
 #import "TFHpple.h"
 #import "InfoURLMapper.h"
 #import "NSData+IllegalChar.h"
+#import "WPXMLRPCDataCleaner.h"
 
 const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
     // the block is being called for an entire paragraph, so we check the individual elements
@@ -52,7 +53,9 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
     return _attributedTitleOptions;
 }
 
-- (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)data {
+- (NSOrderedSet *)parseArticlesForBoard:(Board *)board withData:(NSData *)rawdata {
+    WPXMLRPCDataCleaner *cleaner = [[WPXMLRPCDataCleaner alloc] initWithData:rawdata];
+    NSData *data = [cleaner cleanData];
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     NSString *queryString = [NSString stringWithFormat:@"//table[@summary='forum_%@']/tbody", board.boardID];
     NSArray *nodes = [parser searchWithXPathQuery:queryString];
@@ -160,14 +163,17 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
 }
 
 - (NSString *)removeIllegalCharacters:(NSString *)str {
-    NSString *result = [[str componentsSeparatedByCharactersInSet:[NSCharacterSet illegalCharacterSet]] componentsJoinedByString:@""];
-    result = [result stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
+    NSString *result = [str stringByReplacingOccurrencesOfString:@"class=\"jammer\"" withString:@"style=\"display:none\""];
+    result = [result stringByReplacingOccurrencesOfRegex:@"<font face=" withString:@"<font uselessdata="];
+//    result = [[result componentsSeparatedByCharactersInSet:[NSCharacterSet illegalCharacterSet]] componentsJoinedByString:@""];
 //    result = [result stringByReplacingOccurrencesOfRegex:@"<font class=\"jammer\">.*?</font>" withString:@""];
 //    result = [result stringByReplacingOccurrencesOfRegex:@"<span style=\"display:none\">.*?</span>" withString:@""];
     return result;
 }
 
-- (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)data {
+- (NSOrderedSet *)parseCommentsForArticle:(Article *)article withData:(NSData *)rawdata {
+    WPXMLRPCDataCleaner *cleaner = [[WPXMLRPCDataCleaner alloc] initWithData:rawdata];
+    NSData *data = [cleaner cleanData];
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
     //update view count and comment count of the article

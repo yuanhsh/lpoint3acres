@@ -52,6 +52,10 @@
 		1CB4717B18C883B4008F89E1 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB4717A18C883B4008F89E1 /* SettingManager.m */; };
 		1CD0450A18B33868006A469A /* profile_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0450918B33868006A469A /* profile_bg@2x.jpg */; };
 		1CD0450D18B34A04006A469A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0450C18B34A04006A469A /* ProfileViewController.m */; };
+		891B5445192B84D600FB0C59 /* WPXMLRPCDataCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = 891B5443192B84D600FB0C59 /* WPXMLRPCDataCleaner.m */; };
+		891B5446192B84D600FB0C59 /* WPXMLRPCDataCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = 891B5443192B84D600FB0C59 /* WPXMLRPCDataCleaner.m */; };
+		891B5448192B84F600FB0C59 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 891B5447192B84F600FB0C59 /* libiconv.2.4.0.dylib */; };
+		891B5449192B851600FB0C59 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 891B5447192B84F600FB0C59 /* libiconv.2.4.0.dylib */; };
 		8940B84B18AA46140035A228 /* ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8940B84A18AA46140035A228 /* ContentCell.m */; };
 		89550D7818D4AB1E00CF5CB0 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E9513A189E746E00CB822B /* DataManager.m */; };
 		89550D7918D4AB1E00CF5CB0 /* FlickTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E95124189E069C00CB822B /* FlickTabView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -215,6 +219,9 @@
 		1CD0450B18B34A04006A469A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		1CD0450C18B34A04006A469A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		33BCE22A507F426AA9B696EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		891B5443192B84D600FB0C59 /* WPXMLRPCDataCleaner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCDataCleaner.m; sourceTree = "<group>"; };
+		891B5444192B84D600FB0C59 /* WPXMLRPCDataCleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPXMLRPCDataCleaner.h; sourceTree = "<group>"; };
+		891B5447192B84F600FB0C59 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		8940B84918AA46140035A228 /* ContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentCell.h; sourceTree = "<group>"; };
 		8940B84A18AA46140035A228 /* ContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentCell.m; sourceTree = "<group>"; };
 		89550CF818D49E5000CF5CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -260,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891B5448192B84F600FB0C59 /* libiconv.2.4.0.dylib in Frameworks */,
 				1CA675C318BDAFCE003CD9EE /* Crashlytics.framework in Frameworks */,
 				1CA6CD4E189A0A5300BC8045 /* CoreGraphics.framework in Frameworks */,
 				1CA6CD50189A0A5300BC8045 /* UIKit.framework in Frameworks */,
@@ -272,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891B5449192B851600FB0C59 /* libiconv.2.4.0.dylib in Frameworks */,
 				89550DA718D4AB1E00CF5CB0 /* Crashlytics.framework in Frameworks */,
 				89550DA818D4AB1E00CF5CB0 /* CoreGraphics.framework in Frameworks */,
 				89550DA918D4AB1E00CF5CB0 /* UIKit.framework in Frameworks */,
@@ -371,6 +380,7 @@
 		1CA6CD4A189A0A5300BC8045 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				891B5447192B84F600FB0C59 /* libiconv.2.4.0.dylib */,
 				1CA675C218BDAFCE003CD9EE /* Crashlytics.framework */,
 				1CA6CD4B189A0A5300BC8045 /* Foundation.framework */,
 				1CA6CD4D189A0A5300BC8045 /* CoreGraphics.framework */,
@@ -540,6 +550,8 @@
 				1CACBD7518B20A89004ADAEF /* UIColor+iOS7.m */,
 				89AA73811924F077007B9A93 /* NSData+IllegalChar.h */,
 				89AA73821924F077007B9A93 /* NSData+IllegalChar.m */,
+				891B5444192B84D600FB0C59 /* WPXMLRPCDataCleaner.h */,
+				891B5443192B84D600FB0C59 /* WPXMLRPCDataCleaner.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -736,6 +748,7 @@
 				1CA6710218B5CEC800FB91CE /* Favorite.m in Sources */,
 				1CB4717B18C883B4008F89E1 /* SettingManager.m in Sources */,
 				1CA6CD65189A0A5300BC8045 /* HomeViewController.m in Sources */,
+				891B5445192B84D600FB0C59 /* WPXMLRPCDataCleaner.m in Sources */,
 				895C59F018EC3E8C00091466 /* KKNavigationController.m in Sources */,
 				1CA6CD5C189A0A5300BC8045 /* AppDelegate.m in Sources */,
 				89E9515F189E8D1200CB822B /* ServiceClient.m in Sources */,
@@ -791,6 +804,7 @@
 				89550D8118D4AB1E00CF5CB0 /* Favorite.m in Sources */,
 				89550D8218D4AB1E00CF5CB0 /* SettingManager.m in Sources */,
 				89550D8318D4AB1E00CF5CB0 /* HomeViewController.m in Sources */,
+				891B5446192B84D600FB0C59 /* WPXMLRPCDataCleaner.m in Sources */,
 				895C59F118EC3E8C00091466 /* KKNavigationController.m in Sources */,
 				89550D8418D4AB1E00CF5CB0 /* AppDelegate.m in Sources */,
 				89550D8518D4AB1E00CF5CB0 /* ServiceClient.m in Sources */,

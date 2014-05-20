@@ -90,8 +90,8 @@
 - (void)loadDataAtPage:(NSInteger)pageNo {
     self.pageNo = pageNo;
     [self.service fetchCommentsForArticle:self.article atPage:pageNo];
-//    NSString *commentURL = [[InfoURLMapper sharedInstance] fullCommentURLForArticle:self.article atPage:pageNo];
-//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:commentURL]]];
+    NSString *commentURL = [[InfoURLMapper sharedInstance] fullCommentURLForArticle:self.article atPage:pageNo];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:commentURL]]];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -169,6 +169,9 @@
 - (void)didReceiveComments: (NSOrderedSet *)comments forArticle: (Article *)article {
     if (article.shortTitle) {
         self.titleLabel.text = article.shortTitle;
+    }
+    if (comments == nil || comments.count == 0) {
+        return;
     }
     [self stopLoadingMoreData];
     [self stopRefreshingTableView];
