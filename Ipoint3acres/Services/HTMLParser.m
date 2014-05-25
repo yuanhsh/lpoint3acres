@@ -77,11 +77,15 @@ const void (^attributedCallBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement 
         NSString *title = [[tr firstChildWithTagName:@"th"] raw];
         title = [title stringByReplacingOccurrencesOfString:@"<span class=\"tps\">"
                                                  withString:@"<span style=\"display:none\">"];
+        title = [title stringByReplacingOccurrencesOfString:@"<a class=\"tdpre y\">"
+                                                 withString:@"<a style=\"display:none\">"];
         title = [title stringByReplacingOccurrencesOfString:@"em>"
                                                  withString:@"span>"];
         title = [title stringByReplacingOccurrencesOfString:@"class=\"xi1\">New</a>"
                                                  withString:@"class=\"xi1\"></a>"];
         title = [title stringByReplacingOccurrencesOfString:@"隐藏置顶帖"
+                                                 withString:@""];
+        title = [title stringByReplacingOccurrencesOfString:@"预览"
                                                  withString:@""];
         
         NSData *titleData = [title dataUsingEncoding:NSUTF8StringEncoding];
